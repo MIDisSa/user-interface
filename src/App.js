@@ -16,6 +16,8 @@ const App = () => {
 
 
 const ModelBox = ({ setAdopters, setAwareFarmers }) => {
+  const [isHoveredBtn1, setIsHoveredBtn1] = useState(false); // For the first button
+  const [isHoveredBtn2, setIsHoveredBtn2] = useState(false); // For the second button
   const runModel = async (gui) => {
       try {
           const response = await fetch("http://localhost:8080/results");
@@ -61,9 +63,33 @@ const ModelBox = ({ setAdopters, setAwareFarmers }) => {
               </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-              <button style={{ backgroundColor: 'orange', color: 'white', padding: '10px', border: 'none', borderRadius: '5px' }} onClick={() => runModel(false)}>Start Model without NetLogo GUI</button>
-              <button style={{ backgroundColor: 'orange', color: 'white', padding: '10px', border: 'none', borderRadius: '5px' }} onClick={() => runModel(true)}>Start Model with NetLogo GUI</button>
-          </div>
+                <button 
+                    style={{
+                        backgroundColor: isHoveredBtn1 ? '#e56d00' : 'orange', 
+                        color: 'white', 
+                        padding: '10px', 
+                        border: 'none', 
+                        borderRadius: '5px'
+                    }} 
+                    onMouseOver={() => setIsHoveredBtn1(true)} 
+                    onMouseOut={() => setIsHoveredBtn1(false)}
+                    onClick={() => runModel(false)}>
+                        Start Model without NetLogo GUI
+                </button>
+                <button 
+                    style={{
+                        backgroundColor: isHoveredBtn2 ? '#e56d00' : 'orange', 
+                        color: 'white', 
+                        padding: '10px', 
+                        border: 'none', 
+                        borderRadius: '5px'
+                    }} 
+                    onMouseOver={() => setIsHoveredBtn2(true)} 
+                    onMouseOut={() => setIsHoveredBtn2(false)}
+                    onClick={() => runModel(true)}>
+                        Start Model with NetLogo GUI
+                </button>
+            </div>
       </div>
   );
 };
