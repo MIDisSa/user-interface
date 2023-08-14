@@ -1,5 +1,15 @@
+
+html, body {
+  height: 100%;
+  margin: 0; 
+}
+
 .App {
   text-align: center;
+  background-repeat: no-repeat;
+  background-size: cover; /* covers entire viewport */
+  background-position: center center; 
+  min-height: 100vh; /* ensures the background covers the full height of the viewport */
 }
 
 .App-logo {
@@ -11,17 +21,6 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -36,3 +35,4 @@
     transform: rotate(360deg);
   }
 }
+

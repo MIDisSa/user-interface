@@ -1,34 +1,83 @@
-import './App.css';
+import React, { useState } from "react";
+import backgroundImage from './sunflower.png';
 
-import React, { useState } from 'react';
-
-export default function MyApp() {
-
+const App = () => {
   const [adopters, setAdopters] = useState(null);
   const [awareFarmers, setAwareFarmers] = useState(null);
 
-  const handleClick = async () => {
-    try {
-      console.log("start fetching")
-      const response = await fetch("http://localhost:8080/results");
-      const data = await response.json();
-      console.log("fetched data")
-      setAdopters(data["adopters"]);
-      setAwareFarmers(data["awareFarmers"])
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  return (
+      <div style={{ backgroundImage: `url(${backgroundImage})`, height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <h1>Agent-based Model Tanzania</h1>
+          <ModelBox setAdopters={setAdopters} setAwareFarmers={setAwareFarmers} />
+          <ResultBox adopters={adopters} awareFarmers={awareFarmers} />
+      </div>
+  );
+};
+
+
+const ModelBox = ({ setAdopters, setAwareFarmers }) => {
+  const runModel = async (gui) => {
+      try {
+          const response = await fetch("http://localhost:8080/results");
+          const data = await response.json();
+          setAdopters(data["adopters"]);
+          setAwareFarmers(data["awareFarmers"]);
+      } catch (error) {
+          console.error("Error fetching data from NetLogo model:", error);
+      }
+  };
 
   return (
-    <div>
-      <h1>Click button to run netlogo model:</h1>
-      <button onClick={handleClick}>
-        Button
-      </button>
-      <p> number of adopters: {adopters} </p>
-      <p> number of aware farmers: {awareFarmers} </p>
-    </div>
+      <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', width: '70%', maxWidth: '800px', margin: '10px 0', textAlign: 'center'  }}>
+          <h2>The Model</h2>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+              <div>
+                  <label>Frequency Direct Ad:</label>
+                  <select>
+                      <option value="">Select...</option>
+                      <option value="Option1">Option1</option>
+                      <option value="Option2">Option2</option>
+                  </select>
+              </div>
+              <div>
+                  <label>Type Direct Ad:</label>
+                  <select>
+                      <option value="">Select...</option>
+                      <option value="Option1">Option1</option>
+                      <option value="Option2">Option2</option>
+                  </select>
+              </div>
+              <div>
+                  <label>Frequency Chief Training:</label>
+                  <select>
+                      <option value="">Select...</option>
+                      <option value="Option1">Option1</option>
+                      <option value="Option2">Option2</option>
+                  </select>
+              </div>
+              <div>
+                  <label>Number of Ticks:</label>
+                  <input type="text" />
+              </div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+              <button style={{ backgroundColor: 'orange', color: 'white', padding: '10px', border: 'none', borderRadius: '5px' }} onClick={() => runModel(false)}>Start Model without NetLogo GUI</button>
+              <button style={{ backgroundColor: 'orange', color: 'white', padding: '10px', border: 'none', borderRadius: '5px' }} onClick={() => runModel(true)}>Start Model with NetLogo GUI</button>
+          </div>
+      </div>
   );
-}
+};
 
+
+const ResultBox = ({ adopters, awareFarmers }) => {
+  return (
+      <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', width: '70%', maxWidth: '800px', margin: '10px 0', textAlign: 'center'  }}>
+          <h2>The Result</h2>
+          <p>Number of adopters: {adopters}</p>
+          <p>Number of aware farmers: {awareFarmers}</p>
+      </div>
+  );
+};
+
+
+export default App;

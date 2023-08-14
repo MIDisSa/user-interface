@@ -1,0 +1,15 @@
+.container {
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .model-container {
+    background-color: #f2f2f2;
+  }
+  
+  .optimizer-container {
+    background-color: #e6e6e6;
+  }
+  

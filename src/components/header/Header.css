@@ -1,0 +1,15 @@
+.header {
+    padding: 20px;
+    text-align: center;
+    
+    color: var(--text-color, #252B42);
+
+    /* h3 */
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px; /* 133.333% */
+    letter-spacing: 0.1px;
+  }
+  
