@@ -16,8 +16,8 @@ const App = () => {
 
 
 const ModelBox = ({ setAdopters, setAwareFarmers }) => {
-  const [isHoveredBtn1, setIsHoveredBtn1] = useState(false); // For the first button
-  const [isHoveredBtn2, setIsHoveredBtn2] = useState(false); // For the second button
+  const [isHoveredBtn1, setIsHoveredBtn1] = useState(false); //  first button
+  const [isHoveredBtn2, setIsHoveredBtn2] = useState(false); // second button
   const runModel = async (gui) => {
       try {
           const response = await fetch("http://localhost:8080/results");
