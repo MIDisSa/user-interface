@@ -40,6 +40,23 @@ const App = () => {
             console.error("An error occurred while sending data", error);
         }
     };
+
+    const handleFileDownload = () => {
+        // make API call
+        fetch("http://localhost:8080/downloadCSV")
+            .then(response => response.blob())
+            .then(blob => {
+                // create temporary URL to act as reference to the blob data
+                const url = window.URL.createObjectURL(new Blob([blob]));
+                // create new anchor element to trigger download
+                const link = document.createElement("a");
+                link.href = url;
+                link.setAttribute("download", "empty.csv");
+                document.body.appendChild(link);
+                link.click();
+                link.parentNode.removeChild(link);
+            })
+    };
     
 
     return (
@@ -59,7 +76,7 @@ const App = () => {
 
                         <Button label="upload raw csv" onClick={() => {}} />
                         <Button label="upload final csv" onClick={() => {}} />
-                        <Button label="download empty final csv" onClick={() => {}} variant="outlined-blue" />
+                        <Button label="download empty final csv" onClick={() => {handleFileDownload()}} variant="outlined-blue" />
 
                         {csvData && csvData.length > 0 &&
                             <table>
