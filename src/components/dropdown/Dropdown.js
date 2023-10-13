@@ -13,3 +13,5 @@ const Dropdown = ({ label, options, value, setValue }) => {
         </div>
     );
 };
+
+export default Dropdown;
