@@ -1,0 +1,9 @@
+.result-box {
+    background-color: grey;
+    padding: 20px;
+    border-radius: 10px;
+    width: 70%;
+    max-width: 800px;
+    margin: 10px 0;
+    text-align: center;
+}
