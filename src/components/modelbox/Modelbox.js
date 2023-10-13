@@ -1,34 +1,84 @@
 
 import Button from '../button/Button';
 import Dropdown from '../dropdown/Dropdown';
+import React, { useState } from 'react';
+import ResultBox from '../resultbox/Resultbox';
 
-const ModelBox = ({ setAdopters, setAwareFarmers }) => {
+
+const ModelBox = props => {
+
+    const [frequencyDirectAd, setFrequencyDirectAd] = useState(null);
+    const [typeDirectAd, setTypeDirectAd] = useState(null);
+    const [frequencyChiefTraining, setFrequencyChiefTraining] = useState(null);
+    const [numberOfTicks, setNumberOfTicks] = useState(null);
+
+
     const runModel = async (gui) => {
-        
+        const inputData = {
+            frequencyDirectAd,
+            typeDirectAd,
+            frequencyChiefTraining,
+            numberOfTicks,
+        };
+    
+        try {
+            // Sending a POST request to backend API
+            const response = await fetch('http://localhost:8080/results', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(inputData)
+            });
+    
+            // Handle response
+            if (response.ok) {
+                const data = await response.json();
+
+                // thats what we get back
+                setAwareFarmers(data.awareFarmers);
+                setAdopters(data.adopters);
+               
+            } else {
+                // Handle error response
+                console.error('Error:', response.status, response.statusText);
+            }
+        } catch (error) {
+            // Handle fetch errors
+            console.error('Fetch Error:', error.message, error.stack);
+        }
     };
+
+    // TODO: no idea why this needs to be here!
+    const [adopters, setAdopters] = useState(null);
+    const [awareFarmers, setAwareFarmers] = useState(null);
 
     return (
         <div>
             <h2>The Model</h2>
             <div>
-                <Dropdown label="Frequency Direct Ad:" options={['Option1', 'Option2']} />
-                <Dropdown label="Type Direct Ad:" options={['Option1', 'Option2']} />
-                <Dropdown label="Frequency Chief Training:" options={['Option1', 'Option2']} />
-                <TextInput label="Number of Ticks:" />
+                <TextInput label="Frequency Direct Ad:" value={frequencyDirectAd} setValue={setFrequencyDirectAd} />
+                <Dropdown label="Type Direct Ad:" options={['Direct Ad', 'Direct Ad + Discount', 'Direct Ad + Delayed Payment', "Direct Ad + Delayed P. + Discount"]} value={typeDirectAd} setValue={setTypeDirectAd} />
+                <TextInput label="Frequency Chief Training:" value={frequencyChiefTraining} setValue={setFrequencyChiefTraining} />
+                <TextInput label="Number of Ticks:" value={numberOfTicks} setValue={setNumberOfTicks} />
+            
             </div>
             <div>
                 <Button label="Start Model without NetLogo GUI" onClick={() => runModel(false)} variant="solid-orange"/>
                 <Button label="Start Model with NetLogo GUI" onClick={() => runModel(true)} variant="solid-orange"/>
+
+                {/* need to inform resultbox that we have new data here */}
+                <ResultBox adopters={adopters} awareFarmers={awareFarmers} />
             </div>
         </div>
     );
 };
 
-const TextInput = ({ label }) => {
+const TextInput = ({ label, value, setValue }) => {
     return (
         <div>
             <label>{label}</label>
-            <input type="text" />
+            <input type="text" value={value} onChange={e => setValue(e.target.value)} />
         </div>
     );
 };
