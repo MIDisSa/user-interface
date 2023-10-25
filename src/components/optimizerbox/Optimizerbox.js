@@ -1,5 +1,6 @@
 import Button from '../button/Button';
 import Dropdown from '../dropdown/Dropdown';
+import './Optimizerbox.css';
 
 const OptimizerBox = ({ setAdopters, setAwareFarmers }) => {
     const runModel = async (gui) => {

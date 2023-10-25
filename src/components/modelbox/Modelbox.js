@@ -3,6 +3,9 @@ import Button from '../button/Button';
 import Dropdown from '../dropdown/Dropdown';
 import React, { useState } from 'react';
 import ResultBox from '../resultbox/Resultbox';
+import './Modelbox.css';
+
+
 
 
 const ModelBox = props => {
@@ -34,10 +37,10 @@ const ModelBox = props => {
             // Handle response
             if (response.ok) {
                 const data = await response.json();
-
-                // thats what we get back
-                setAwareFarmers(data.awareFarmers);
-                setAdopters(data.adopters);
+    
+                // Update state in App component
+                props.setAwareFarmers(data.awareFarmers);
+                props.setAdopters(data.adopters);
                
             } else {
                 // Handle error response
@@ -54,21 +57,20 @@ const ModelBox = props => {
     const [awareFarmers, setAwareFarmers] = useState(null);
 
     return (
-        <div>
+        <div className="modelBox">
             <h2>The Model</h2>
-            <div>
+            <div className="flexContainer">
                 <TextInput label="Frequency Direct Ad:" value={frequencyDirectAd} setValue={setFrequencyDirectAd} />
                 <Dropdown label="Type Direct Ad:" options={['Direct Ad', 'Direct Ad + Discount', 'Direct Ad + Delayed Payment', "Direct Ad + Delayed P. + Discount"]} value={typeDirectAd} setValue={setTypeDirectAd} />
                 <TextInput label="Frequency Chief Training:" value={frequencyChiefTraining} setValue={setFrequencyChiefTraining} />
                 <TextInput label="Number of Ticks:" value={numberOfTicks} setValue={setNumberOfTicks} />
             
             </div>
-            <div>
+            <div className="flexContainer">
                 <Button label="Start Model without NetLogo GUI" onClick={() => runModel(false)} variant="solid-orange"/>
                 <Button label="Start Model with NetLogo GUI" onClick={() => runModel(true)} variant="solid-orange"/>
 
-                {/* need to inform resultbox that we have new data here */}
-                <ResultBox adopters={adopters} awareFarmers={awareFarmers} />
+               
             </div>
         </div>
     );

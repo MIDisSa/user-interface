@@ -187,8 +187,9 @@ const App = () => {
                         <OptimizerBox setAdopters={setAdopters} setAwareFarmers={setAwareFarmers} />
                         </div> }
 
+                {/* we need that here bc this is teh parent container of model and result. The info comes from model but needs to be known in result */}
                 </div>
-                <ModelBox setAdopters={setAdopters} setAwareFarmers={setAwareFarmers} />
+                <ModelBox setAdopters={setAdopters} setAwareFarmers={setAwareFarmers} /> 
 
                 <div className="ResultBox">
                     <ResultBox adopters={adopters} awareFarmers={awareFarmers} />
