@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ModelBox from './components/modelbox/Modelbox';
 import ResultBox from './components/resultbox/Resultbox';
 import OptimizerBox from './components/optimizerbox/Optimizerbox';
@@ -8,39 +8,110 @@ import axios from 'axios';
 import './App.css'; 
 
 const App = () => {
+    const fileInputRef = useRef();
     const [adopters, setAdopters] = useState(null);
     const [awareFarmers, setAwareFarmers] = useState(null);
     const [csvData, setCsvData] = useState([]);
-    const [parameters, setParameters] = useState([
-        {name: 'Param 1', value: 0},
-        {name: 'Param 2', value: 0},
-        {name: 'Param 3', value: 0},
-        {name: 'Param 4', value: 0},
-    ]);
+    //const [parameters, setParameters] = useState([]);
+    const [formData, setFormData] = useState({}); // thats for the form like data representation
+    const [successMessage, setSuccessMessage] = useState(null); // state for displaying success message
 
-    const handleFileUpload = (event) => {
-        const file = event.target.files[0];
-        Papa.parse(file, {
-            header: true,
-            dynamicTyping: true,
-            complete: function(results) {
-                setCsvData(results.data);
-                handleSendToBackend(results.data);
-            }
-        });
+    const PARAM_MAPPING = {
+        "trainChiefInfluence": "Training Chief Influence",
+        "avgIntraMentionPercentage" : "Average Mention Percentage",//TODO: probably rename/change parameter  
+        "percentageNegativeWoM" : "Negative Word-of-Mouth in percentage",
+        "baseAdoptionProbability" : "Base Adoption Probability",
+        "nrDefaultFriendsInterVillage": "Number of Default Friends (Inter-Village)",
+        "avgIntraVillageInteractionFrequency" : "Average Intra Village Interaction Frequency",
+        "avgInterVillageInteractionFrequency" : "Average Inter Village Interaction Frequency",
+        "avgChiefFarmerMeetingFrequency": "Average Chief Farmer Meeting Frequency",
     };
 
-    const handleSendToBackend = async (data) => {
+    const initialParameters = Object.keys(PARAM_MAPPING).reduce((obj, key) => {
+        obj[key] = '';  // set default value for each parameter
+        return obj;
+    }, {});
+    const [parameters, setParameters] = useState(initialParameters);
+
+    const handleUploadRawCSV = async () => {
         try {
-            const response = await axios.post('YOUR_BACKEND_ENDPOINT', { data });
-            console.log(response.data);
-            // need response.data.parameters to give me array of parameters from backend oder so ähnlich 
-            setParameters(response.data.parameters || []); // update parameters state
+            const file = fileInputRef.current.files[0];
+            const formData = new FormData();
+            formData.append("file", file);
+    
+            const response = await fetch('http://localhost:8080/uploadRawCSV', {
+                method: 'POST',
+                body: formData,
+            });
+    
+            if (!response.ok) {
+                throw new Error('Network response was not ok' + response.statusText);
+            }
+    
+            const parameters = await response.json(); //
+            setParameters(parameters);
         } catch (error) {
-            console.error("An error occurred while sending data", error);
+            console.error('File Upload Error:', error);
         }
     };
+
     
+    // Use stored parameters when initializing state
+    useEffect(() => {
+        const storedParameters = localStorage.getItem('parameters');
+        
+        if (storedParameters) {
+            setParameters(JSON.parse(storedParameters));
+        }
+    }, []);
+
+     // Update formData when parameters change
+     useEffect(() => {
+        setFormData(parameters);
+    }, [parameters]);
+
+    // Handle form field change
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevData => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+    
+    const handleSubmit = async (e) => {
+        e.preventDefault(); //prevents the form from refreshing
+
+        try {
+            const response = await fetch('http://localhost:8080/updateInput', {
+                method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.status === 200) {
+            setSuccessMessage("Parameters were successfully set in the model!"); // Display message
+        } else {
+            throw new Error('Failed to update parameters.');
+        }
+
+    } catch (error) {
+        console.error('Error sending data:', error);
+    }
+    };
+    
+
+    // Change parameter name in nicer strings
+    const formatKeyName = (key) => {
+        // Split camelCase with space
+        let result = key.replace(/([A-Z])/g, ' $1');
+    
+        // Make the first letter of the result uppercase
+        result = result.charAt(0).toUpperCase() + result.slice(1);
+        return result;
+    };
 
     return (
         <div className="App">
@@ -52,16 +123,12 @@ const App = () => {
                     <div className="CSVBox">
                     
                         <p className="description-text"> 
-                        Start with setting your parameters. Either you use our prepared data pre-processing script or you fill the final clean csv manually by yourself. Keep in mind to stick with the given format of the final csv.
+                        Start with setting your parameters. Either you use our prepared data pre-processing script or you fill the table manually by yourself.
                         </p>
+                        <input type="file" ref={fileInputRef} />
+                        <Button label="upload raw csv" onClick={handleUploadRawCSV} />
 
-                        <input type="file" accept=".csv" onChange={handleFileUpload} />
-
-                        <Button label="upload raw csv" onClick={() => {}} />
-                        <Button label="upload final csv" onClick={() => {}} />
-                        <Button label="download empty final csv" onClick={() => {}} variant="outlined-blue" />
-
-                        {csvData && csvData.length > 0 &&
+                        {/* {csvData && csvData.length > 0 &&
                             <table>
                                 <thead>
                                     <tr>
@@ -76,12 +143,14 @@ const App = () => {
                                     ))}
                                 </tbody>
                             </table>
-                        }
+                        } */}
                         <p className="description-text"> 
                         Your final set parameters: 
                         </p>
 
-                        {/* Shw Parameters */}
+
+                        {/* Form for Parameters in table  */}
+                        <form onSubmit={handleSubmit} >
                         <table>
                             <thead>
                                 <tr>
@@ -90,14 +159,25 @@ const App = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {parameters.map((param, index) => (
-                                    <tr key={index}>
-                                        <td>{param.name}</td>
-                                        <td>{param.value}</td>
-                                    </tr>
-                                ))}
+                            {Object.entries(formData)
+                                        .filter(([key]) => PARAM_MAPPING[key])  // Only include keys which mention in PARAM_MAPPING
+                                        .map(([key, value]) => (
+                                        <tr key={key}>
+                                            <td>{PARAM_MAPPING[key]}</td>
+                                            <td>
+                                                <input 
+                                                    type="text" 
+                                                    name={key} 
+                                                    value={value} 
+                                                    onChange={handleInputChange} 
+                                                />
+                                            </td>
+                                        </tr>
+                                    ))}
                             </tbody>
                         </table>
+                        <Button label="set parameters" type="submit" />
+                        </form>
 
                         <p className="description-text"> 
                         Please note: The Model can be run without the Optimizer. When you run the Optimizer, it will take into account the settings within the Model selection below. 
