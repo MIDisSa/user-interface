@@ -123,7 +123,8 @@ const App = () => {
                     <div className="CSVBox">
                     
                         <p className="description-text"> 
-                        Start with setting your parameters. Either you use our prepared data pre-processing script or you fill the table manually by yourself.
+                        Start with setting your parameters. <br></br>
+                        Either you use our prepared data pre-processing script or you fill the table manually by yourself.
                         </p>
                         <input type="file" ref={fileInputRef} />
                         <Button label="upload raw csv" onClick={handleUploadRawCSV} />

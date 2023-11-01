@@ -10,8 +10,14 @@ const OptimizerBox = ({ setAdopters, setAwareFarmers }) => {
         <div className="optimizerBox">
             <h2>The Optimizer</h2>
             <div className="flexContainer">
-                <Dropdown label="Which parameter to optimize:" options={['Option1', 'Option2']} />
-                <TextInput label="More constraints:" />
+                <div className="inputGroup">
+                    <label>Which parameter to optimize:</label>
+                    <Dropdown options={['Option1', 'Option2']} />
+                </div>
+                <div className="inputGroup">
+                    <label>More constraints:</label>
+                    <TextInput />
+                </div>
             </div>
             <div className="flexContainer">
                 <Button label="Start Optimizer" onClick={() => runModel(false)} variant="solid-orange" />

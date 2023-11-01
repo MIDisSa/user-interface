@@ -10,13 +10,23 @@
     margin-bottom: 15px;
 }
 
+
 .flexContainer {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    
+    flex-direction: column; /* stacks  children vertically */
+    justify-content: center;
+    /* align-items: flex-start; */
+    gap: 12px;
+    /* align-self: stretch; */
 }
+
+.inputGroup {
+    width: 100%; /* Makes sure the input group takes the full width */
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Spacing between the label and the input/dropdown */
+}
+
 
 .textInput {
     display: flex;
@@ -33,4 +43,8 @@
     border: 1px solid #BDBDBD;
     background: #F9F9F9;
     padding: 5px;
+}
+
+Dropdown, TextInput {
+    width: 100%;
 }

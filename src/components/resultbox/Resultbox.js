@@ -1,6 +1,7 @@
 import React from 'react';
 import './Resultbox.css';
 
+
 const ResultBox = ({ adopters, awareFarmers }) => {
   return (
       <div className="result-box">
