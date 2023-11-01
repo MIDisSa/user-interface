@@ -1,17 +1,13 @@
 import React from "react";
-const Dropdown = ({ label, options, value, setValue }) => {
+const Dropdown = ({ label, value, setValue, children }) => {
     return (
-        <div>
-            <label>{label}</label>
-            <select value={value} onChange={e => setValue(e.target.value)}>
-                {options.map((option, index) => (
-                    <option key={index} value={option}>
-                        {option}
-                    </option>
-                ))}
-            </select>
-        </div>
+      <div>
+        <label>{label}</label>
+        <select value={value} onChange={(e) => setValue(e.target.value)}>
+          {children}
+        </select>
+      </div>
     );
-};
+  };
 
 export default Dropdown;

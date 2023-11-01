@@ -6,24 +6,25 @@ import ResultBox from '../resultbox/Resultbox';
 import './Modelbox.css';
 
 
-
-
 const ModelBox = props => {
 
-    const [frequencyDirectAd, setFrequencyDirectAd] = useState(null);
-    const [typeDirectAd, setTypeDirectAd] = useState(null);
-    const [frequencyChiefTraining, setFrequencyChiefTraining] = useState(null);
-    const [numberOfTicks, setNumberOfTicks] = useState(null);
+    const [frequencyDirectAd, setFrequencyDirectAd] = useState(''); //TODO: update default values?
+    const [directAdType, setDirectAdType] = useState('');
+    const [frequencyChiefTraining, setFrequencyChiefTraining] = useState('');
+    const [numberOfTicks, setNumberOfTicks] = useState('');
 
 
     const runModel = async (gui) => {
         const inputData = {
             frequencyDirectAd,
-            typeDirectAd,
+            directAdType,
             frequencyChiefTraining,
             numberOfTicks,
         };
     
+         // Log the data before sending it
+        console.log('Sending data to backend:', inputData);
+
         try {
             // Sending a POST request to backend API
             const response = await fetch('http://localhost:8080/results', {
@@ -53,25 +54,32 @@ const ModelBox = props => {
     };
 
     // TODO: no idea why this needs to be here!
-    const [adopters, setAdopters] = useState(null);
-    const [awareFarmers, setAwareFarmers] = useState(null);
+    const [adopters, setAdopters] = useState('5');
+    const [awareFarmers, setAwareFarmers] = useState('5');
 
     return (
         <div className="modelBox">
-            <h2>The Model</h2>
-            <div className="flexContainer">
-                <TextInput label="Frequency Direct Ad:" value={frequencyDirectAd} setValue={setFrequencyDirectAd} />
-                <Dropdown label="Type Direct Ad:" options={['Direct Ad', 'Direct Ad + Discount', 'Direct Ad + Delayed Payment', "Direct Ad + Delayed P. + Discount"]} value={typeDirectAd} setValue={setTypeDirectAd} />
-                <TextInput label="Frequency Chief Training:" value={frequencyChiefTraining} setValue={setFrequencyChiefTraining} />
-                <TextInput label="Number of Ticks:" value={numberOfTicks} setValue={setNumberOfTicks} />
-            
-            </div>
-            <div className="flexContainer">
-                <Button label="Start Model without NetLogo GUI" onClick={() => runModel(false)} variant="solid-orange"/>
-                <Button label="Start Model with NetLogo GUI" onClick={() => runModel(true)} variant="solid-orange"/>
+          <h2>The Model</h2>
+          <div className="flexContainer">
+            <TextInput label="Frequency Direct Ad:" value={frequencyDirectAd} setValue={setFrequencyDirectAd} />
+            <Dropdown label="Type Direct Ad:" value={directAdType} setValue={setDirectAdType}>
+              <option disabled value="">
+                Please choose a type
+              </option>
+              <option value="Direct Ad">Direct Ad</option>
+              <option value="Direct Ad + Discount">Direct Ad + Discount</option>
+              <option value="Direct Ad + Delayed Payment">Direct Ad + Delayed Payment</option>
+              <option value="Direct Ad + Delayed P. + Discount">Direct Ad + Delayed P. + Discount</option>
+            </Dropdown>
 
-               
-            </div>
+            <TextInput label="Frequency Chief Training:" value={frequencyChiefTraining} setValue={setFrequencyChiefTraining} />
+            <TextInput label="Number of Ticks:" value={numberOfTicks} setValue={setNumberOfTicks} />
+          </div>
+          
+          <div className="flexContainer">
+            <Button label="Start Model without NetLogo GUI" onClick={() => runModel(false)} variant="solid-orange"/>
+            <Button label="Start Model with NetLogo GUI" onClick={() => runModel(true)} variant="solid-orange"/>
+          </div>
         </div>
     );
 };

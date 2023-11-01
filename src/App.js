@@ -12,19 +12,18 @@ const App = () => {
     const [adopters, setAdopters] = useState(null);
     const [awareFarmers, setAwareFarmers] = useState(null);
     const [csvData, setCsvData] = useState([]);
-    //const [parameters, setParameters] = useState([]);
     const [formData, setFormData] = useState({}); // thats for the form like data representation
     const [successMessage, setSuccessMessage] = useState(null); // state for displaying success message
 
     const PARAM_MAPPING = {
-        "trainChiefInfluence": "Training Chief Influence",
-        "avgIntraMentionPercentage" : "Average Mention Percentage",//TODO: probably rename/change parameter  
-        "percentageNegativeWoM" : "Negative Word-of-Mouth in percentage",
+        "avgIntraMentionPercentage" : "Average Mention Percentage",//TODO: probably rename/change parameter 
+        "percentageNegativeWoM" : "Negative Word-of-Mouth in percentage",    
         "baseAdoptionProbability" : "Base Adoption Probability",
         "nrDefaultFriendsInterVillage": "Number of Default Friends (Inter-Village)",
         "avgIntraVillageInteractionFrequency" : "Average Intra Village Interaction Frequency",
         "avgInterVillageInteractionFrequency" : "Average Inter Village Interaction Frequency",
         "avgChiefFarmerMeetingFrequency": "Average Chief Farmer Meeting Frequency",
+        "trainChiefInfluence": "Training Chief Influence",
     };
 
     const initialParameters = Object.keys(PARAM_MAPPING).reduce((obj, key) => {
@@ -32,6 +31,10 @@ const App = () => {
         return obj;
     }, {});
     const [parameters, setParameters] = useState(initialParameters);
+
+    const resetForm = () => {
+        setParameters(initialParameters);
+      };
 
     const handleUploadRawCSV = async () => {
         try {
@@ -86,7 +89,8 @@ const App = () => {
             const response = await fetch('http://localhost:8080/updateInput', {
                 method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:3000', 
             },
             body: JSON.stringify(formData)
         });
@@ -101,17 +105,8 @@ const App = () => {
         console.error('Error sending data:', error);
     }
     };
+      
     
-
-    // Change parameter name in nicer strings
-    const formatKeyName = (key) => {
-        // Split camelCase with space
-        let result = key.replace(/([A-Z])/g, ' $1');
-    
-        // Make the first letter of the result uppercase
-        result = result.charAt(0).toUpperCase() + result.slice(1);
-        return result;
-    };
 
     return (
         <div className="App">
@@ -127,26 +122,12 @@ const App = () => {
                         Either you use our prepared data pre-processing script or you fill the table manually by yourself.
                         </p>
                         <input type="file" ref={fileInputRef} />
-                        <Button label="upload raw csv" onClick={handleUploadRawCSV} />
+                        <Button label="Upload raw csv" onClick={handleUploadRawCSV} />
 
-                        {/* {csvData && csvData.length > 0 &&
-                            <table>
-                                <thead>
-                                    <tr>
-                                        {Object.keys(csvData[0]).map(key => <th key={key}>{key}</th>)}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {csvData.map((row, index) => (
-                                        <tr key={index}>
-                                            {Object.values(row).map((cell, idx) => <td key={idx}>{cell}</td>)}
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        } */}
+                        <Button label="Clear all set data on this page" variant="outlined-blue" onClick={() => window.location.reload()} />
+                        
                         <p className="description-text"> 
-                        Your final set parameters: 
+                        Your final parameters: 
                         </p>
 
 
@@ -177,7 +158,8 @@ const App = () => {
                                     ))}
                             </tbody>
                         </table>
-                        <Button label="set parameters" type="submit" />
+                        <Button label="Set parameters again to run model/optimizer" type="submit" onClick={handleSubmit} />
+                        <Button label="Refresh" variant="outlined-blue" onClick={resetForm} />
                         </form>
 
                         <p className="description-text"> 
