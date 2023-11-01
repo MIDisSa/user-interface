@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useSyncExternalStore } from "react";
 import ModelBox from './components/modelbox/Modelbox';
 import ResultBox from './components/resultbox/Resultbox';
 import OptimizerBox from './components/optimizerbox/Optimizerbox';
@@ -11,6 +11,9 @@ const App = () => {
     const fileInputRef = useRef();
     const [adopters, setAdopters] = useState(null);
     const [awareFarmers, setAwareFarmers] = useState(null);
+    const [totalCost, setTotalCost] = useState(null);
+    const [awareFarmersPerTick, setAwareFarmersPerTick] = useState(null);
+    const [adoptersPerTick, setAdoptersPerTick] = useState(null);
     const [csvData, setCsvData] = useState([]);
     const [formData, setFormData] = useState({}); // thats for the form like data representation
     const [successMessage, setSuccessMessage] = useState(null); // state for displaying success message
@@ -167,15 +170,21 @@ const App = () => {
                         </p>
                     </div>
                     { <div className="OptimizerBox">
-                        <OptimizerBox setAdopters={setAdopters} setAwareFarmers={setAwareFarmers} />
+                        <OptimizerBox setAdopters={setAdopters} setAwareFarmers={setAwareFarmers} setTotalCost={setTotalCost}/>
                         </div> }
 
                 {/* we need that here bc this is teh parent container of model and result. The info comes from model but needs to be known in result */}
                 </div>
-                <ModelBox setAdopters={setAdopters} setAwareFarmers={setAwareFarmers} /> 
+                <ModelBox 
+                    setAdopters={setAdopters} 
+                    setAwareFarmers={setAwareFarmers} 
+                    setTotalCost={setTotalCost}
+                    setAwareFarmersPerTick={setAwareFarmersPerTick}
+                    setAdoptersPerTick={setAdoptersPerTick} 
+                />
 
                 <div className="ResultBox">
-                    <ResultBox adopters={adopters} awareFarmers={awareFarmers} />
+                    <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick}/>
                 </div>
             </div>
         </div>

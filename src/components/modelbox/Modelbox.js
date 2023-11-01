@@ -42,6 +42,7 @@ const ModelBox = props => {
                 // Update state in App component
                 props.setAwareFarmers(data.awareFarmers);
                 props.setAdopters(data.adopters);
+                props.setTotalCost(data.totalCost);
                
             } else {
                 // Handle error response
@@ -56,6 +57,7 @@ const ModelBox = props => {
     // TODO: no idea why this needs to be here!
     const [adopters, setAdopters] = useState('5');
     const [awareFarmers, setAwareFarmers] = useState('5');
+    const [totalCost, setTotalCost] = useState('5');
 
     return (
         <div className="modelBox">
