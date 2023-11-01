@@ -33,12 +33,12 @@ html, body {
 }
 
 .CSVBox {
-  flex: 3; /* Takes 3/5 */
+  flex: 5; /* Takes 6/8 */
   text-align: left;
 }
 
 .OptimizerBox {
-  flex: 2; /* 2/5  */
+  flex: 3; /* rest  */
   
 }
 
