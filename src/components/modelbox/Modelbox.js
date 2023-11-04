@@ -2,7 +2,7 @@
 import Button from '../button/Button';
 import Dropdown from '../dropdown/Dropdown';
 import React, { useState } from 'react';
-import ResultBox from '../resultbox/Resultbox';
+
 import './Modelbox.css';
 
 
@@ -14,6 +14,7 @@ const ModelBox = props => {
     const [numberOfTicks, setNumberOfTicks] = useState('');
 
 
+
     const runModel = async (gui) => {
         const inputData = {
             frequencyDirectAd,
@@ -22,11 +23,10 @@ const ModelBox = props => {
             numberOfTicks,
         };
     
-         // Log the data before sending it
         console.log('Sending data to backend:', inputData);
-
+    
         try {
-            // Sending a POST request to backend API
+            // Sending POST request 
             const response = await fetch('http://localhost:8080/results', {
                 method: 'POST',
                 headers: {
@@ -35,29 +35,26 @@ const ModelBox = props => {
                 body: JSON.stringify(inputData)
             });
     
-            // Handle response
             if (response.ok) {
-                const data = await response.json();
+                const jsonResponse = await response.json(); 
     
-                // Update state in App component
-                props.setAwareFarmers(data.awareFarmers);
-                props.setAdopters(data.adopters);
-                props.setTotalCost(data.totalCost);
-               
+                console.log('Data from backend:', jsonResponse);
+    
+                // Update state in App
+                props.setAwareFarmers(parseFloat(jsonResponse.awareFarmers));
+                props.setAdopters(parseFloat(jsonResponse.adopters));
+                props.setTotalCost(parseFloat(jsonResponse.totalCost));
+                props.setAwareFarmersPerTick(jsonResponse.awareFarmersPerTick.map(Number));
+                props.setAdoptersPerTick(jsonResponse.adoptersPerTick.map(Number));
             } else {
-                // Handle error response
-                console.error('Error:', response.status, response.statusText);
+                console.error('Error with response:', response.status, response.statusText);
             }
         } catch (error) {
-            // Handle fetch errors
-            console.error('Fetch Error:', error.message, error.stack);
+            console.error('Fetch Error:', error.message);
         }
     };
+    
 
-    // TODO: no idea why this needs to be here!
-    const [adopters, setAdopters] = useState('5');
-    const [awareFarmers, setAwareFarmers] = useState('5');
-    const [totalCost, setTotalCost] = useState('5');
 
     return (
         <div className="modelBox">

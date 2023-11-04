@@ -11,6 +11,7 @@ const App = () => {
     const fileInputRef = useRef();
     const [adopters, setAdopters] = useState(null);
     const [awareFarmers, setAwareFarmers] = useState(null);
+    const [outputParameters, setOutputParameters] = useState({}); // different, bc its supposed to be an object
     const [totalCost, setTotalCost] = useState(null);
     const [awareFarmersPerTick, setAwareFarmersPerTick] = useState(null);
     const [adoptersPerTick, setAdoptersPerTick] = useState(null);
@@ -36,8 +37,19 @@ const App = () => {
     const [parameters, setParameters] = useState(initialParameters);
 
     const resetForm = () => {
-        setParameters(initialParameters);
-      };
+        fetch('http://localhost:8080/resetInput', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',},
+        })
+        .then(response => response.json()) // Transform the response to JSON
+        .then(workingDataInput => {
+            setParameters(workingDataInput);
+        })
+        .catch(error => {
+            console.error('Network error when trying to reset:', error);
+        });
+    };
 
     const handleUploadRawCSV = async () => {
         try {
@@ -66,15 +78,24 @@ const App = () => {
     useEffect(() => {
         const storedParameters = localStorage.getItem('parameters');
         
+        try {
         if (storedParameters) {
-            setParameters(JSON.parse(storedParameters));
-        }
+            const parsedParameters = JSON.parse(storedParameters);
+            setParameters(parsedParameters);
+        } 
+        } catch (error) {
+                console.error('Error parsing parameters from local storage:', error);
+            }
     }, []);
 
      // Update formData when parameters change
      useEffect(() => {
         setFormData(parameters);
     }, [parameters]);
+
+
+
+    
 
     // Handle form field change
     const handleInputChange = (e) => {
@@ -110,6 +131,8 @@ const App = () => {
     };
       
     
+
+    console.log({ awareFarmersPerTick, adoptersPerTick });
 
     return (
         <div className="App">
@@ -162,7 +185,7 @@ const App = () => {
                             </tbody>
                         </table>
                         <Button label="Set parameters again to run model/optimizer" type="submit" onClick={handleSubmit} />
-                        <Button label="Refresh" variant="outlined-blue" onClick={resetForm} />
+                        <Button label="Set parameters back to default" variant="outlined-blue" onClick={resetForm} />
                         </form>
 
                         <p className="description-text"> 
@@ -170,7 +193,8 @@ const App = () => {
                         </p>
                     </div>
                     { <div className="OptimizerBox">
-                        <OptimizerBox setAdopters={setAdopters} setAwareFarmers={setAwareFarmers} setTotalCost={setTotalCost}/>
+                        <OptimizerBox setAdopters={setAdopters} setTotalCost={setTotalCost} setAwareFarmers={setAwareFarmers} setOutputParameters={setOutputParameters} />
+
                         </div> }
 
                 {/* we need that here bc this is teh parent container of model and result. The info comes from model but needs to be known in result */}

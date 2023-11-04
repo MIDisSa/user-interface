@@ -43,6 +43,8 @@ const runOptimizer = async () => {
         // Update state with received data
         setAwareFarmers(data.awareFarmers);
 
+        console.log(typeof setOutputParameters); //just to check
+
         // Store output
         setOutputParameters({
           directAdType: data.directAdType,

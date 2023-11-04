@@ -1,0 +1,91 @@
+/* Linechart.css */
+.result-box {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
+  
+  .result-box h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .line-charts {
+    margin-top: 30px;
+  }
+  
+  .line-chart {
+    margin-bottom: 20px;
+  }
+  
+  .line-chart h3 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Chart.js default styles for canvas */
+  .chartjs-render-monitor {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Customize Chart.js tooltip */
+  .tooltip {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Custom styles for legends and labels */
+  .legend {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .legend-item {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  
+  .legend-color-box {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  
+  /* Responsive settings */
+  @media (max-width: 800px) {
+    .result-box {
+      margin: 10px;
+    }
+  
+    .line-chart h3 {
+      font-size: 1.2em;
+    }
+  }
+
+  /* size of chart container */
+.chart-container {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  /* Ensuring chart is sharp */
+  canvas {
+    display: block; /* Remove canvas default inline behavior to avoid extra space at the bottom */
+    width: 800px !important; 
+    height: 400px !important; 
+  }
+  
+  
+  
