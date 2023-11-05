@@ -51,10 +51,16 @@ html, body {
   margin-top: 20px; 
 }
 
-.ResultBox {
-  background-color: #e0e0e0; 
-  width: 80%;
-  padding: 20px;
+.result-container {
+  display: flex; /* lay out children side by side */
+}
+
+.result-box {
+  background: white; 
+  flex: 1; /* Each child will take up equal amount of space */
+  padding: 20px; /* Add some padding inside the boxes */
+  margin: 20px; /* Add margin to separate from surrounding elements */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow to the boxes */
 }
 
 .Table {

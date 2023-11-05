@@ -27,7 +27,7 @@ const BasicLineChart = ({ data }) => {
 
   return (
     <div>
-      <h2>This is an ugly chart</h2>
+      <h2>This is an ugly chart :(</h2>
       <Line data={data} options={options} />
     </div>
   );

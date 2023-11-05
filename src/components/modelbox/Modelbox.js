@@ -1,7 +1,7 @@
 
 import Button from '../button/Button';
 import Dropdown from '../dropdown/Dropdown';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './Modelbox.css';
 
@@ -12,6 +12,24 @@ const ModelBox = props => {
     const [directAdType, setDirectAdType] = useState('');
     const [frequencyChiefTraining, setFrequencyChiefTraining] = useState('');
     const [numberOfTicks, setNumberOfTicks] = useState('');
+    
+    // state to keep track of combined parameters
+    const [extraOptimizationParameters, setExtraOptimizationParameters] = useState({
+        frequencyDirectAd: '',
+        directAdType: '',
+        frequencyChiefTraining: '',
+        numberOfTicks: '',
+    });
+
+    // useEffect to update extraOptimizationParameters whenever individual parameter changes
+    useEffect(() => {
+        setExtraOptimizationParameters({
+            frequencyDirectAd,
+            directAdType,
+            frequencyChiefTraining,
+            numberOfTicks,
+        });
+    }, [frequencyDirectAd, directAdType, frequencyChiefTraining, numberOfTicks]);
 
 
 
@@ -40,12 +58,13 @@ const ModelBox = props => {
     
                 console.log('Data from backend:', jsonResponse);
     
-                // Update state in App
+                // Update state in App - wie aktualisieren
                 props.setAwareFarmers(parseFloat(jsonResponse.awareFarmers));
                 props.setAdopters(parseFloat(jsonResponse.adopters));
                 props.setTotalCost(parseFloat(jsonResponse.totalCost));
                 props.setAwareFarmersPerTick(jsonResponse.awareFarmersPerTick.map(Number));
                 props.setAdoptersPerTick(jsonResponse.adoptersPerTick.map(Number));
+                props.setExtraOptimizationParameters(extraOptimizationParameters);
             } else {
                 console.error('Error with response:', response.status, response.statusText);
             }
@@ -77,8 +96,9 @@ const ModelBox = props => {
           
           <div className="flexContainer">
             <Button label="Start Model without NetLogo GUI" onClick={() => runModel(false)} variant="solid-orange"/>
-            <Button label="Start Model with NetLogo GUI" onClick={() => runModel(true)} variant="solid-orange"/>
+            {/* <Button label="Start Model with NetLogo GUI" onClick={() => runModel(true)} variant="solid-orange"/> */}
           </div>
+    
         </div>
     );
 };

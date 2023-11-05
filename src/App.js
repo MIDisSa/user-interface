@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef, useSyncExternalStore } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ModelBox from './components/modelbox/Modelbox';
 import ResultBox from './components/resultbox/Resultbox';
+import ResultboxOptimizer from "./components/resultboxOptimizer/ResultboxOptimizer";
 import OptimizerBox from './components/optimizerbox/Optimizerbox';
 import Button from "./components/button/Button";
-import Papa from 'papaparse';
-import axios from 'axios';
+
 import './App.css'; 
 
 const App = () => {
@@ -18,6 +18,22 @@ const App = () => {
     const [csvData, setCsvData] = useState([]);
     const [formData, setFormData] = useState({}); // thats for the form like data representation
     const [successMessage, setSuccessMessage] = useState(null); // state for displaying success message
+    const [optimizationResults, setOptimizationResults] = useState(() => {
+        // initial value from local storage or default to an empty array
+        const savedResults = localStorage.getItem('optimizationResults');
+        return savedResults ? JSON.parse(savedResults) : [];
+    });
+
+    const [extraOptimizationParameters, setExtraOptimizationParameters] = useState({
+        frequencyDirectAd: '',
+        directAdType: '',
+        frequencyChiefTraining: '',
+        numberOfTicks: '',
+      });
+    
+      const updateOptimizationParameters = (newParameters) => {
+        setExtraOptimizationParameters(newParameters);
+        };
 
     const PARAM_MAPPING = {
         "avgIntraMentionPercentage" : "Average Mention Percentage",//TODO: probably rename/change parameter 
@@ -88,13 +104,21 @@ const App = () => {
             }
     }, []);
 
+    useEffect(() => {
+        // Update local storage when optimizationResults change
+        localStorage.setItem('optimizationResults', JSON.stringify(optimizationResults));
+    }, [optimizationResults]);
+
+
      // Update formData when parameters change
      useEffect(() => {
         setFormData(parameters);
     }, [parameters]);
 
-
-
+    // to get data from Optimizerbox to Optimizer Resultbox
+    const handleNewOptimizationResult = (newResult) => {
+        setOptimizationResults(prevResults => [...prevResults, newResult]);
+    };
     
 
     // Handle form field change
@@ -192,10 +216,9 @@ const App = () => {
                         Please note: The Model can be run without the Optimizer. When you run the Optimizer, it will take into account the settings within the Model selection below. 
                         </p>
                     </div>
-                    { <div className="OptimizerBox">
-                        <OptimizerBox setAdopters={setAdopters} setTotalCost={setTotalCost} setAwareFarmers={setAwareFarmers} setOutputParameters={setOutputParameters} />
-
-                        </div> }
+                    <div className="OptimizerBox">
+                        <OptimizerBox extraOptimizationParameters={extraOptimizationParameters} setAdopters={setAdopters} setTotalCost={setTotalCost} setAwareFarmers={setAwareFarmers} setOutputParameters={handleNewOptimizationResult} />
+                    </div> 
 
                 {/* we need that here bc this is teh parent container of model and result. The info comes from model but needs to be known in result */}
                 </div>
@@ -205,12 +228,19 @@ const App = () => {
                     setTotalCost={setTotalCost}
                     setAwareFarmersPerTick={setAwareFarmersPerTick}
                     setAdoptersPerTick={setAdoptersPerTick} 
+                    setExtraOptimizationParameters={setExtraOptimizationParameters} 
+                    updateOptimizationParameters={updateOptimizationParameters}
                 />
 
-                <div className="ResultBox">
-                    <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick}/>
+                <div className="result-container">
+                    <div className="result-box">
+                        <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick}/>
+                    </div>
+                    <div className="result-box"></div>
+                        <ResultboxOptimizer optimizationResults={optimizationResults} />
+                    </div>
                 </div>
-            </div>
+                
         </div>
     );
 };
