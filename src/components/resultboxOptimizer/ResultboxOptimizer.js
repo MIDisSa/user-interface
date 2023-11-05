@@ -5,7 +5,7 @@ import './ResultboxOptimizer.css';
 
 const ResultboxOptimizer = ({ optimizationResults }) => {
   return (
-    <div className="resultsBox">
+    <div >
       <h3>Optimization Results</h3>
       <table>
         <thead>

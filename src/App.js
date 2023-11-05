@@ -236,11 +236,11 @@ const App = () => {
                     <div className="result-box">
                         <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick}/>
                     </div>
-                    <div className="result-box"></div>
+                    <div className="result-box">
                         <ResultboxOptimizer optimizationResults={optimizationResults} />
                     </div>
                 </div>
-                
+            </div>    
         </div>
     );
 };
