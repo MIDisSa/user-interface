@@ -2,6 +2,7 @@
 import Button from '../button/Button';
 import Dropdown from '../dropdown/Dropdown';
 import React, { useState, useEffect } from 'react';
+import { FadeLoader } from 'react-spinners';
 
 import './Modelbox.css';
 
@@ -12,7 +13,8 @@ const ModelBox = props => {
     const [directAdType, setDirectAdType] = useState('');
     const [frequencyChiefTraining, setFrequencyChiefTraining] = useState('');
     const [numberOfTicks, setNumberOfTicks] = useState('');
-    
+    const [loading, setLoading] = useState(false);
+
     // state to keep track of combined parameters
     const [extraOptimizationParameters, setExtraOptimizationParameters] = useState({
         frequencyDirectAd: '',
@@ -34,6 +36,9 @@ const ModelBox = props => {
 
 
     const runModel = async (gui) => {
+
+        setLoading(true);
+
         const inputData = {
             frequencyDirectAd,
             directAdType,
@@ -70,6 +75,8 @@ const ModelBox = props => {
             }
         } catch (error) {
             console.error('Fetch Error:', error.message);
+        } finally {
+            setLoading(false);
         }
     };
     
@@ -98,7 +105,11 @@ const ModelBox = props => {
             <Button label="Start Model without NetLogo GUI" onClick={() => runModel(false)} variant="solid-orange"/>
             {/* <Button label="Start Model with NetLogo GUI" onClick={() => runModel(true)} variant="solid-orange"/> */}
           </div>
-    
+          {loading && (
+            <div className="overlay">
+                <FadeLoader color={'#FFA62B'} loading={loading}/>
+            </div>
+            )}
         </div>
     );
 };
