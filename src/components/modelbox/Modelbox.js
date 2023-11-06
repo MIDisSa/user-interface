@@ -1,31 +1,50 @@
 
 import Button from '../button/Button';
 import Dropdown from '../dropdown/Dropdown';
-import React, { useState } from 'react';
-import ResultBox from '../resultbox/Resultbox';
+import React, { useState, useEffect } from 'react';
+
 import './Modelbox.css';
-
-
 
 
 const ModelBox = props => {
 
-    const [frequencyDirectAd, setFrequencyDirectAd] = useState(null);
-    const [typeDirectAd, setTypeDirectAd] = useState(null);
-    const [frequencyChiefTraining, setFrequencyChiefTraining] = useState(null);
-    const [numberOfTicks, setNumberOfTicks] = useState(null);
+    const [frequencyDirectAd, setFrequencyDirectAd] = useState(''); //TODO: update default values?
+    const [directAdType, setDirectAdType] = useState('');
+    const [frequencyChiefTraining, setFrequencyChiefTraining] = useState('');
+    const [numberOfTicks, setNumberOfTicks] = useState('');
+    
+    // state to keep track of combined parameters
+    const [extraOptimizationParameters, setExtraOptimizationParameters] = useState({
+        frequencyDirectAd: '',
+        directAdType: '',
+        frequencyChiefTraining: '',
+        numberOfTicks: '',
+    });
+
+    // useEffect to update extraOptimizationParameters whenever individual parameter changes
+    useEffect(() => {
+        setExtraOptimizationParameters({
+            frequencyDirectAd,
+            directAdType,
+            frequencyChiefTraining,
+            numberOfTicks,
+        });
+    }, [frequencyDirectAd, directAdType, frequencyChiefTraining, numberOfTicks]);
+
 
 
     const runModel = async (gui) => {
         const inputData = {
             frequencyDirectAd,
-            typeDirectAd,
+            directAdType,
             frequencyChiefTraining,
             numberOfTicks,
         };
     
+        console.log('Sending data to backend:', inputData);
+    
         try {
-            // Sending a POST request to backend API
+            // Sending POST request 
             const response = await fetch('http://localhost:8080/results', {
                 method: 'POST',
                 headers: {
@@ -34,44 +53,52 @@ const ModelBox = props => {
                 body: JSON.stringify(inputData)
             });
     
-            // Handle response
             if (response.ok) {
-                const data = await response.json();
+                const jsonResponse = await response.json(); 
     
-                // Update state in App component
-                props.setAwareFarmers(data.awareFarmers);
-                props.setAdopters(data.adopters);
-               
+                console.log('Data from backend:', jsonResponse);
+    
+                // Update state in App - wie aktualisieren
+                props.setAwareFarmers(parseFloat(jsonResponse.awareFarmers));
+                props.setAdopters(parseFloat(jsonResponse.adopters));
+                props.setTotalCost(parseFloat(jsonResponse.totalCost));
+                props.setAwareFarmersPerTick(jsonResponse.awareFarmersPerTick.map(Number));
+                props.setAdoptersPerTick(jsonResponse.adoptersPerTick.map(Number));
+                props.setExtraOptimizationParameters(extraOptimizationParameters);
             } else {
-                // Handle error response
-                console.error('Error:', response.status, response.statusText);
+                console.error('Error with response:', response.status, response.statusText);
             }
         } catch (error) {
-            // Handle fetch errors
-            console.error('Fetch Error:', error.message, error.stack);
+            console.error('Fetch Error:', error.message);
         }
     };
+    
 
-    // TODO: no idea why this needs to be here!
-    const [adopters, setAdopters] = useState(null);
-    const [awareFarmers, setAwareFarmers] = useState(null);
 
     return (
         <div className="modelBox">
-            <h2>The Model</h2>
-            <div className="flexContainer">
-                <TextInput label="Frequency Direct Ad:" value={frequencyDirectAd} setValue={setFrequencyDirectAd} />
-                <Dropdown label="Type Direct Ad:" options={['Direct Ad', 'Direct Ad + Discount', 'Direct Ad + Delayed Payment', "Direct Ad + Delayed P. + Discount"]} value={typeDirectAd} setValue={setTypeDirectAd} />
-                <TextInput label="Frequency Chief Training:" value={frequencyChiefTraining} setValue={setFrequencyChiefTraining} />
-                <TextInput label="Number of Ticks:" value={numberOfTicks} setValue={setNumberOfTicks} />
-            
-            </div>
-            <div className="flexContainer">
-                <Button label="Start Model without NetLogo GUI" onClick={() => runModel(false)} variant="solid-orange"/>
-                <Button label="Start Model with NetLogo GUI" onClick={() => runModel(true)} variant="solid-orange"/>
+          <h2>The Model</h2>
+          <div className="flexContainer">
+            <TextInput label="Frequency Direct Ad:" value={frequencyDirectAd} setValue={setFrequencyDirectAd} />
+            <Dropdown label="Type Direct Ad:" value={directAdType} setValue={setDirectAdType}>
+              <option disabled value="">
+                Please choose a type
+              </option>
+              <option value="Direct Ad">Direct Ad</option>
+              <option value="Direct Ad + Discount">Direct Ad + Discount</option>
+              <option value="Direct Ad + Delayed Payment">Direct Ad + Delayed Payment</option>
+              <option value="Direct Ad + Delayed P. + Discount">Direct Ad + Delayed P. + Discount</option>
+            </Dropdown>
 
-               
-            </div>
+            <TextInput label="Frequency Chief Training:" value={frequencyChiefTraining} setValue={setFrequencyChiefTraining} />
+            <TextInput label="Number of Ticks:" value={numberOfTicks} setValue={setNumberOfTicks} />
+          </div>
+          
+          <div className="flexContainer">
+            <Button label="Start Model without NetLogo GUI" onClick={() => runModel(false)} variant="solid-orange"/>
+            {/* <Button label="Start Model with NetLogo GUI" onClick={() => runModel(true)} variant="solid-orange"/> */}
+          </div>
+    
         </div>
     );
 };
