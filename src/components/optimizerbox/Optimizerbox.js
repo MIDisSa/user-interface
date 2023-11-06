@@ -2,6 +2,7 @@ import Button from '../button/Button';
 import Dropdown from '../dropdown/Dropdown';
 import './Optimizerbox.css';
 import React, { useState, useEffect } from 'react';
+import { FadeLoader } from 'react-spinners';
 
 const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => { 
     const [budget, setBudget] = useState(''); 
@@ -13,6 +14,7 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
     const [variableCostsDelayed, setVariableCostsDelayed] = useState(''); 
     const [variableCostsDelayedDiscount, setVariableCostsDelayedDiscount] = useState(''); 
     const [variableCostsTrainChiefs, setVariableCostsTrainChiefs] = useState(''); 
+    const [loading, setLoading] = useState(false);
   
     // new state to store all optimization results in an array
     const [optimizationResults, setOptimizationResults] = useState(() => {
@@ -66,7 +68,10 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
 
 
     const runOptimizer = async () => {
-        const optimizerData = {
+
+      setLoading(true);
+
+      const optimizerData = {
         optimizationType,
         budget,
         fixedCostsDirectAd,
@@ -77,7 +82,7 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
         variableCostsDelayedDiscount,
         variableCostsTrainChiefs,
         extraOptimizationParameters, 
-        };
+      };
 
     // Log
     console.log('Sending data to optimizer:', optimizerData);
@@ -118,6 +123,8 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
       }
     } catch (error) {
       console.error('Fetch Error:', error.message, error.stack);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -165,7 +172,11 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
          />
 
       </div>
-     
+      {loading && (
+            <div className="overlay">
+                <FadeLoader color={'#FFA62B'} loading={loading}/>
+            </div>
+            )}
     </div>
   );
 };
