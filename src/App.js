@@ -79,6 +79,8 @@ const App = () => {
             });
     
             if (!response.ok) {
+                const errorMessage = await response.json();
+                window.alert(errorMessage.message)
                 throw new Error('Network response was not ok' + response.statusText);
             }
     
@@ -146,6 +148,8 @@ const App = () => {
         if (response.status === 200) {
             setSuccessMessage("Parameters were successfully set in the model!"); // Display message
         } else {
+            const errorMessage = await response.json();
+            window.alert(errorMessage.message)
             throw new Error('Failed to update parameters.');
         }
 
@@ -232,6 +236,11 @@ const App = () => {
                     updateOptimizationParameters={updateOptimizationParameters}
                 />
 
+                <div className ="majorResultContainer">
+                <div className="numbered-heading">
+                        <div className="number-circle">3</div>
+                        <h2>The Results</h2>
+                    </div>
                 <div className="result-container">
                     <div className="result-box">
                         <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick}/>
@@ -239,6 +248,7 @@ const App = () => {
                     <div className="result-box">
                         <ResultboxOptimizer optimizationResults={optimizationResults} />
                     </div>
+                </div>
                 </div>
             </div>    
         </div>
