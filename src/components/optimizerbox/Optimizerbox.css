@@ -1,7 +1,8 @@
 .optimizerBox {
+    position: relative;
     border-radius: 10px;
-    border: 1px solid #BDBDBD;
-    background: #F9F9F9;
+    border: 1px solid #bdbdbd;
+    background: #f9f9f9;
     padding: 20px;
     margin: 10px 0;
 }
@@ -10,23 +11,19 @@
     margin-bottom: 15px;
 }
 
-
 .flexContainer {
     display: flex;
-    flex-direction: column; /* stacks  children vertically */
+    flex-direction: column;
     justify-content: center;
-    /* align-items: flex-start; */
     gap: 12px;
-    /* align-self: stretch; */
 }
 
 .inputGroup {
-    width: 100%; /* Makes sure the input group takes the full width */
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 8px; /* Spacing between the label and the input/dropdown */
+    gap: 8px;
 }
-
 
 .textInput {
     display: flex;
@@ -40,11 +37,26 @@
 
 .textInput input {
     border-radius: 5px;
-    border: 1px solid #BDBDBD;
-    background: #F9F9F9;
+    border: 1px solid #bdbdbd;
+    background: #f9f9f9;
     padding: 5px;
 }
 
-Dropdown, TextInput {
+Dropdown,
+TextInput {
     width: 100%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity to control the darkness of the overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    border-radius: 10px;
 }
