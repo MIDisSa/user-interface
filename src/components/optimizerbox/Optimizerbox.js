@@ -112,6 +112,8 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
           totalCost: data.totalCost,
         });
       } else {
+        const errorMessage = await response.json();
+        window.alert(errorMessage.message)
         console.error('Error:', response.status, response.statusText);
       }
     } catch (error) {

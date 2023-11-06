@@ -79,6 +79,8 @@ const App = () => {
             });
     
             if (!response.ok) {
+                const errorMessage = await response.json();
+                window.alert(errorMessage.message)
                 throw new Error('Network response was not ok' + response.statusText);
             }
     
@@ -146,6 +148,8 @@ const App = () => {
         if (response.status === 200) {
             setSuccessMessage("Parameters were successfully set in the model!"); // Display message
         } else {
+            const errorMessage = await response.json();
+            window.alert(errorMessage.message)
             throw new Error('Failed to update parameters.');
         }
 
