@@ -232,6 +232,11 @@ const App = () => {
                     updateOptimizationParameters={updateOptimizationParameters}
                 />
 
+                <div className ="majorResultContainer">
+                <div className="numbered-heading">
+                        <div className="number-circle">3</div>
+                        <h2>The Results</h2>
+                    </div>
                 <div className="result-container">
                     <div className="result-box">
                         <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick}/>
@@ -239,6 +244,7 @@ const App = () => {
                     <div className="result-box">
                         <ResultboxOptimizer optimizationResults={optimizationResults} />
                     </div>
+                </div>
                 </div>
             </div>    
         </div>

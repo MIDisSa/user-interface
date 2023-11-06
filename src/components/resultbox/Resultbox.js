@@ -36,8 +36,8 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
 
 
   return (
-    <div className="result-box">
-      <h2>The Result</h2>
+    <div>
+      <h2>Model Results</h2>
       <p>Number of adopters: {adopters}</p>
       <p>Number of aware farmers: {awareFarmers}</p>
       <p>Total Costs: {totalCost}</p>

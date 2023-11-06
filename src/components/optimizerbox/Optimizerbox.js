@@ -122,7 +122,10 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
   
   return (
     <div className="optimizerBox">
-      <h2>The Optimizer</h2>
+       <div className="numbered-heading">
+            <div className="number-circle">2</div>
+            <h2>The Optimizer</h2>
+          </div>
       <div className="flexContainer">
         <div className="inputGroup">
           <Dropdown label= "Optimization Type" value={optimizationType} setValue={setOptimizationType}>
