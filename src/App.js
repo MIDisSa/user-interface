@@ -157,9 +157,19 @@ const App = () => {
         console.error('Error sending data:', error);
     }
     };
-      
     
-
+    // function to round to a certain number of digits
+    function roundTo(n, digits) {
+        console.log(n)
+        if (digits === undefined || n === "") {
+            return "";
+        }
+        var multiplicator = Math.pow(10, digits);
+        n = parseFloat((n * multiplicator).toFixed(11));
+        var test =(Math.round(n) / multiplicator);
+        return +(test.toFixed(digits));
+    };
+    
     console.log({ awareFarmersPerTick, adoptersPerTick });
 
     return (
@@ -204,7 +214,7 @@ const App = () => {
                                                 <input 
                                                     type="text" 
                                                     name={key} 
-                                                    value={value} 
+                                                    value={ roundTo(value, 2) } 
                                                     onChange={handleInputChange} 
                                                 />
                                             </td>
