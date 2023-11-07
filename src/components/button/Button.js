@@ -1,7 +1,7 @@
 import React from 'react';
 import './Button.css'; 
 
-const Button = ({ label, onClick, variant }) => {
+const Button = ({ label, onClick, variant, title}) => {
     let buttonClass = '';
 
     switch (variant) {
@@ -20,7 +20,7 @@ const Button = ({ label, onClick, variant }) => {
     }
 
     return (
-        <button onClick={onClick} className={`button ${buttonClass}`}>
+        <button onClick={onClick} className={`button ${buttonClass}`} title={title}>
             {label}
         </button>
     );
