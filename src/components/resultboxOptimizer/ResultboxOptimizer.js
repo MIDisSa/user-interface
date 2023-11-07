@@ -23,7 +23,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
           </tr>
         </thead>
         <tbody>
-          {optimizationResults.reverse().map((result, index) => (
+          {optimizationResults.slice().reverse().map((result, index) => (
             <tr key={index} className={index === 0 ? "highlighted-row" : ""}>
               <td>{result.directAdType}</td>
               <td>{result.directAdFrequency}</td>
