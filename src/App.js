@@ -204,7 +204,7 @@ const App = () => {
                                                 <input 
                                                     type="text" 
                                                     name={key} 
-                                                    value={value} 
+                                                    value={Number(value).toFixed(2)} 
                                                     onChange={handleInputChange} 
                                                 />
                                             </td>
