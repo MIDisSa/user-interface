@@ -1,0 +1,20 @@
+/* ResultboxOptimizer.css */
+.table-with-lines {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-with-lines th,
+  .table-with-lines td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .table-with-lines th {
+    background-color: #f2f2f2;
+  }
+  
+  .table-with-lines tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  

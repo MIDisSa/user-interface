@@ -7,7 +7,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
   return (
     <div >
       <h3>Optimization Results</h3>
-      <table>
+      <table className='table-with-lines'>
         <thead>
           <tr>
             <th>Direct Ad Type</th>
