@@ -23,15 +23,6 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
         return savedResults ? JSON.parse(savedResults) : [];
     });
 
-    const TextInput = ({ label, value, setValue }) => {
-        return (
-            <div>
-                <label>{label}</label>
-                <input type="text" value={value} onChange={e => setValue(e.target.value)} />
-            </div>
-        );
-    };
-
     const DEFAULT_VALUES = {
         budget: "100000",
         fixedCostsDirectAd: "6000",
@@ -178,6 +169,15 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
             </div>
             )}
     </div>
+  );
+};
+
+const TextInput = ({ label, value, setValue }) => {
+  return (
+      <div>
+          <label>{label}</label>
+          <input type="text" value={value} onChange={e => setValue(e.target.value)} />
+      </div>
   );
 };
 
