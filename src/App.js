@@ -191,10 +191,8 @@ const App = () => {
                         Either you use our prepared data pre-processing script or you fill the table manually by yourself.
                         </p>
                         <input type="file" ref={fileInputRef} />
-                        <Button label="Upload raw csv" onClick={handleUploadRawCSV} />
-
-                        <Button label="Clear all set data on this page" variant="outlined-blue" onClick={() => window.location.reload()} />
-                        
+                        <Button  label="Upload raw csv"  onClick={handleUploadRawCSV} title="Click to upload the CSV file" />
+                    
                         <p className="description-text"> 
                         Your final parameters: 
                         </p>
@@ -215,8 +213,9 @@ const App = () => {
                                     .map(([key, value]) => (
                                         <tr key={key}>
                                            <td>
-                                                {PARAM_MAPPING[key]} <span data-tip="This is tooltip text">?</span>
-                        
+                                                {PARAM_MAPPING[key]} 
+                                                <span className="tooltip-trigger" data-tooltip-id={key} data-tooltip-content={TOOLTIP_CONTENT[key]}>?</span>
+                                                <ReactTooltip id={key}  place="top" effect="solid" />
                                                 </td>
                                             <td>
                                                 <input 
