@@ -8,20 +8,19 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
     <div className='table-container'>
       <h3>Optimization Results</h3>
       <div className='table-scroll'>
-        <table className='table-with-lines'>
-          <thead>
-            <tr>
-              <th>Direct Ad Type</th>
-              <th>Direct Ad Frequency</th>
-              <th>Training Chiefs Frequency</th>
-              <th>Direct Ad Number of Villages</th>
-              <th>Number of trained CHiefs</th>
-              <th>Avg Adopters</th>
-              <th>Number of direct Ads</th>
-              <th>Number of Chief Trainings</th>
-              <th>Total Costs</th>
-              
-            </tr>
+      <table className='table-with-lines'>
+        <thead>
+          <tr>
+            <th>Direct Ad Type</th>
+            <th>Direct Ad Frequency</th>
+            <th>Training Chiefs Frequency</th>
+            <th>Direct Ad Number of Villages</th>
+            <th>Number of trained Chiefs</th>
+            <th>Avg Adopters</th>
+            <th>Number of direct Ads</th>
+            <th>Number of Chief Trainings</th>
+            <th>Total Costs</th>
+          </tr>
           </thead>
           <tbody>
             {optimizationResults.slice().reverse().map((result, index) => (

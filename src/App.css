@@ -31,6 +31,9 @@ html, body {
   border-radius: 8px;
   padding: 20px;
 }
+span[data-tip="true"] {
+  border: 1px solid red; /* just for testing */
+}
 
 .CSVBox {
   flex: 5; /* Takes 6/8 */
@@ -59,7 +62,7 @@ html, body {
   border: 1px solid #BDBDBD;
   background: #F9F9F9;
   border-radius: 10px;
-  width: 100%; /* Set the width or max-width as per your layout needs */
+  width: 100%; 
   text-align: center; 
   justify-content: flex-start;
   padding: 20px; 
@@ -70,12 +73,31 @@ html, body {
 }
 
 
+.tooltip-trigger {
+  display: inline-block; 
+  margin-left: 0.3px; 
+  cursor: pointer;
+  font-size: 0.6em; 
+  width: 15px; 
+  height: 15px; 
+  line-height: 15px; /* center the '?' vertically */
+  text-align: center; /* center the '?' horizontally */
+  border-radius: 50%; /* round edges */
+  background-color: #f0f0f0; 
+  color: #333; 
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2); 
+  position: relative;
+  vertical-align: middle; 
+  border: 1px solid #dcdcdc;
+}
+
+
 .result-box {
   background: white; 
-  flex: 1; /* Each child will take up equal amount of space */
-  padding: 20px; /* Add some padding inside the boxes */
-  margin: 20px; /* Add margin to separate from surrounding elements */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow to the boxes */
+  flex: 1; 
+  padding: 20px; 
+  margin: 20px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .Table {
