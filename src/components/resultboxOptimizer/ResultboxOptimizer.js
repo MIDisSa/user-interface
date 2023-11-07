@@ -7,6 +7,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
   return (
     <div className='table-container'>
       <h3>Optimization Results</h3>
+      <div className='table-scroll'>
       <table className='table-with-lines'>
         <thead>
           <tr>
@@ -19,25 +20,25 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
             <th>Number of direct Ads</th>
             <th>Number of Chief Trainings</th>
             <th>Total Costs</th>
-            
           </tr>
-        </thead>
-        <tbody>
-          {optimizationResults.reverse().map((result, index) => (
-            <tr key={index} className={index === 0 ? "highlighted-row" : ""}>
-              <td>{result.directAdType}</td>
-              <td>{result.directAdFrequency}</td>
-              <td>{result.trainChiefsFrequency}</td>
-              <td>{result.directAdNrOfVillages}</td>
-              <td>{result.trainChiefsNumber}</td>
-              <td>{result.avgAdopters}</td>
-              <td>{result.nrOfDirectAds}</td>
-              <td>{result.nrOfChiefTrainings}</td>
-              <td>{result.totalCost}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {optimizationResults.slice().reverse().map((result, index) => (
+              <tr key={index} className={index === 0 ? "highlighted-row" : ""}>
+                <td>{result.directAdType}</td>
+                <td>{result.directAdFrequency}</td>
+                <td>{result.trainChiefsFrequency}</td>
+                <td>{result.directAdNrOfVillages}</td>
+                <td>{result.trainChiefsNumber}</td>
+                <td>{result.avgAdopters}</td>
+                <td>{result.nrOfDirectAds}</td>
+                <td>{result.nrOfChiefTrainings}</td>
+                <td>{result.totalCost}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
