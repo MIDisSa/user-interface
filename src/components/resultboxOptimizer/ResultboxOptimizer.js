@@ -5,9 +5,9 @@ import './ResultboxOptimizer.css';
 
 const ResultboxOptimizer = ({ optimizationResults }) => {
   return (
-    <div >
+    <div className='table-container'>
       <h3>Optimization Results</h3>
-      <table>
+      <table className='table-with-lines'>
         <thead>
           <tr>
             <th>Direct Ad Type</th>
@@ -23,8 +23,8 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
           </tr>
         </thead>
         <tbody>
-          {optimizationResults.map((result, index) => (
-            <tr key={index}>
+          {optimizationResults.reverse().map((result, index) => (
+            <tr key={index} className={index === 0 ? "highlighted-row" : ""}>
               <td>{result.directAdType}</td>
               <td>{result.directAdFrequency}</td>
               <td>{result.trainChiefsFrequency}</td>

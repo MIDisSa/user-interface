@@ -1,0 +1,24 @@
+.table-container {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+.table-with-lines {
+    width: 80%;
+    border-collapse: collapse;
+}
+
+.table-with-lines th,
+.table-with-lines td {
+    border: 1px solid #ddd;
+    padding: 5.5px;
+}
+
+.table-with-lines th {
+    background-color: #f2f2f2;
+}
+
+.highlighted-row {
+    background-color: rgb(255, 166, 41, 0.7)
+}
+  
