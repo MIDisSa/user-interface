@@ -191,8 +191,7 @@ const App = () => {
                         Either you use our prepared data pre-processing script or you fill the table manually by yourself.
                         </p>
                         <input type="file" ref={fileInputRef} />
-                        <Button  label="Upload raw csv"  onClick={handleUploadRawCSV} title="Click to upload the CSV file" />
-                    
+                        <Button  label="Upload raw csv"  onClick={handleUploadRawCSV} title="Click to upload the raw CSV file" />
                         <p className="description-text"> 
                         Your final parameters: 
                         </p>
