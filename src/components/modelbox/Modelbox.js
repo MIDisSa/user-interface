@@ -3,6 +3,7 @@ import Button from '../button/Button';
 import Dropdown from '../dropdown/Dropdown';
 import React, { useState, useEffect } from 'react';
 import { FadeLoader } from 'react-spinners';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 import './Modelbox.css';
 
@@ -82,29 +83,51 @@ const ModelBox = props => {
         }
     };
     
+    const TOOLTIP_CONTENT = {
+        "frequencyDirectAd": "Number of days between the Direct Ad interventions​.",
+        "directAdType": "Type of the Direct Ad Intervention​.",
+        "frequencyChiefTraining": "Number of days between Chief Trainings​",
+        "numberOfTicks": "Number of days the model is run​. This also applies to the optimizer)​"
+      };
 
 
     return (
         <div className="modelBox">
           <div className="numbered-heading">
             <div className="number-circle">1</div>
-            <h2>The Model</h2>
+            <h2>Model</h2>
           </div>
 
           <div className="flexContainerModelbox">
+              <div className="flexContainerTooltipParameter">
                 <TextInput label="Frequency Direct Ad:" value={frequencyDirectAd} setValue={setFrequencyDirectAd} />
-                <Dropdown label="Type Direct Ad:" value={directAdType} setValue={setDirectAdType}>
-                <option disabled value="">
-                    Please choose a type
-                </option>
-                <option value="Direct Ad">Direct Ad</option>
-                <option value="Direct Ad + Discount">Direct Ad + Discount</option>
-                <option value="Direct Ad + Delayed Payment">Direct Ad + Delayed Payment</option>
-                <option value="Direct Ad + Delayed P. + Discount">Direct Ad + Delayed P. + Discount</option>
-                </Dropdown>
+                <span className="tooltip-trigger" data-tooltip-id="frequencyDirectAdTip" data-tooltip-content={TOOLTIP_CONTENT.frequencyDirectAd}>?</span>
+                <ReactTooltip id="frequencyDirectAdTip" place="top" effect="solid"/>
+              </div>
+              <div className="flexContainerTooltipParameter">
+                    <Dropdown label="Type Direct Ad:" value={directAdType} setValue={setDirectAdType}>
+                    <option disabled value="">
+                        Please choose a type
+                    </option>
+                    <option value="Direct Ad">Direct Ad</option>
+                    <option value="Direct Ad + Discount">Direct Ad + Discount</option>
+                    <option value="Direct Ad + Delayed Payment">Direct Ad + Delayed Payment</option>
+                    <option value="Direct Ad + Delayed P. + Discount">Direct Ad + Delayed P. + Discount</option>
+                    </Dropdown>
+                    <span className="tooltip-trigger" data-tooltip-id="directAdType" data-tooltip-content={TOOLTIP_CONTENT.directAdType}>?</span>
+                    <ReactTooltip id="directAdType" place="top" effect="solid"/>
+                </div>  
             
+                <div className="flexContainerTooltipParameter">
                 <TextInput label="Frequency Chief Training:" value={frequencyChiefTraining} setValue={setFrequencyChiefTraining} />
+                <span className="tooltip-trigger" data-tooltip-id="frequencyChiefTraining" data-tooltip-content={TOOLTIP_CONTENT.frequencyChiefTraining}>?</span>
+                    <ReactTooltip id="frequencyChiefTraining" place="top" effect="solid"/>
+                </div>  
+                <div className="flexContainerTooltipParameter">
                 <TextInput label="Number of Ticks:" value={numberOfTicks} setValue={setNumberOfTicks} />
+                <span className="tooltip-trigger" data-tooltip-id="numberOfTicks" data-tooltip-content={TOOLTIP_CONTENT.numberOfTicks}>?</span>
+                    <ReactTooltip id="numberOfTicks" place="top" effect="solid"/>
+                </div>  
             </div>
             <div className="flexContainer">
                 <Button label="Start Model without NetLogo GUI" onClick={() => runModel(false)} variant="solid-orange"/>

@@ -21,10 +21,13 @@
   color: #d78c22;
   border: 2px solid #d78c22;
 }
+
 .button-outlined-orange:hover {
   background-color: #d78c22;
   color: #ffffff;
 }
+
+
 
 .button-solid-blue {
   background-color: #00A0C1;

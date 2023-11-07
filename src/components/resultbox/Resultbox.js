@@ -45,10 +45,13 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
       {/* Display Line Charts */}
       <div className="line-charts">
         <div className="line-chart">
-          <BasicLineChart data={lineChartData} /> {/* Change this to your actual LineChart component */}
+          <BasicLineChart data={lineChartData} />
         </div>
       </div>
+      <p> Considerers are agents that have heard of the innovation.​ <br></br>
+    Adopters are agents that have chosen to adopt the innovation.​</p>
     </div>
+    
   );
 };
 

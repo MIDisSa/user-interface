@@ -3,6 +3,7 @@ import Dropdown from '../dropdown/Dropdown';
 import './Optimizerbox.css';
 import React, { useState, useEffect } from 'react';
 import { FadeLoader } from 'react-spinners';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => { 
     const [budget, setBudget] = useState(''); 
@@ -122,32 +123,35 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
   
   return (
     <div className="optimizerBox">
+       <span className="tooltip-opti" data-tooltip-id="opti" data-tooltip-content="This is the Optimizer. In general, fixed costs incur once per intervention.​
+            Variable costs incur once per village that is part of the intervention.​​">?</span> 
+              <ReactTooltip id= "opti"  place="top" effect="solid" />
        <div className="numbered-heading">
-            <div className="number-circle">2</div>
-            <h2>The Optimizer</h2>
-          </div>
+            <div className="number-circle">2</div>   
+            <h2>Optimizer</h2>
+        </div>
       <div className="flexContainer">
         <div className="inputGroup">
-          <Dropdown label= "Optimization Type" value={optimizationType} setValue={setOptimizationType}>
+          <Dropdown label= "Optimization Type " value={optimizationType} setValue={setOptimizationType}>
             <option disabled value="">
                 Please choose a type
               </option>
             <option value="maxAdopters">Max Adopters</option>
             <option value="maxKnowledge">Max Knowledge</option>
             <option value="minCost">Min Costs</option>
-            <option value="test">Test</option>
+
             </Dropdown>
         </div>
+        <label>Additional Constraints:</label>
         <div className="inputGroup">
-          <label>Additional Constraints:</label>
-          <TextInput label= "Budget" value={budget} setValue={setBudget} />
-          <TextInput label= "Fixed Costs for Direct Ad" value={fixedCostsDirectAd} setValue={setFixedCostsDirectAd} />
-          <TextInput label= "Fixed Costs for Training of Chiefs" value={fixedCostsTrainChiefs} setValue={setFixedCostsTrainChiefs} />
-          <TextInput label= "Variable Costs for Direct Ad" value={variableCostsDirectAd} setValue={setVariableCostsDirectAd} />
-          <TextInput label= "Variable Costs for Discount" value={variableCostsDiscount} setValue={setVariableCostsDiscount} />
-          <TextInput label= "Variable Costs for Delayed" value={variableCostsDelayed} setValue={setVariableCostsDelayed} />
-          <TextInput label= "Variable Costs for Delayed Discount" value={variableCostsDelayedDiscount} setValue={setVariableCostsDelayedDiscount} />
-          <TextInput label= "Variable Costs for Training of Chiefs" value={variableCostsTrainChiefs} setValue={setVariableCostsTrainChiefs} />
+          <TextInput label= "Budget " value={budget} setValue={setBudget} />
+          <TextInput label= "Fixed Costs for Direct Ad " value={fixedCostsDirectAd} setValue={setFixedCostsDirectAd} />
+          <TextInput label= "Fixed Costs for Training of Chiefs " value={fixedCostsTrainChiefs} setValue={setFixedCostsTrainChiefs} />
+          <TextInput label= "Variable Costs for Direct Ad " value={variableCostsDirectAd} setValue={setVariableCostsDirectAd} />
+          <TextInput label= "Variable Costs for Direct Ad + Discount​ " value={variableCostsDiscount} setValue={setVariableCostsDiscount} />
+          <TextInput label= "Variable Costs for Direct Ad + Deferred Payment " value={variableCostsDelayed} setValue={setVariableCostsDelayed} />
+          <TextInput label= "Variable Costs for Direct Ad + Deferred Payment + Discount " value={variableCostsDelayedDiscount} setValue={setVariableCostsDelayedDiscount} />
+          <TextInput label= "Variable Costs for Training of Chiefs " value={variableCostsTrainChiefs} setValue={setVariableCostsTrainChiefs} />
         </div>
       </div>
       <div className="flexContainer">
@@ -159,7 +163,7 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
         <Button
             label="Set to Default"
             onClick={setDefaultValues}
-            variant="outlined-orange"
+            variant="solid-orange"
          />
 
       </div>

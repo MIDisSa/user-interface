@@ -39,25 +39,25 @@ const App = () => {
         };
 
     const PARAM_MAPPING = {
-        "avgIntraMentionPercentage" : "Average Mention Percentage",//TODO: probably rename/change parameter 
-        "percentageNegativeWoM" : "Negative Word-of-Mouth in percentage",    
-        "baseAdoptionProbability" : "Base Adoption Probability",
-        "nrDefaultFriendsInterVillage": "Number of Default Friends (Inter-Village)",
-        "avgIntraVillageInteractionFrequency" : "Average Intra Village Interaction Frequency",
-        "avgInterVillageInteractionFrequency" : "Average Inter Village Interaction Frequency",
-        "avgChiefFarmerMeetingFrequency": "Average Chief Farmer Meeting Frequency",
-        "trainChiefInfluence": "Training Chief Influence",
+        "avgIntraMentionPercentage" : "Mention Probability (%)",
+        "percentageNegativeWoM" : "Negative Word-of-Mouth Probability (%)",    
+        "baseAdoptionProbability" : "Adoption Probability (%)",
+        "nrDefaultFriendsInterVillage": "Number of Friends Inter Village",
+        "avgIntraVillageInteractionFrequency" : "Intra Village Interaction Frequency (days)",
+        "avgInterVillageInteractionFrequency" : "Inter Village Interaction Frequency (days)",
+        "avgChiefFarmerMeetingFrequency": "Chief Farmer Meeting Frequency (days)",
+        "trainChiefInfluence": "Training Chief Influence (%)",
     };
 
     const TOOLTIP_CONTENT = {
-        "avgIntraMentionPercentage": "This represents the average percentage of conversations within a community in which the new agricultural technique is mentioned.",
-        "percentageNegativeWoM": "This is the percentage of word-of-mouth communication that is negative towards the new technique, potentially discouraging adoption.",
-        "baseAdoptionProbability": "This base probability affects how likely an individual is to adopt the new technique after hearing about it.",
-        "nrDefaultFriendsInterVillage": "The default number of friends an individual has in other villages, which can influence the spread of information.",
-        "avgIntraVillageInteractionFrequency": "The average frequency at which individuals within the same village interact with each other.",
-        "avgInterVillageInteractionFrequency": "The average frequency of interaction between individuals from different villages.",
-        "avgChiefFarmerMeetingFrequency": "How often the village chief meets with farmers, which can be a strong influence on their decisions.",
-        "trainChiefInfluence": "The influence rating of trained village chiefs, which could lead to faster adoption of the technique through their endorsement.",
+        "avgIntraMentionPercentage": "Average probability that the innovation comes up as a topic during an interaction.​",
+        "percentageNegativeWoM": "Probability of an interaction being unfavorable in regards to the innovation.​",
+        "baseAdoptionProbability": "Base probability of an agent adopting the innovation.",
+        "nrDefaultFriendsInterVillage": "Average number of friends an agent has outside the village he lives in.",
+        "avgIntraVillageInteractionFrequency": "Average number of days elapsed between intra-village interactions started by an agent.",
+        "avgInterVillageInteractionFrequency": "Average number of days elapsed between inter-village interactions started by an agent​.",
+        "avgChiefFarmerMeetingFrequency": "Average number of days elapsed between farmgroup meetings.",
+        "trainChiefInfluence": "Influence of a chief on farmgroup members during a farmgroup meeting. 100 means he has the same influence as a regular agent.",
     };
 
     const initialParameters = Object.keys(PARAM_MAPPING).reduce((obj, key) => {
@@ -199,14 +199,15 @@ const App = () => {
 
                     <div className="CSVBox">
                     
-                        <p className="description-text"> 
-                        Start with setting your parameters. <br></br>
-                        Either you use our prepared data pre-processing script or you fill the table manually by yourself.
+                        <p className="description-text">
+                        Before running the model/optimizer, all parameters must be set.​ <br></br>
+                        Either insert parameters manually, use default settings or upload a CSV-File (in the same format as the LED-Project survey) to generate parameters automatically.​ Changes must be saved before running the model/optimizer.​<br></br>
+                        The Optimizer works on a model that implements all the parameters entered below, as well as the number of ticks in <span className="number-circle-inline">1</span>.
                         </p>
                         <input type="file" ref={fileInputRef} />
-                        <Button  label="Upload raw csv"  onClick={handleUploadRawCSV} title="Click to upload the raw CSV file" />
+                        <Button  label="Upload CSV"  onClick={handleUploadRawCSV} title="Click to upload the CSV file" />
                         <p className="description-text"> 
-                        Your final parameters: 
+                       
                         </p>
 
 
@@ -241,12 +242,13 @@ const App = () => {
                                 ))}
                             </tbody>
                         </table>
-                        <Button label="Set parameters again to run model/optimizer" type="submit" onClick={handleSubmit} />
-                        <Button label="Set parameters back to default" variant="outlined-blue" onClick={resetForm} />
+                        <Button label="Save parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
+                        <Button label="Reset to default" variant="outlined-blue" onClick={resetForm} />
                         </form>
 
                         <p className="description-text"> 
-                        Please note: The Model can be run without the Optimizer. When you run the Optimizer, it will take into account the settings within the Model selection below. 
+                        Please note: The Model can be run without the Optimizer. <br></br>
+                        When you run the Optimizer, it will take into account the settings within the Model selection below. 
                         </p>
                     </div>
                     <div className="OptimizerBox">
@@ -268,7 +270,7 @@ const App = () => {
                 <div className ="majorResultContainer">
                 <div className="numbered-heading">
                         <div className="number-circle">3</div>
-                        <h2>The Results</h2>
+                        <h2>Results</h2>
                     </div>
                 <div className="result-container">
                     <div className="result-box">

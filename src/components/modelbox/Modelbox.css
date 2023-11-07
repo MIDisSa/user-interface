@@ -8,8 +8,6 @@
     display: flex;
   flex-direction: column;
   align-items: center;
-    
-
     justify-content: space-between;
     margin-bottom: 15px;
     margin-top: 15px;
@@ -37,11 +35,19 @@
 
 .flexContainerModelbox {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     align-items: center;
-    justify-content: flex-start;
     margin-bottom: 10px; 
+    flex-wrap: wrap;
 }
+
+.flexContainerTooltipParameter{
+    display: flex; /* Aligns the text input and tooltip in a row */
+    align-items: center; /* Aligns items vertically in the center */
+    gap: 5px; /* Space between the text input and tooltip within the pair */
+    margin-right: 20px; 
+}
+
 
 .numbered-heading {
     display: flex; 
@@ -51,18 +57,20 @@
   }
   
   .number-circle {
-    background-color: #333; /* Or any color you want */
+    background-color:hsl(0, 1%, 53%); 
     color: white;
-    border-radius: 50%; /* This makes it round */
+    border-radius: 50%; /* makes it round */
     display: flex; 
     justify-content: center;
     align-items: center;
     font-weight: bold;
     width: 30px; /* Size of the circle */
     height: 30px; /* Size of the circle */
-    margin-right: 10px; 
+    margin-right: 1px; 
   }
   
+
+
   h2 {
     margin: 0; 
   }
@@ -98,4 +106,6 @@
     z-index: 1;
     border-radius: 10px;
 }
+
+
 
