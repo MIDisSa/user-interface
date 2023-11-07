@@ -4,6 +4,9 @@ import ResultBox from './components/resultbox/Resultbox';
 import ResultboxOptimizer from "./components/resultboxOptimizer/ResultboxOptimizer";
 import OptimizerBox from './components/optimizerbox/Optimizerbox';
 import Button from "./components/button/Button";
+import { Tooltip as ReactTooltip } from 'react-tooltip';
+
+
 
 import './App.css'; 
 
@@ -44,6 +47,17 @@ const App = () => {
         "avgInterVillageInteractionFrequency" : "Average Inter Village Interaction Frequency",
         "avgChiefFarmerMeetingFrequency": "Average Chief Farmer Meeting Frequency",
         "trainChiefInfluence": "Training Chief Influence",
+    };
+
+    const TOOLTIP_CONTENT = {
+        "avgIntraMentionPercentage": "This represents the average percentage of conversations within a community in which the new agricultural technique is mentioned.",
+        "percentageNegativeWoM": "This is the percentage of word-of-mouth communication that is negative towards the new technique, potentially discouraging adoption.",
+        "baseAdoptionProbability": "This base probability affects how likely an individual is to adopt the new technique after hearing about it.",
+        "nrDefaultFriendsInterVillage": "The default number of friends an individual has in other villages, which can influence the spread of information.",
+        "avgIntraVillageInteractionFrequency": "The average frequency at which individuals within the same village interact with each other.",
+        "avgInterVillageInteractionFrequency": "The average frequency of interaction between individuals from different villages.",
+        "avgChiefFarmerMeetingFrequency": "How often the village chief meets with farmers, which can be a strong influence on their decisions.",
+        "trainChiefInfluence": "The influence rating of trained village chiefs, which could lead to faster adoption of the technique through their endorsement.",
     };
 
     const initialParameters = Object.keys(PARAM_MAPPING).reduce((obj, key) => {
@@ -111,6 +125,7 @@ const App = () => {
         localStorage.setItem('optimizationResults', JSON.stringify(optimizationResults));
     }, [optimizationResults]);
 
+   
 
      // Update formData when parameters change
      useEffect(() => {
@@ -121,6 +136,7 @@ const App = () => {
     const handleNewOptimizationResult = (newResult) => {
         setOptimizationResults(prevResults => [...prevResults, newResult]);
     };
+    
     
 
     // Handle form field change
@@ -158,7 +174,6 @@ const App = () => {
     }
     };
       
-    
 
     console.log({ awareFarmersPerTick, adoptersPerTick });
 
@@ -190,16 +205,19 @@ const App = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Parameter</th>
+                                    <th>Parameter  </th>
                                     <th>Value</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            {Object.entries(formData)
-                                        .filter(([key]) => PARAM_MAPPING[key])  // Only include keys which mention in PARAM_MAPPING
-                                        .map(([key, value]) => (
+                                {Object.entries(formData)
+                                    .filter(([key]) => PARAM_MAPPING[key])
+                                    .map(([key, value]) => (
                                         <tr key={key}>
-                                            <td>{PARAM_MAPPING[key]}</td>
+                                           <td>
+                                                {PARAM_MAPPING[key]} <span data-tip="This is tooltip text">?</span>
+                        
+                                                </td>
                                             <td>
                                                 <input 
                                                     type="text" 
@@ -209,7 +227,7 @@ const App = () => {
                                                 />
                                             </td>
                                         </tr>
-                                    ))}
+                                ))}
                             </tbody>
                         </table>
                         <Button label="Set parameters again to run model/optimizer" type="submit" onClick={handleSubmit} />

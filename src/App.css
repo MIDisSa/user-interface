@@ -31,6 +31,9 @@ html, body {
   border-radius: 8px;
   padding: 20px;
 }
+span[data-tip="true"] {
+  border: 1px solid red; /* just for testing */
+}
 
 .CSVBox {
   flex: 5; /* Takes 6/8 */
@@ -67,6 +70,11 @@ html, body {
   flex-direction: column;
   align-items: center;
   
+}
+.tooltip-trigger {
+  display: inline;
+  margin-left: 5px; /* or any space you prefer */
+  cursor: pointer; /* Shows a pointer cursor on hover to indicate it is interactive */
 }
 
 

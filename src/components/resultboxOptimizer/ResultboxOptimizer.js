@@ -14,7 +14,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
             <th>Direct Ad Frequency</th>
             <th>Training Chiefs Frequency</th>
             <th>Direct Ad Number of Villages</th>
-            <th>Number of trained CHiefs</th>
+            <th>Number of trained Chiefs</th>
             <th>Avg Adopters</th>
             <th>Number of direct Ads</th>
             <th>Number of Chief Trainings</th>
