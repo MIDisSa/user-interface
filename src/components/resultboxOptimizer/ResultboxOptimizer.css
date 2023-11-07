@@ -1,5 +1,6 @@
 .table-container {
     max-width: 100%;
+    max-height: 600px;
     overflow-x: auto;
   }
 
@@ -20,5 +21,9 @@
 
 .highlighted-row {
     background-color: rgb(255, 166, 41, 0.7)
+}
+
+.table-scroll {
+    overflow: auto;
 }
   
