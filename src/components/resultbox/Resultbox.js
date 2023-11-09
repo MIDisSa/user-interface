@@ -48,8 +48,8 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
           <BasicLineChart data={lineChartData} />
         </div>
       </div>
-      <p> Considerers are agents that have heard of the innovation.​ <br></br>
-    Adopters are agents that have chosen to adopt the innovation.​</p>
+      <p> Aware agents have heard at least once of the innovation.​ <br></br>
+    Adopters are aware agents that have chosen to adopt the innovation.​</p>
     </div>
     
   );

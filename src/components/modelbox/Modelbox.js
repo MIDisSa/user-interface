@@ -111,8 +111,8 @@ const ModelBox = props => {
                     </option>
                     <option value="Direct Ad">Direct Ad</option>
                     <option value="Direct Ad + Discount">Direct Ad + Discount</option>
-                    <option value="Direct Ad + Delayed Payment">Direct Ad + Delayed Payment</option>
-                    <option value="Direct Ad + Delayed P. + Discount">Direct Ad + Delayed P. + Discount</option>
+                    <option value="Direct Ad + Deferred Payment">Direct Ad + Deferred Payment</option>
+                    <option value="Direct Ad + Deferred P. + Discount">Direct Ad + Deferred P. + Discount</option>
                     </Dropdown>
                     <span className="tooltip-trigger" data-tooltip-id="directAdType" data-tooltip-content={TOOLTIP_CONTENT.directAdType}>?</span>
                     <ReactTooltip id="directAdType" place="top" effect="solid"/>

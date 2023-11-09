@@ -45,19 +45,19 @@ const App = () => {
         "nrDefaultFriendsInterVillage": "Number of Friends Inter Village",
         "avgIntraVillageInteractionFrequency" : "Intra Village Interaction Frequency (days)",
         "avgInterVillageInteractionFrequency" : "Inter Village Interaction Frequency (days)",
-        "avgChiefFarmerMeetingFrequency": "Chief Farmer Meeting Frequency (days)",
-        "trainChiefInfluence": "Training Chief Influence (%)",
+        "avgChiefFarmerMeetingFrequency": "Farmgroup Meeting Frequency (days)",
+        "trainChiefInfluence": "Relative Chief Influence Factor",
     };
 
     const TOOLTIP_CONTENT = {
         "avgIntraMentionPercentage": "Average probability that the innovation comes up as a topic during an interaction.​",
-        "percentageNegativeWoM": "Probability of an interaction being unfavorable in regards to the innovation.​",
+        "percentageNegativeWoM": "Probability of an interaction being unfavorable in regard to the innovation.​",
         "baseAdoptionProbability": "Base probability of an agent adopting the innovation.",
         "nrDefaultFriendsInterVillage": "Average number of friends an agent has outside the village he lives in.",
         "avgIntraVillageInteractionFrequency": "Average number of days elapsed between intra-village interactions started by an agent.",
         "avgInterVillageInteractionFrequency": "Average number of days elapsed between inter-village interactions started by an agent​.",
         "avgChiefFarmerMeetingFrequency": "Average number of days elapsed between farmgroup meetings.",
-        "trainChiefInfluence": "Influence of a chief on farmgroup members during a farmgroup meeting. 100 means he has the same influence as a regular agent.",
+        "trainChiefInfluence": "Relative influence of a chief on a regular agent during an interaction. E.g. factor of 2 means a chief has twice the influence of a regular agent. ",
     };
 
     const initialParameters = Object.keys(PARAM_MAPPING).reduce((obj, key) => {
@@ -202,10 +202,10 @@ const App = () => {
                         <p className="description-text">
                         Before running the model/optimizer, all parameters must be set.​ <br></br>
                         Either insert parameters manually, use default settings or upload a CSV-File (in the same format as the LED-Project survey) to generate parameters automatically.​ Changes must be saved before running the model/optimizer.​<br></br>
-                        The Optimizer works on a model that implements all the parameters entered below, as well as the number of ticks in <span className="number-circle-inline">1</span>.
+                        The Optimizer works on a model that implements all the parameters entered below, as well as the number of ticks in <span className="number-circle-inline">1</span> Hovering over the "?" provides additional information about parameters or functionality.
                         </p>
                         <input type="file" ref={fileInputRef} />
-                        <Button  label="Upload CSV"  onClick={handleUploadRawCSV} title="Click to upload the CSV file" />
+                        <Button  label="Upload CSV"  onClick={handleUploadRawCSV} title="Upload the CSV file and extract parameters." />
                         <p className="description-text"> 
                        
                         </p>
@@ -216,7 +216,7 @@ const App = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Parameter  </th>
+                                    <th>Parameter  </th>    
                                     <th>Value</th>
                                 </tr>
                             </thead>
@@ -242,8 +242,8 @@ const App = () => {
                                 ))}
                             </tbody>
                         </table>
-                        <Button label="Save parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
-                        <Button label="Reset to default" variant="outlined-blue" onClick={resetForm} />
+                        <Button label="Save Parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
+                        <Button label="Set to Default" variant="outlined-blue" onClick={resetForm} title={"Resets values to a reasonable default that yields a stable result."} />
                         </form>
 
                         <p className="description-text"> 

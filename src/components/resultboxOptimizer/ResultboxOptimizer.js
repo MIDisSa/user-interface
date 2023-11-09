@@ -11,15 +11,15 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
       <table className='table-with-lines'>
         <thead>
           <tr>
-            <th>Direct Ad Type</th>
-            <th>Direct Ad Frequency</th>
-            <th>Training Chiefs Frequency</th>
-            <th>Direct Ad Number of Villages</th>
-            <th>Number of trained Chiefs</th>
+            <th>Treatment Arm</th>
+            <th>Treatment Frequency (days)</th>
+            <th>ToT Frequency (days)</th>
+            <th>Treatment Arm Coverage (%)</th>
+            <th>ToT Coverage (%)</th>
             <th>Best Fitness</th>
-            <th>Number of direct Ads</th>
-            <th>Number of Chief Trainings</th>
-            <th>Total Costs</th>
+            <th>Number of Treatments</th>
+            <th>Number of ToTs</th>
+            <th>Total Cost</th>
             <th>Optimization Type</th>
           </tr>
           </thead>
