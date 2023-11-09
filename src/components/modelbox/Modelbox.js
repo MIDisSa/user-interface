@@ -100,12 +100,12 @@ const ModelBox = props => {
 
           <div className="flexContainerModelbox">
               <div className="flexContainerTooltipParameter">
-                <TextInput label="Frequency Direct Ad:" value={frequencyDirectAd} setValue={setFrequencyDirectAd} />
+                <TextInput label="Treatment Frequency:" value={frequencyDirectAd} setValue={setFrequencyDirectAd} />
                 <span className="tooltip-trigger" data-tooltip-id="frequencyDirectAdTip" data-tooltip-content={TOOLTIP_CONTENT.frequencyDirectAd}>?</span>
                 <ReactTooltip id="frequencyDirectAdTip" place="top" effect="solid"/>
               </div>
               <div className="flexContainerTooltipParameter">
-                    <Dropdown label="Type Direct Ad:" value={directAdType} setValue={setDirectAdType}>
+                    <Dropdown label="Treatment Arm:" value={directAdType} setValue={setDirectAdType}>
                     <option disabled value="">
                         Please choose a type
                     </option>
@@ -119,12 +119,12 @@ const ModelBox = props => {
                 </div>  
             
                 <div className="flexContainerTooltipParameter">
-                <TextInput label="Frequency Chief Training:" value={frequencyChiefTraining} setValue={setFrequencyChiefTraining} />
-                <span className="tooltip-trigger" data-tooltip-id="frequencyChiefTraining" data-tooltip-content={TOOLTIP_CONTENT.frequencyChiefTraining}>?</span>
+                <TextInput label="ToT Frequency:" value={frequencyChiefTraining} setValue={setFrequencyChiefTraining} />
+                <span className="tooltip-trigg  er" data-tooltip-id="frequencyChiefTraining" data-tooltip-content={TOOLTIP_CONTENT.frequencyChiefTraining}>?</span>
                     <ReactTooltip id="frequencyChiefTraining" place="top" effect="solid"/>
                 </div>  
                 <div className="flexContainerTooltipParameter">
-                <TextInput label="Number of Ticks:" value={numberOfTicks} setValue={setNumberOfTicks} />
+                <TextInput label="Number of Days:" value={numberOfTicks} setValue={setNumberOfTicks} />
                 <span className="tooltip-trigger" data-tooltip-id="numberOfTicks" data-tooltip-content={TOOLTIP_CONTENT.numberOfTicks}>?</span>
                     <ReactTooltip id="numberOfTicks" place="top" effect="solid"/>
                 </div>  
