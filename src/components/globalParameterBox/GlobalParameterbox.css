@@ -1,24 +1,18 @@
-.optimizerBox {
-    flex-direction: row;
-    border-radius: 10px;
-    border: 1px solid #bdbdbd;
-    background: #f9f9f9;
-    padding: 20px;
-    margin: 10px 0;
+.globalParameterBox {
+    position: relative;
+    padding-left: 100px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    text-align: bottom;
+    justify-content: flex-end;
 }
 
 
-.flexContainer {
-    display: flex;
+.flexContainerGlobalParameterbox {
     flex-direction: column;
-    justify-content: center;
-    text-align: left;
+    justify-content: left;
     align-items: center;
-    gap: 12px;
-    padding-top: 15px;
+  
 }
 
 .tooltip-opti {
@@ -44,13 +38,17 @@
   }
   
 
-.inputGroup {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    gap: 8px;
-    
+  .inputGroup {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Adjust the ratio between label and input field */
+    gap: 10px; /* Space between label and input */
+    margin-bottom: 5px; /* Space between each input group */
+}
+
+.label {
+    text-align: left; 
+    padding-right: 10px; /* Space between label and its right border */
+    align-self: center; /* Vertically center the label */
 }
 
 .textInput {
@@ -60,7 +58,7 @@
 }
 
 .textInput label {
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 
 .textInput input {
@@ -87,4 +85,14 @@ TextInput {
     align-items: center;
     z-index: 1;
     border-radius: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .inputGroup {
+        grid-template-columns: 1fr; /* Stack label and input vertically on smaller screens */
+        text-align: left;
+    }
+    .label {
+        padding-right: 0;
+    }
 }

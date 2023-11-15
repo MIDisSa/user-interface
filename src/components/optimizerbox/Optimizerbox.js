@@ -6,15 +6,7 @@ import { FadeLoader } from 'react-spinners';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => { 
-    const [budget, setBudget] = useState(''); 
     const [optimizationType, setOptimizationType] = useState(''); 
-    const [fixedCostsDirectAd, setFixedCostsDirectAd] = useState(''); 
-    const [fixedCostsTrainChiefs, setFixedCostsTrainChiefs] = useState(''); 
-    const [variableCostsDirectAd, setVariableCostsDirectAd] = useState(''); 
-    const [variableCostsDiscount, setVariableCostsDiscount] = useState(''); 
-    const [variableCostsDelayed, setVariableCostsDelayed] = useState(''); 
-    const [variableCostsDelayedDiscount, setVariableCostsDelayedDiscount] = useState(''); 
-    const [variableCostsTrainChiefs, setVariableCostsTrainChiefs] = useState(''); 
     const [loading, setLoading] = useState(false);
   
     // new state to store all optimization results in an array
@@ -23,29 +15,6 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
         const savedResults = localStorage.getItem('optimizationResults');
         return savedResults ? JSON.parse(savedResults) : [];
     });
-
-    const DEFAULT_VALUES = {
-        budget: "100000",
-        fixedCostsDirectAd: "6000",
-        fixedCostsTrainChiefs: "5000",
-        variableCostsDirectAd: "400",
-        variableCostsDiscount: "500",
-        variableCostsDelayed: "700",
-        variableCostsDelayedDiscount: "800",
-        variableCostsTrainChiefs: "400",
-    };
-  
-
-    const setDefaultValues = () => {
-        setBudget(DEFAULT_VALUES.budget);
-        setFixedCostsDirectAd(DEFAULT_VALUES.fixedCostsDirectAd);
-        setFixedCostsTrainChiefs(DEFAULT_VALUES.fixedCostsTrainChiefs);
-        setVariableCostsDirectAd(DEFAULT_VALUES.variableCostsDirectAd);
-        setVariableCostsDiscount(DEFAULT_VALUES.variableCostsDiscount);
-        setVariableCostsDelayed(DEFAULT_VALUES.variableCostsDelayed);
-        setVariableCostsDelayedDiscount(DEFAULT_VALUES.variableCostsDelayedDiscount);
-        setVariableCostsTrainChiefs(DEFAULT_VALUES.variableCostsTrainChiefs);
-    };
   
 
     useEffect(() => {
@@ -65,15 +34,6 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
 
       const optimizerData = {
         optimizationType,
-        budget,
-        fixedCostsDirectAd,
-        fixedCostsTrainChiefs,
-        variableCostsDirectAd,
-        variableCostsDiscount,
-        variableCostsDelayed,
-        variableCostsDelayedDiscount,
-        variableCostsTrainChiefs,
-        extraOptimizationParameters, 
       };
 
     // Log
@@ -130,6 +90,10 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
             <div className="number-circle">2</div>   
             <h2>Optimizer</h2>
         </div>
+        <div className="description-text">
+        The optimizer looks for the values in (2) <br></br> which on average yield the best results for the here defined goal. <br></br>
+Warning: Optimization process may take 15-30 minutes to finish, <br></br> depending on the number of days defined in the settings above.
+                </div> 
       <div className="flexContainer">
         <div className="inputGroup">
           <Dropdown label= "Optimization Type " value={optimizationType} setValue={setOptimizationType}>
@@ -142,17 +106,7 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
 
             </Dropdown>
         </div>
-        <label>Additional Constraints:</label>
-        <div className="inputGroup">
-          <TextInput label= "Budget " value={budget} setValue={setBudget} />
-          <TextInput label= "Fixed Costs for Direct Ad " value={fixedCostsDirectAd} setValue={setFixedCostsDirectAd} />
-          <TextInput label= "Fixed Costs for Training of Chiefs " value={fixedCostsTrainChiefs} setValue={setFixedCostsTrainChiefs} />
-          <TextInput label= "Variable Costs for Direct Ad " value={variableCostsDirectAd} setValue={setVariableCostsDirectAd} />
-          <TextInput label= "Variable Costs for Direct Ad + Discount​ " value={variableCostsDiscount} setValue={setVariableCostsDiscount} />
-          <TextInput label= "Variable Costs for Direct Ad + Deferred Payment " value={variableCostsDelayed} setValue={setVariableCostsDelayed} />
-          <TextInput label= "Variable Costs for Direct Ad + Deferred Payment + Discount " value={variableCostsDelayedDiscount} setValue={setVariableCostsDelayedDiscount} />
-          <TextInput label= "Variable Costs for Training of Chiefs " value={variableCostsTrainChiefs} setValue={setVariableCostsTrainChiefs} />
-        </div>
+        
       </div>
       <div className="flexContainer">
         <Button
@@ -160,11 +114,6 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
           onClick={runOptimizer}
           variant="solid-orange"
         />
-        <Button
-            label="Set to Default"
-            onClick={setDefaultValues}
-            variant="solid-orange"
-         />
 
       </div>
       {loading && (
