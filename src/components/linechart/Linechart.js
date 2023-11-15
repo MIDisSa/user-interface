@@ -12,7 +12,7 @@ const BasicLineChart = ({ data }) => {
       x: { // Configure x-axis
         title: {
           display: true,
-          text: 'Ticks', 
+          text: 'Days', 
           
           font: {
             size: 16, 

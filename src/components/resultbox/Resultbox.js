@@ -18,14 +18,14 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
     labels: chartLabels,
     datasets: [
       {
-        label: 'Aware Farmers Per Tick',
+        label: 'Aware Agents',
         data: awareFarmersPerTick,
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1,
       },
       {
-        label: 'Adopters Per Tick',
+        label: 'Adopters',
         data: adoptersPerTick,
         fill: false,
         borderColor: 'rgb(255, 99, 132)',
