@@ -14,6 +14,7 @@
 .table-with-lines {
     width: 80%;
     border-collapse: collapse;
+    overflow: auto;
 }
 
 .table-with-lines th,
@@ -26,11 +27,11 @@
     background-color: #f2f2f2;
 }
 
+.table-with-lines thead th {
+    position: sticky;
+    top: 0;
+}
+
 .highlighted-row {
     background-color: rgb(255, 166, 41, 0.7)
 }
-
-.table-scroll {
-    overflow: auto;
-}
-  

@@ -32,7 +32,6 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
     <div className='results-container'>
       <div className='table-container'>
         <h3>Optimization Results</h3>
-        <div className='table-scroll'>
         <table className='table-with-lines'>
           <thead>
             <tr>
@@ -64,7 +63,6 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
               ))}
             </tbody>
           </table>
-        </div>
       </div>
       {optimizationResults.length > 0 && (
         <Button 
