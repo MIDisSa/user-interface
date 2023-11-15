@@ -127,6 +127,7 @@ html, body {
   font-weight: 500;
   line-height: 30px;
   letter-spacing: 0.2px;
+  padding-bottom: 20px;
 }
 
 .App-logo {
