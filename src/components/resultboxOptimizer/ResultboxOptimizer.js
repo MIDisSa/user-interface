@@ -35,6 +35,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
         <table className='table-with-lines'>
           <thead>
             <tr>
+              <th>Optimization Type</th>
               <th>Treatment Arm</th>
               <th>Treatment Frequency (days)</th>
               <th>ToT Frequency (days)</th>
@@ -44,12 +45,12 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
               <th>Number of Treatments</th>
               <th>Number of ToTs</th>
               <th>Total Cost</th>
-              <th>Optimization Type</th>
             </tr>
             </thead>
             <tbody>
               {optimizationResults.slice().reverse().map((result, index) => (
                 <tr key={index} className={index === 0 ? "highlighted-row" : ""}>
+                  <td>{result.optimizationType}</td>
                   <td>{result.directAdType}</td>
                   <td>{result.directAdFrequency}</td>
                   <td>{result.trainChiefsFrequency}</td>

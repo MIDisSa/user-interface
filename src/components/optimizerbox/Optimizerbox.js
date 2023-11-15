@@ -98,6 +98,7 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
 
         // Store output
         setOutputParameters({
+          optimizationType: data.optimizationType,
           directAdType: data.directAdType,
           directAdFrequency: data.directAdFrequency,
           trainChiefsFrequency: data.trainChiefsFrequency,
