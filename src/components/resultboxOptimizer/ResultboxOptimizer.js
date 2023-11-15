@@ -3,6 +3,23 @@ import './ResultboxOptimizer.css';
 import Button from '../button/Button';
 
 const ResultboxOptimizer = ({ optimizationResults }) => {
+
+  const downloadOptimizerResults = () => {
+    fetch('http://localhost:8080/downloadOptimizerResults')
+          .then(response => response.blob())
+          .then(blob => {
+            // create temporary URL to act as reference to the blob data
+            const url = window.URL.createObjectURL(new Blob([blob]));
+            // create new anchor element to trigger download
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'optimizerResults.csv');
+            document.body.appendChild(link);
+            link.click();
+            link.parentNode.removeChild(link);
+          })
+  };
+
   return (
     <div className='results-container'>
       <div className='table-container'>
@@ -44,7 +61,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
       {optimizationResults.length > 0 && (
         <Button 
           label="Export Results"
-          //onClick={}
+          onClick={downloadOptimizerResults}
           title={"Download a CSV file including the results of your optimization runs"}
         />)}
     </div>

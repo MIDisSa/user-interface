@@ -6,6 +6,22 @@ import Button from '../button/Button';
 
 const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, adoptersPerTick }) => {
 
+  const downloadModelResults = () => {
+    fetch('http://localhost:8080/downloadModelResults')
+          .then(response => response.blob())
+          .then(blob => {
+            // create temporary URL to act as reference to the blob data
+            const url = window.URL.createObjectURL(new Blob([blob]));
+            // create new anchor element to trigger download
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'modelResults.csv');
+            document.body.appendChild(link);
+            link.click();
+            link.parentNode.removeChild(link);
+          })
+  };
+
   let chartLabels = [];
 
   if (Array.isArray(awareFarmersPerTick) && Array.isArray(adoptersPerTick)) {
@@ -55,7 +71,7 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
       <div className='left'>
         <Button 
             label="Export Results"
-            //onClick={}
+            onClick={downloadModelResults}
             title={"Download a CSV file including the results of your optimization runs"}
           />
       </div>
