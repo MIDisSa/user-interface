@@ -47,12 +47,15 @@ html, body {
 
 
 .CSVBox {
-  flex: 5; /* Takes 6/8 */
   text-align: left;
 }
 
-.OptimizerBox {
-  flex: 3; /* rest  */
+.ModelAndOptimizerBox {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  margin-bottom: 10px; 
+  flex-wrap: wrap;
   
 }
 

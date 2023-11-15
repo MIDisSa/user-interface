@@ -117,7 +117,8 @@ const ModelBox = props => {
                     <span className="tooltip-trigger" data-tooltip-id="directAdType" data-tooltip-content={TOOLTIP_CONTENT.directAdType}>?</span>
                     <ReactTooltip id="directAdType" place="top" effect="solid"/>
                 </div>  
-            
+            </div>
+            <div className="flexContainerModelbox">-
                 <div className="flexContainerTooltipParameter">
                 <TextInput label="ToT Frequency:" value={frequencyChiefTraining} setValue={setFrequencyChiefTraining} />
                 <span className="tooltip-trigg  er" data-tooltip-id="frequencyChiefTraining" data-tooltip-content={TOOLTIP_CONTENT.frequencyChiefTraining}>?</span>

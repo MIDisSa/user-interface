@@ -251,13 +251,13 @@ const App = () => {
                         When you run the Optimizer, it will take into account the settings within the Model selection below. 
                         </p>
                     </div>
-                    <div className="OptimizerBox">
-                        <OptimizerBox extraOptimizationParameters={extraOptimizationParameters} setAdopters={setAdopters} setTotalCost={setTotalCost} setAwareFarmers={setAwareFarmers} setOutputParameters={handleNewOptimizationResult} />
-                    </div> 
+                   
 
                 {/* we need that here bc this is teh parent container of model and result. The info comes from model but needs to be known in result */}
                 </div>
-                <ModelBox 
+              
+                 <div className="ModelAndOptimizerBox">
+                 <ModelBox 
                     setAdopters={setAdopters} 
                     setAwareFarmers={setAwareFarmers} 
                     setTotalCost={setTotalCost}
@@ -266,7 +266,9 @@ const App = () => {
                     setExtraOptimizationParameters={setExtraOptimizationParameters} 
                     updateOptimizationParameters={updateOptimizationParameters}
                 />
-
+                        <OptimizerBox extraOptimizationParameters={extraOptimizationParameters} setAdopters={setAdopters} setTotalCost={setTotalCost} setAwareFarmers={setAwareFarmers} setOutputParameters={handleNewOptimizationResult} />
+                        
+                    </div> 
                 <div className ="majorResultContainer">
                 <div className="numbered-heading">
                         <div className="number-circle">3</div>
