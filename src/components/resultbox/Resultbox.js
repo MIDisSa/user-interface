@@ -7,7 +7,7 @@ import Button from '../button/Button';
 const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, adoptersPerTick }) => {
 
   const downloadModelResults = () => {
-    fetch('http://localhost:8080/downloadModelResults')
+    fetch('http://localhost:8080/downloadResultsCSV')
           .then(response => response.blob())
           .then(blob => {
             // create temporary URL to act as reference to the blob data
