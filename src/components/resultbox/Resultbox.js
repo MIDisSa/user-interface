@@ -6,20 +6,28 @@ import Button from '../button/Button';
 
 const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, adoptersPerTick }) => {
 
-  const downloadModelResults = () => {
-    fetch('http://localhost:8080/downloadResultsCSV')
-          .then(response => response.blob())
-          .then(blob => {
-            // create temporary URL to act as reference to the blob data
-            const url = window.URL.createObjectURL(new Blob([blob]));
-            // create new anchor element to trigger download
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'modelResults.csv');
-            document.body.appendChild(link);
-            link.click();
-            link.parentNode.removeChild(link);
-          })
+  const downloadModelResults = async () => {
+    try {
+      const result = await fetch('http://localhost:8080/downloadResultsCSV')
+
+      if (!result.ok) {
+        const errorMessage = await result.json();
+        window.alert(errorMessage.message)
+        throw new Error('Network response was not ok' + result.statusText);
+      }
+
+      const blob = await result.blob();
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'model_results.csv');
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   let chartLabels = [];
