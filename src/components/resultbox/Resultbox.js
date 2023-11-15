@@ -1,6 +1,8 @@
 import React from 'react';
 import './Resultbox.css';
 import BasicLineChart from '../linechart/Linechart';
+import Button from '../button/Button';
+
 
 const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, adoptersPerTick }) => {
 
@@ -36,7 +38,7 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
 
 
   return (
-    <div>
+    <div className='button-box'>
       <h2>Model Results</h2>
       <p>Number of adopters: {adopters}</p>
       <p>Number of aware farmers: {awareFarmers}</p>
@@ -50,6 +52,13 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
       </div>
       <p> Aware agents have heard at least once of the innovation.​ <br></br>
     Adopters are aware agents that have chosen to adopt the innovation.​</p>
+      <div className='left'>
+        <Button 
+            label="Export Results"
+            //onClick={}
+            title={"Download a CSV file including the results of your optimization runs"}
+          />
+      </div>
     </div>
     
   );
