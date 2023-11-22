@@ -6,7 +6,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
 
   const downloadOptimizerResults = async () => {
     try {
-      const result = await fetch('http://localhost:8080/downloadOptimizerResultsCSV')
+      const result = await fetch('http://localhost:8080/downloadOptimizationResultsCSV')
 
       if (!result.ok) {
         const errorMessage = await result.json();
