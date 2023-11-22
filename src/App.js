@@ -271,20 +271,31 @@ const App = () => {
                         <OptimizerBox extraOptimizationParameters={extraOptimizationParameters} setAdopters={setAdopters} setTotalCost={setTotalCost} setAwareFarmers={setAwareFarmers} setOutputParameters={handleNewOptimizationResult} />
                         
                     </div> 
-                <div className ="majorResultContainer">
-                <div className="numbered-heading">
-                        <div className="number-circle">3</div>
-                        <h2>Results</h2>
+               
+             
+                    <div className ="majorResultContainer ">
+                        <div className="numbered-heading">
+                                <div className="number-circle">3</div>
+                                <h2>Results</h2>
+                            </div>
+                        <div className="result-container">
+                            <div className="result-box">
+                                <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick}/>
+                            </div>
+                            <div className="result-box">
+                                <ResultboxOptimizer optimizationResults={optimizationResults} />
+                            </div>
+                            </div>
+                        </div>
+           
+                <div class="darkGreenBackground">
+                     </div>
+
+                <div class="darkBlueBackground">
                     </div>
-                <div className="result-container">
-                    <div className="result-box">
-                        <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick}/>
+                <div class="turquoiseBackground">                   
                     </div>
-                    <div className="result-box">
-                        <ResultboxOptimizer optimizationResults={optimizationResults} />
-                    </div>
-                </div>
-                </div>
+               
             </div>    
         </div>
     );

@@ -7,12 +7,13 @@ html, body {
   text-align: center;
   background-image: url('./sunflower.png'); 
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center top;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative; 
 }
 
 .App-content {
@@ -57,18 +58,16 @@ html, body {
 .CSVBox {
   text-align: left;
   flex: 1; /* Each child will take equal amount of space */
-
-  margin: 5px; /* Optional: Adds some margin around each box */
+  margin: 5px; 
 
 }
 
 .ModelAndOptimizerBox {
   display: flex;
   flex-direction: row;
-  gap: 25px;
   align-items: center;
   margin-bottom: 10px; 
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* makes sure it stays in line */
   
 }
 
@@ -87,17 +86,28 @@ html, body {
 }
 
 .majorResultContainer {
-  border: 1px solid #BDBDBD;
-  background: #F9F9F9;
+  background-color: white; /* Ensure solid white background */
+  position: relative; /* Needed for pseudo-elements */
+  z-index: 1; /* Higher than the background */
+  width: 100%;
   border-radius: 10px;
-  width: 100%; 
   text-align: center; 
   justify-content: flex-start;
   padding: 20px; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  position: relative; /* Needed for absolutely positioned pseudo-elements */
+}
+.majorResultContainer::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%; /* Adjust this value to control the height of the split effect */
+  background-image: linear-gradient(to bottom, white 50%, rgb(40, 78, 78) 50%);
+  z-index: -1; /* Places the pseudo-element behind the content */
 }
 
 
@@ -150,6 +160,21 @@ html, body {
   height: 40vmin;
   pointer-events: none;
 }
+
+.splitBackground {
+  background-image: linear-gradient(to bottom, white 50%,  #004d40 50%);
+ 
+}
+
+.darkBlueBackground {
+  background-color: #003366;
+}
+
+.turquoiseBackground {
+  background-color: #40e0d0;
+}
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
