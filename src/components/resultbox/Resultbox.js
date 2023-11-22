@@ -8,7 +8,7 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
 
   const downloadModelResults = async () => {
     try {
-      const result = await fetch('http://localhost:8080/downloadResultsCSV')
+      const result = await fetch('http://localhost:8080/downloadModelResultsCSV')
 
       if (!result.ok) {
         const errorMessage = await result.json();
