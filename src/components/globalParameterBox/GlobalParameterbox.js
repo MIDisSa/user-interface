@@ -15,48 +15,44 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
     const [variableCostsDelayedDiscount, setVariableCostsDelayedDiscount] = useState(''); 
     const [variableCostsTrainChiefs, setVariableCostsTrainChiefs] = useState(''); 
     const [loading, setLoading] = useState(false);
-  
-    // new state to store all optimization results in an array
-    const [optimizationResults, setOptimizationResults] = useState(() => {
-        // initial value we get from local storage or default to empty array
-        const savedResults = localStorage.getItem('optimizationResults');
-        return savedResults ? JSON.parse(savedResults) : [];
-    });
 
-    const DEFAULT_VALUES = {
-        budget: "100000",
-        fixedCostsDirectAd: "6000",
-        fixedCostsTrainChiefs: "5000",
-        variableCostsDirectAd: "400",
-        variableCostsDiscount: "500",
-        variableCostsDelayed: "700",
-        variableCostsDelayedDiscount: "800",
-        variableCostsTrainChiefs: "400",
+    const resetGlobalParameters = async () => {
+      setLoading(true);
+    
+      try {
+        const response = await fetch('http://localhost:8080/resetGlobalInput', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+    
+        if (response.status === 200) {
+          const defaultUserInput = await response.json();
+    
+          // Update state with default parameters
+          setBudget(defaultUserInput.budget);
+          setFixedCostsDirectAd(defaultUserInput.fixedCostsDirectAd);
+          setFixedCostsTrainChiefs(defaultUserInput.fixedCostsTrainChiefs);
+          setVariableCostsDirectAd(defaultUserInput.variableCostsDirectAd);
+          setVariableCostsDiscount(defaultUserInput.variableCostsDiscount); 
+          setVariableCostsDelayed(defaultUserInput.variableCostsDelayed);
+          setVariableCostsDelayedDiscount(defaultUserInput.variableCostsDelayedDiscount);
+          setVariableCostsTrainChiefs(defaultUserInput.variableCostsTrainChiefs);
+        
+          console.log('Global parameters successfully reset to default:', defaultUserInput);
+        } else {
+          const errorMessage = await response.text(); 
+          window.alert(errorMessage);
+          console.error('Error:', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Fetch Error:', error.message, error.stack);
+      } finally {
+        setLoading(false);
+      }
     };
-  
-
-    const setDefaultValues = () => {
-        setBudget(DEFAULT_VALUES.budget);
-        setFixedCostsDirectAd(DEFAULT_VALUES.fixedCostsDirectAd);
-        setFixedCostsTrainChiefs(DEFAULT_VALUES.fixedCostsTrainChiefs);
-        setVariableCostsDirectAd(DEFAULT_VALUES.variableCostsDirectAd);
-        setVariableCostsDiscount(DEFAULT_VALUES.variableCostsDiscount);
-        setVariableCostsDelayed(DEFAULT_VALUES.variableCostsDelayed);
-        setVariableCostsDelayedDiscount(DEFAULT_VALUES.variableCostsDelayedDiscount);
-        setVariableCostsTrainChiefs(DEFAULT_VALUES.variableCostsTrainChiefs);
-    };
-  
-
-    useEffect(() => {
-        // when optimizationResults change, we update local storage
-        localStorage.setItem('optimizationResults', JSON.stringify(optimizationResults));
-    }, [optimizationResults]);
-
-    // add new results to state and local storage
-    const addOptimizationResult = (newResult) => {
-        setOptimizationResults(prevResults => [...prevResults, newResult]);
-    };
-
+    
 
     const runGlobalParameter = async () => {
 
@@ -87,41 +83,25 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
         body: JSON.stringify(globalParameter),
       });
 
-      if (response.ok) {
-        const data = await response.json();
-
-
-        // Add new result
-        addOptimizationResult(data);
-
-        // Store output
-        setOutputParameters({
-          directAdType: data.directAdType,
-          directAdFrequency: data.directAdFrequency,
-          trainChiefsFrequency: data.trainChiefsFrequency,
-          directAdNrOfVillages: data.directAdNrOfVillages,
-          trainChiefsNumber: data.trainChiefsNumber,
-          avgAdopters: data.avgAdopters,
-          nrOfDirectAds: data.nrOfDirectAds,
-          nrOfChiefTrainings: data.nrOfChiefTrainings,
-          totalCost: data.totalCost,
-        });
-      } else {
-        const errorMessage = await response.json();
-        window.alert(errorMessage.message)
-        console.error('Error:', response.status, response.statusText);
-      }
-    } catch (error) {
-      console.error('Fetch Error:', error.message, error.stack);
-    } finally {
-      setLoading(false);
+      // Check for a 200 status code
+    if (response.status === 200) {
+      console.log('Parameters successfully sent and processed by backend.');
+    } else {
+      const errorMessage = await response.text(); // Assuming error message in plain text
+      window.alert(errorMessage);
+      console.error('Error:', response.status, response.statusText);
     }
-  };
+  } catch (error) {
+    console.error('Fetch Error:', error.message, error.stack);
+  } finally {
+    setLoading(false);
+  }
+};
 
   
   return (
     <div className="globalParameterBox">
-            <h2>Global Parameters</h2>
+            <h2 className="h2-spacing">Additional Global Parameters</h2>
     
         <div className="inputGroup">
           <div className="label">Budget</div>
@@ -161,6 +141,11 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
                 label="Save Global Parameters"
                 onClick={runGlobalParameter}
                 variant="solid-blue"
+              />
+               <Button
+                label="Set to Default"
+                onClick={resetGlobalParameters}
+                variant="outlined-blue"
               />
          </div>
           {loading && (

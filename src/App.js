@@ -198,17 +198,18 @@ const App = () => {
 
                 <div className="ConfigurationBox">
                     <p className="description-text">
-                            Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File (in the same format as the LED-Project survey) to generate parameters automatically.​ ​<br></br> Changes must be saved before running the model/optimizer.​<br></br>
+                            Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File (in the same format as the LED-Project survey) to generate parameters automatically.​ Changes must be saved before running the model/optimizer.​<br></br>
                             The Optimizer works on a model that implements all the parameters entered below, as well as the number of ticks in <span className="number-circle-inline">1</span>. <br></br> Hovering over the "?" provides additional information about parameters or functionality.
                             </p>
                     <div className="CSVandGlobalParameterBox">
                         <div className="CSVBox">
+                            <h2 className="h2-spacing">Empirically Defined Global Parameters</h2>
                             <input type="file" ref={fileInputRef} />
-                            <Button  label="Upload CSV"  onClick={handleUploadRawCSV} title="Upload the CSV file and extract parameters." />
-                            <p className="description-text"> 
-                            </p>
-
-
+                            <Button  label="Upload CSV"  
+                            onClick={handleUploadRawCSV} 
+                                title="Upload the CSV file and extract parameters." 
+                                style={{marginLeft: '100px'}} />
+                           
                             {/* Form for Parameters in table  */}
                             <form onSubmit={handleSubmit} >
                             <table>
@@ -240,7 +241,7 @@ const App = () => {
                                     ))}
                                 </tbody>
                             </table>
-                            <Button label="Save Parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
+                            <Button label="Save Empirical Parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
                             <Button label="Set to Default" variant="outlined-blue" onClick={resetForm} title={"Resets values to a reasonable default that yields a stable result."} />
                             </form>
 

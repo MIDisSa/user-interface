@@ -1,5 +1,6 @@
 .optimizerBox {
     flex-direction: row;
+    position: relative;
     border-radius: 10px;
     border: 1px solid #bdbdbd;
     background: #f9f9f9;

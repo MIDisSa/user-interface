@@ -1,10 +1,10 @@
 .globalParameterBox {
     position: relative;
-    padding-left: 100px;
     display: flex;
     flex-direction: column;
-    text-align: bottom;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    flex: 1; /* Each child will take equal amount of space */
+    margin: 5px; /* Optional: Adds some margin around each box */
 }
 
 
@@ -40,8 +40,7 @@
 
   .inputGroup {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Adjust the ratio between label and input field */
-    gap: 10px; /* Space between label and input */
+    grid-template-columns: 1.5fr 2fr; /* Adjust the ratio between label and input field */
     margin-bottom: 5px; /* Space between each input group */
 }
 
