@@ -6,6 +6,7 @@ import OptimizerBox from './components/optimizerbox/Optimizerbox';
 import Button from "./components/button/Button";
 import GlobalParameterbox from "./components/globalParameterBox/GlobalParameterbox";
 import { Tooltip as ReactTooltip } from 'react-tooltip';
+import logo from './netzwerk-zksd-1.png';
 
 
 
@@ -194,6 +195,7 @@ const App = () => {
     return (
         <div className="App">
             <div className="App-content">
+            <div className="sunflowerBackground">
                 <h1>Agent-based Model Tanzania</h1>
 
                 <div className="ConfigurationBox">
@@ -272,7 +274,7 @@ const App = () => {
                         
                     </div> 
                
-             
+                </div> 
                     <div className ="majorResultContainer ">
                         <div className="numbered-heading">
                                 <div className="number-circle">3</div>
@@ -287,13 +289,17 @@ const App = () => {
                             </div>
                             </div>
                         </div>
-           
-                <div class="darkGreenBackground">
-                     </div>
 
                 <div class="darkBlueBackground">
+                    <div className="footer-text">
+                        <p>ABM Tanzania</p>
+                     </div>
+                     <div className="footer-logo">
+                        <img src={logo} alt="ZKSD Logo" />
                     </div>
-                <div class="turquoiseBackground">                   
+                    </div>
+                <div class="turquoiseBackground">     
+                     <p>Here is some credits texts</p>              
                     </div>
                
             </div>    
