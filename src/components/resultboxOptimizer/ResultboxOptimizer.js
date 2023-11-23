@@ -71,6 +71,12 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
           onClick={downloadOptimizerResults}
           title={"Download a CSV file including the results of your optimization runs"}
         />)}
+      <div className='explanation-section'>
+        <h3>How to interpret your optimization results:</h3>
+        <div className='explanation-content'>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        </div>
+      </div>
     </div>
   );
 };
