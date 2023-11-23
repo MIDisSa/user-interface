@@ -44,7 +44,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
               <th>Best Fitness</th>
               <th>Number of Treatments</th>
               <th>Number of ToTs</th>
-              <th>Total Cost</th>
+              <th>Total Cost ($)</th>
             </tr>
             </thead>
             <tbody>
