@@ -1,6 +1,7 @@
 import React from 'react';
 import './ResultboxOptimizer.css'; 
 import Button from '../button/Button';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 const ResultboxOptimizer = ({ optimizationResults }) => {
 
@@ -35,17 +36,44 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
         <table className='table-with-lines'>
           <thead>
             <tr>
-              <th>Optimization Type</th>
-              <th>Treatment Arm</th>
-              <th>Treatment Frequency (days)</th>
-              <th>ToT Frequency (days)</th>
-              <th>Treatment Arm Coverage (%)</th>
-              <th>ToT Coverage (%)</th>
-              <th>Best Fitness</th>
-              <th>Number of Treatments</th>
-              <th>Number of ToTs</th>
-              <th>Total Cost</th>
+              <th>
+                Optimization Type
+              </th>
+              <th>
+                Treatment Arm
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Treatment arm that reached best results (except trainng of trainers)"}>?</span>
+              </th>
+              <th>
+                Treatment Frequency (days)
+              </th>
+              <th>
+                ToT Frequency (days)
+              </th>
+              <th>
+                Treatment Arm Coverage (%)
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Percentage of farmers that were affected by the treatment"}>?</span>
+              </th>
+              <th>
+                ToT Coverage (%)
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Percentage of farmgroup chief that were affected by the ToT treatment"}>?</span>
+              </th>
+              <th>
+                Best Fitness
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"best fitness???"}>?</span>
+              </th>
+              <th>
+                Number of Treatments
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Number of treatments carried out during the number of days specified"}>?</span>
+                </th>
+              <th>
+                Number of ToTs
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Number of ToT treatments carried out during the number of days specified"}>?</span>
+              </th>
+              <th>
+                Total Cost ($)
+                </th>
             </tr>
+            <ReactTooltip id="optimizerResult" place="top" effect="solid"/>
             </thead>
             <tbody>
               {optimizationResults.slice().reverse().map((result, index) => (
