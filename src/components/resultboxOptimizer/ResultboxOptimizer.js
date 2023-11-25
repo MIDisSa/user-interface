@@ -31,7 +31,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
   return (
     <div className='results-container'>
       <div className='table-container'>
-        <h3>Optimization Results</h3>
+        <h2>Optimization Results</h2>
         <table className='table-with-lines'>
           <thead>
             <tr>
@@ -66,11 +66,13 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
           </table>
       </div>
       {optimizationResults.length > 0 && (
+        <div className='left'>
         <Button 
           label="Export Results"
           onClick={downloadOptimizerResults}
           title={"Download a CSV file including the results of your optimization runs"}
-        />)}
+        />
+        </div>)}
     </div>
   );
 };
