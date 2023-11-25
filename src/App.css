@@ -16,8 +16,10 @@ html, body {
   background-image: url('./sunflower.png');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center top;
+  background-position: left bottom;
   max-width: 2500px; 
+  width: 100%;
+  height: 100%;
   margin: auto; /* This will center the element if it's smaller than the viewport */
 }
 
