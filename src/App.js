@@ -6,8 +6,8 @@ import OptimizerBox from './components/optimizerbox/Optimizerbox';
 import Button from "./components/button/Button";
 import GlobalParameterbox from "./components/globalParameterBox/GlobalParameterbox";
 import { Tooltip as ReactTooltip } from 'react-tooltip';
-import logo from './netzwerk-zksd-1.png';
-
+import ZKSDLogo from './netzwerk-zksd-1.png';
+import UZHLogo from './uzh_logo_e_pos_web_main.jpg';
 
 
 import './App.css'; 
@@ -287,7 +287,9 @@ const App = () => {
                         <p>ABM Tanzania</p>
                     </div>
                     <div className="footer-logo">
-                        <img src={logo} alt="ZKSD Logo" />
+                        <img src={ZKSDLogo} alt="ZKSD Logo" />
+                        <p />
+                        <img src={UZHLogo} alt="UZH Logo" />
                     </div>
                 </div>
                 <div class="turquoiseBackground">
