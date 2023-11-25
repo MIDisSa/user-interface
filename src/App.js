@@ -194,103 +194,95 @@ const App = () => {
 
     return (
         <div className="App">
-                        <div className="sunflowerBackground">
-
-            <div className="App-content">
-
-                <h1>Agent-based Model Tanzania</h1>
-
-                <div className="ConfigurationBox">
-                    <p className="description-text">
+            <div className="sunflowerBackground">
+                <div className="App-content">
+                    <h1>Agent-based Model Tanzania</h1>
+                    <div className="ConfigurationBox">
+                        <p className="description-text">
                             Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File (in the same format as the LED-Project survey) to generate parameters automatically.​ Changes must be saved before running the model/optimizer.​<br></br>
                             The Optimizer works on a model that implements all the parameters entered below, as well as the number of ticks in <span className="number-circle-inline">1</span>. <br></br> Hovering over the "?" provides additional information about parameters or functionality.
-                            </p>
-                    <div className="CSVandGlobalParameterBox">
-                        <div className="CSVBox">
-                            <h2 className="h2-spacing">Empirically Defined Global Parameters</h2>
-                            <input type="file" ref={fileInputRef} />
-                            <Button  label="Upload CSV"  
-                            onClick={handleUploadRawCSV} 
-                                title="Upload the CSV file and extract parameters." 
-                                style={{marginLeft: '100px'}} />
-                           
-                            {/* Form for Parameters in table  */}
-                            <form onSubmit={handleSubmit} >
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Parameter  </th>    
-                                        <th>Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {Object.entries(formData)
-                                        .filter(([key]) => PARAM_MAPPING[key])
-                                        .map(([key, value]) => (
-                                            <tr key={key}>
-                                            <td>
-                                                    {PARAM_MAPPING[key]} 
-                                                    <span className="tooltip-trigger" data-tooltip-id={key} data-tooltip-content={TOOLTIP_CONTENT[key]}>?</span>
-                                                    <ReactTooltip id={key}  place="top" effect="solid" />
-                                                    </td>
-                                                <td>
-                                                    <input 
-                                                        type="text" 
-                                                        name={key} 
-                                                        value={ roundTo(value, 2) } 
-                                                        onChange={handleInputChange} 
-                                                    />
-                                                </td>
+                        </p>
+                        <div className="CSVandGlobalParameterBox">
+                            <div className="CSVBox">
+                                <h2 className="h2-spacing">Empirically Defined Global Parameters</h2>
+                                <input type="file" ref={fileInputRef} />
+                                <Button label="Upload CSV"
+                                    onClick={handleUploadRawCSV}
+                                    title="Upload the CSV file and extract parameters."
+                                    style={{ marginLeft: '100px' }} />
+
+                                {/* Form for Parameters in table  */}
+                                <form onSubmit={handleSubmit} >
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Parameter  </th>
+                                                <th>Value</th>
                                             </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                            <Button label="Save Empirical Parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
-                            <Button label="Set to Default" variant="outlined-blue" onClick={resetForm} title={"Resets values to a reasonable default that yields a stable result."} />
-                            </form>
-
-                           
+                                        </thead>
+                                        <tbody>
+                                            {Object.entries(formData)
+                                                .filter(([key]) => PARAM_MAPPING[key])
+                                                .map(([key, value]) => (
+                                                    <tr key={key}>
+                                                        <td>
+                                                            {PARAM_MAPPING[key]}
+                                                            <span className="tooltip-trigger" data-tooltip-id={key} data-tooltip-content={TOOLTIP_CONTENT[key]}>?</span>
+                                                            <ReactTooltip id={key} place="top" effect="solid" />
+                                                        </td>
+                                                        <td>
+                                                            <input
+                                                                type="text"
+                                                                name={key}
+                                                                value={roundTo(value, 2)}
+                                                                onChange={handleInputChange}
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                        </tbody>
+                                    </table>
+                                    <Button label="Save Empirical Parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
+                                    <Button label="Set to Default" variant="outlined-blue" onClick={resetForm} title={"Resets values to a reasonable default that yields a stable result."} />
+                                </form>
+                            </div>
+                            < GlobalParameterbox> </GlobalParameterbox>
                         </div>
-                        < GlobalParameterbox> </GlobalParameterbox>
-                
-                    </div>
-                    <p className="description-text"> 
+                        <p className="description-text">
                             Please note: The Model can be run without the Optimizer. <br></br>
-                            When you run the Optimizer, it will take into account the settings within the Model selection below. 
-                            </p>
+                            When you run the Optimizer, it will take into account the settings within the Model selection below.
+                        </p>
 
-                 {/* we need that here bc this is teh parent container of model and result. The info comes from model but needs to be known in result */}
-                </div>
-              
-                 <div className="ModelAndOptimizerBox">
-                    <ModelBox 
-                        setAdopters={setAdopters} 
-                        setAwareFarmers={setAwareFarmers} 
-                        setTotalCost={setTotalCost}
-                        setAwareFarmersPerTick={setAwareFarmersPerTick}
-                        setAdoptersPerTick={setAdoptersPerTick} 
-                        setExtraOptimizationParameters={setExtraOptimizationParameters} 
-                        updateOptimizationParameters={updateOptimizationParameters}
+                        {/* we need that here bc this is teh parent container of model and result. The info comes from model but needs to be known in result */}
+                    </div>
+                    <div className="ModelAndOptimizerBox">
+                        <ModelBox
+                            setAdopters={setAdopters}
+                            setAwareFarmers={setAwareFarmers}
+                            setTotalCost={setTotalCost}
+                            setAwareFarmersPerTick={setAwareFarmersPerTick}
+                            setAdoptersPerTick={setAdoptersPerTick}
+                            setExtraOptimizationParameters={setExtraOptimizationParameters}
+                            updateOptimizationParameters={updateOptimizationParameters}
                         />
                         <OptimizerBox extraOptimizationParameters={extraOptimizationParameters} setAdopters={setAdopters} setTotalCost={setTotalCost} setAwareFarmers={setAwareFarmers} setOutputParameters={handleNewOptimizationResult} />
-                        
-                    </div> 
-               </div>
-                    <div className ="majorResultContainer ">
-                        <div className="numbered-heading">
-                                <div className="number-circle">3</div>
-                                <h2>Results</h2>
-                            </div>
-                        <div className="result-container">
-                            <div className="result-box">
-                                <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick}/>
-                            </div>
-                            <div className="result-box">
-                                <ResultboxOptimizer optimizationResults={optimizationResults} />
-                            </div>
-                            </div>
+                    </div>
+                </div>
+                <div className="majorResultContainer ">
+                    <div className="numbered-heading">
+                        <div className="number-circle">3</div>
+                        <h2>Results</h2>
+                    </div>
+                    <div className="result-container">
+                        <div className="result-box">
+                            <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick} />
                         </div>
-               </div>
+                        <div className="result-box">
+                            <ResultboxOptimizer optimizationResults={optimizationResults} />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
