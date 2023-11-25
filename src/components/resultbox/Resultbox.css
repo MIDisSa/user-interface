@@ -2,9 +2,8 @@
     background: #f9f9f9;
     padding: 20px;
     border-radius: 10px;
-    width: 100%;
     max-width: 800px;
-    margin: 10px 0;
+    margin: 10px auto;
     text-align: center;
 }
 

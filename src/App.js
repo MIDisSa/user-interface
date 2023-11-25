@@ -194,8 +194,10 @@ const App = () => {
 
     return (
         <div className="App">
+                        <div className="sunflowerBackground">
+
             <div className="App-content">
-            <div className="sunflowerBackground">
+
                 <h1>Agent-based Model Tanzania</h1>
 
                 <div className="ConfigurationBox">
@@ -273,8 +275,7 @@ const App = () => {
                         <OptimizerBox extraOptimizationParameters={extraOptimizationParameters} setAdopters={setAdopters} setTotalCost={setTotalCost} setAwareFarmers={setAwareFarmers} setOutputParameters={handleNewOptimizationResult} />
                         
                     </div> 
-               
-                </div> 
+               </div>
                     <div className ="majorResultContainer ">
                         <div className="numbered-heading">
                                 <div className="number-circle">3</div>
@@ -289,20 +290,7 @@ const App = () => {
                             </div>
                             </div>
                         </div>
-
-                <div class="darkBlueBackground">
-                    <div className="footer-text">
-                        <p>ABM Tanzania</p>
-                     </div>
-                     <div className="footer-logo">
-                        <img src={logo} alt="ZKSD Logo" />
-                    </div>
-                    </div>
-                <div class="turquoiseBackground">     
-                     <p>Here is some credits texts</p>              
-                    </div>
-               
-            </div>    
+               </div>
         </div>
     );
 };
