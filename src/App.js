@@ -282,6 +282,17 @@ const App = () => {
                         </div>
                     </div>
                 </div>
+                <div class="darkBlueBackground">
+                    <div className="footer-text">
+                        <p>ABM Tanzania</p>
+                    </div>
+                    <div className="footer-logo">
+                        <img src={logo} alt="ZKSD Logo" />
+                    </div>
+                </div>
+                <div class="turquoiseBackground">
+                    <p>Here is some credits texts</p>
+                </div>
             </div>
         </div>
     );
