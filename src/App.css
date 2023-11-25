@@ -1,6 +1,7 @@
 html, body {
   height: 100vh;
   margin: 0;
+font-family: "Montserrat", sans-serif;
 }
 
 .App {
@@ -154,7 +155,6 @@ html, body {
 
 .description-text {
   color: var(--second-text-color, #737373);
-  font-family: Montserrat;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -189,7 +189,6 @@ html, body {
 }
 
 .footer-text {
-  font-family: Montserrat;
   font-size: 30px;
   font-style: normal;
   font-weight: 500;
