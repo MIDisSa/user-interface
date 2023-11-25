@@ -93,7 +93,6 @@ html, body {
   z-index: 1; /* Higher than the background */
   max-width: 2500px; /* Match this to the max-width of .sunflowerBackground  */
   margin: auto; /* Center the element */
-  border-radius: 10px;
   text-align: center; 
   justify-content: flex-start;
   padding: 20px; 
