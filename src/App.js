@@ -68,7 +68,10 @@ const App = () => {
     }, {});
     const [parameters, setParameters] = useState(initialParameters);
 
-    const resetForm = () => {
+    const resetForm = (e) => {
+        
+        e.preventDefault();
+
         fetch('http://localhost:8080/resetInput', {
             method: 'POST',
             headers: {
