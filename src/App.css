@@ -87,6 +87,7 @@ font-family: "Montserrat", sans-serif;
 .result-container {
   display: flex; /* lay out children side by side */
   width: 90vw;
+  max-width: 2500px; 
   overflow-x: auto;
 }
 
