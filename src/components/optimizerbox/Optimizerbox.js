@@ -52,8 +52,6 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
       if (response.ok) {
         const data = await response.json();
 
-        console.log('Received data from optimizer:', data);
-
         // Add new result
         addOptimizationResult(data);
 
