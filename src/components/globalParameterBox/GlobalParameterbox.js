@@ -6,6 +6,7 @@ import { FadeLoader } from 'react-spinners';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }) => { 
+    const [numberOfTicks, setNumberOfTicks] = useState();
     const [budget, setBudget] = useState(''); 
     const [fixedCostsDirectAd, setFixedCostsDirectAd] = useState(''); 
     const [fixedCostsTrainChiefs, setFixedCostsTrainChiefs] = useState(''); 
@@ -24,6 +25,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
     });
 
     const DEFAULT_VALUES = {
+        numberOfTicks: 360,
         budget: "100000",
         fixedCostsDirectAd: "6000",
         fixedCostsTrainChiefs: "5000",
@@ -36,6 +38,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
   
 
     const setDefaultValues = () => {
+        setNumberOfTicks(DEFAULT_VALUES.numberOfTicks);
         setBudget(DEFAULT_VALUES.budget);
         setFixedCostsDirectAd(DEFAULT_VALUES.fixedCostsDirectAd);
         setFixedCostsTrainChiefs(DEFAULT_VALUES.fixedCostsTrainChiefs);
@@ -63,6 +66,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
       setLoading(true);
 
       const globalParameter = {
+        numberOfTicks,
         budget,
         fixedCostsDirectAd,
         fixedCostsTrainChiefs,
@@ -122,9 +126,12 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
   return (
     <div className="globalParameterBox">
             <h2>Global Parameters</h2>
-    
         <div className="inputGroup">
-          <div className="label">Budget</div>
+          <div className="label">Days</div>
+            <TextInput value={numberOfTicks} setValue={setNumberOfTicks} />
+        </div>
+        <div className="inputGroup">
+          <div className="label">Budget ($)</div>
               <TextInput value={budget} setValue={setBudget} />
           </div>
           <div className="inputGroup">
