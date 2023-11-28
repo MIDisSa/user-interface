@@ -6,6 +6,7 @@ import OptimizerBox from './components/optimizerbox/Optimizerbox';
 import Button from "./components/button/Button";
 import GlobalParameterbox from "./components/globalParameterBox/GlobalParameterbox";
 import { Tooltip as ReactTooltip } from 'react-tooltip';
+import logo from './netzwerk-zksd-1.png';
 
 
 
@@ -194,21 +195,23 @@ const App = () => {
     return (
         <div className="App">
             <div className="App-content">
+            <div className="sunflowerBackground">
                 <h1>Agent-based Model Tanzania</h1>
 
                 <div className="ConfigurationBox">
                     <p className="description-text">
-                            Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File (in the same format as the LED-Project survey) to generate parameters automatically.​ ​<br></br> Changes must be saved before running the model/optimizer.​<br></br>
+                            Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File (in the same format as the LED-Project survey) to generate parameters automatically.​ Changes must be saved before running the model/optimizer.​<br></br>
                             The Optimizer works on a model that implements all the parameters entered below, as well as the number of ticks in <span className="number-circle-inline">1</span>. <br></br> Hovering over the "?" provides additional information about parameters or functionality.
                             </p>
                     <div className="CSVandGlobalParameterBox">
                         <div className="CSVBox">
+                            <h2 className="h2-spacing">Empirically Defined Global Parameters</h2>
                             <input type="file" ref={fileInputRef} />
-                            <Button  label="Upload CSV"  onClick={handleUploadRawCSV} title="Upload the CSV file and extract parameters." />
-                            <p className="description-text"> 
-                            </p>
-
-
+                            <Button  label="Upload CSV"  
+                            onClick={handleUploadRawCSV} 
+                                title="Upload the CSV file and extract parameters." 
+                                style={{marginLeft: '100px'}} />
+                           
                             {/* Form for Parameters in table  */}
                             <form onSubmit={handleSubmit} >
                             <table>
@@ -240,7 +243,7 @@ const App = () => {
                                     ))}
                                 </tbody>
                             </table>
-                            <Button label="Save Parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
+                            <Button label="Save Empirical Parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
                             <Button label="Set to Default" variant="outlined-blue" onClick={resetForm} title={"Resets values to a reasonable default that yields a stable result."} />
                             </form>
 
@@ -270,20 +273,35 @@ const App = () => {
                         <OptimizerBox extraOptimizationParameters={extraOptimizationParameters} setAdopters={setAdopters} setTotalCost={setTotalCost} setAwareFarmers={setAwareFarmers} setOutputParameters={handleNewOptimizationResult} />
                         
                     </div> 
-                <div className ="majorResultContainer">
-                <div className="numbered-heading">
-                        <div className="number-circle">3</div>
-                        <h2>Results</h2>
+               
+                </div> 
+                    <div className ="majorResultContainer ">
+                        <div className="numbered-heading">
+                                <div className="number-circle">3</div>
+                                <h2>Results</h2>
+                            </div>
+                        <div className="result-container">
+                            <div className="result-box">
+                                <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick}/>
+                            </div>
+                            <div className="result-box">
+                                <ResultboxOptimizer optimizationResults={optimizationResults} />
+                            </div>
+                            </div>
+                        </div>
+
+                <div class="darkBlueBackground">
+                    <div className="footer-text">
+                        <p>ABM Tanzania</p>
+                     </div>
+                     <div className="footer-logo">
+                        <img src={logo} alt="ZKSD Logo" />
                     </div>
-                <div className="result-container">
-                    <div className="result-box">
-                        <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick}/>
                     </div>
-                    <div className="result-box">
-                        <ResultboxOptimizer optimizationResults={optimizationResults} />
+                <div class="turquoiseBackground">     
+                     <p>Here is some credits texts</p>              
                     </div>
-                </div>
-                </div>
+               
             </div>    
         </div>
     );

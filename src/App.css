@@ -1,24 +1,33 @@
 html, body {
-  height: 100%;
+  height: 100vh;
   margin: 0;
 }
 
 .App {
   text-align: center;
-  background-image: url('./sunflower.png'); 
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center top;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative; 
+}
+
+.sunflowerBackground {
+  background-image: url('./sunflower.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  max-width: 2500px; 
+  margin: auto; /* This will center the element if it's smaller than the viewport */
+
+ 
 }
 
 .App-content {
   display: flex;
   flex-direction: column; 
   align-items: center;
+
 }
 
 .number-circle-inline {
@@ -39,37 +48,40 @@ html, body {
 .ConfigurationBox {
   display: flex;
   justify-content: space-between;
-  width: 80%; 
-  margin: 20px 0; 
+  width: 100%; 
   border-radius: 8px;
-  padding: 20px;
+  
   flex-direction: column;
   text-align: left;
 }
 
 .CSVandGlobalParameterBox{
   display: flex;
+  justify-content: space-between; /* Distributes space between the child elements */
+  align-items: stretch; /* Makes sure both children stretch to fill the container vertically */
   flex-direction: row;
+  padding: 20px;
 }
 
 .CSVBox {
   text-align: left;
+  flex: 1; /* Each child will take equal amount of space */
+  margin: 5px; 
+
 }
 
 .ModelAndOptimizerBox {
   display: flex;
   flex-direction: row;
-  gap: 25px;
   align-items: center;
   margin-bottom: 10px; 
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* makes sure it stays in line */
   
 }
 
 .ModelBox {
-  width: 60%; 
+  max-width: 60%; 
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
   padding: 20px;
   background-color: white;
   margin-top: 20px; 
@@ -81,17 +93,29 @@ html, body {
 }
 
 .majorResultContainer {
-  border: 1px solid #BDBDBD;
-  background: #F9F9F9;
+  background-color: white; /* Ensure solid white background */
+  position: relative; /* Needed for pseudo-elements */
+  z-index: 1; /* Higher than the background */
+  max-width: 2500px; /* Match this to the max-width of .sunflowerBackground  */
+  margin: auto; /* Center the element */
   border-radius: 10px;
-  width: 100%; 
   text-align: center; 
   justify-content: flex-start;
   padding: 20px; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  position: relative; /* Needed for absolutely positioned pseudo-elements */
+}
+.majorResultContainer::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%; /* Adjust this value to control the height of the split effect */
+  background-image: linear-gradient(to bottom, white 50%, rgb(40, 78, 78) 50%);
+  z-index: -1; /* Places the pseudo-element behind the content */
 }
 
 
@@ -113,10 +137,15 @@ html, body {
   border: 1px solid #dcdcdc;
 }
 
+.h2-spacing {
+  padding-bottom: 10px;
+}
 
 .result-box {
-  background: white; 
+  background: #f9f9f9;
+  border: 1px solid #bdbdbd;
   flex: 1; 
+  max-width: 1500px;
   padding: 20px; 
   margin: 20px; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
@@ -134,13 +163,56 @@ html, body {
   font-weight: 500;
   line-height: 30px;
   letter-spacing: 0.2px;
-  padding-bottom: 20px;
+  padding: 20px;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
+.splitBackground {
+  background-image: linear-gradient(to bottom, white 50%,  #004d40 50%);
+ 
+}
+
+.darkBlueBackground {
+  display: flex;
+  justify-content: space-between; /* Aligns children to the edges */
+  align-items: center; /* Vertically centers children */
+  padding: 20px; 
+  width: 2500px; 
+  background-color: #003366;
+  
+}
+
+.turquoiseBackground {
+  background-color: #00A0C1;
+}
+
+.footer-text {
+  font-family: Montserrat;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px; 
+  letter-spacing: 0.1px; 
+  padding-left: 30px;
+  color: white;
+}
+
+
+.footer-logo img {
+  max-width: 100%; /* Ensures the image is responsive and doesn't overflow its container */
+  height: auto; /* Maintains aspect ratio */
+  display: block;
+}
+
+.footer-logo {
+  width: 200px; 
+  padding: 10px;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
