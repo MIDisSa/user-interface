@@ -34,3 +34,25 @@
 .highlighted-row {
     background-color: rgb(255, 166, 41, 0.7)
 }
+
+.explanation-section {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+
+  .explanation-section h3 {
+    text-align: left;
+  }
+
+  .explanation-content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .custom-tooltip {
+    z-index: 9999;
+  }

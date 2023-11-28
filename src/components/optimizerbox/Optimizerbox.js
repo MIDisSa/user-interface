@@ -92,8 +92,8 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
             <h2>Optimizer</h2>
         </div>
         <div className="description-text">
-        The optimizer looks for the values in (2) which on average yield the best results for the here defined goal.
-Warning: Optimization process may take 15-30 minutes to finish, depending on the number of days defined in the settings above.
+        The optimizer looks for the values in <span className="number-circle-inline">2</span> <br></br> which on average yield the best result for the here defined goal. <br></br>
+Warning: Optimization process may take 15-30 minutes to finish, <br></br> depending on the number of days defined in the settings above.
                 </div> 
       <div className="flexContainer">
         <div className="inputGroup">

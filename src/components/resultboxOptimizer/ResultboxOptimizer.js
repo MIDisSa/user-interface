@@ -1,6 +1,7 @@
 import React from 'react';
 import './ResultboxOptimizer.css'; 
 import Button from '../button/Button';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 const ResultboxOptimizer = ({ optimizationResults }) => {
 
@@ -35,17 +36,46 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
         <table className='table-with-lines'>
           <thead>
             <tr>
-              <th>Optimization Type</th>
-              <th>Treatment Arm</th>
-              <th>Treatment Frequency (days)</th>
-              <th>ToT Frequency (days)</th>
-              <th>Treatment Arm Coverage (%)</th>
-              <th>ToT Coverage (%)</th>
-              <th>Best Fitness</th>
-              <th>Number of Treatments</th>
-              <th>Number of ToTs</th>
-              <th>Total Cost ($)</th>
+              <th>
+                Optimization Type
+              </th>
+              <th>
+                Treatment Arm
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Treatment arm that yielded the best result, employing direct advertisement."}>?</span>
+              </th>
+              <th>
+                Treatment Frequency (days)
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Interval between treatments employing direct advertisement. If frequency is 0, there is no direct advertisement."}>?</span>
+              </th>
+              <th>
+                ToT Frequency (days)
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Interval between treatments employing training of trainers (ToT). If frequency is 0, there are no trainings."}>?</span>
+              </th>
+              <th>
+                Treatment Coverage (%)
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Percentage of villages that were part of the treatment."}>?</span>
+              </th>
+              <th>
+                ToT Coverage (%)
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Percentage of villages in which training of trainers (ToT) was carried out."}>?</span>
+              </th>
+              <th>
+                Best Fitness
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Best result the optimization yielded, depending on the above specified Optimization Type: Adopters, Aware Agents or Cost per Adopter."}>?</span>
+              </th>
+              <th>
+                Number of Treatments
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Number of treatments carried out, employing direct advertisement."}>?</span>
+                </th>
+              <th>
+                Number of ToTs
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Number of treatments carried out, employing training of trainers (ToT)."}>?</span>
+              </th>
+              <th>
+                Total Cost ($)
+                </th>
             </tr>
+            <ReactTooltip id="optimizerResult" place="top" effect="solid"/>
             </thead>
             <tbody>
               {optimizationResults.slice().reverse().map((result, index) => (
@@ -71,8 +101,19 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
           label="Export Results"
           onClick={downloadOptimizerResults}
           title={"Download a CSV file including the results of your optimization runs"}
-        />
-        </div>)}
+        />)}
+      <div className='explanation-section'>
+        <h3>How to interpret the optimization results:</h3>
+        <div className='explanation-content'>
+          Column 1: Optimization Type selected in <span className="number-circle-inline">2</span>.<br></br>
+          Columns 2-6: Optimal Intervention Parameters which on average yield the best results when put into <span className="number-circle-inline">1</span>.<br></br>
+          Column 7: Best average result achieved with optimal Intervention Parameters stated in columns 2-6.<br></br>
+          If Optimization Type is Max Adopters then Best Fitness denotes the number of Adopters out of 1000 agents.<br></br>
+          If Optimization Type is Max Knowledge then Best Fitness denotes the number of Aware Agents + Adopters out of 1000 agents.<br></br>
+          If Optimization Type is Min Costs then Best Fitness denotes the average Cost per Adopter.<br></br>
+          Column 8-10: Number of Treatments and Trainings actually carried out, taking into account the specified budget.
+        </div>
+      </div>
     </div>
   );
 };

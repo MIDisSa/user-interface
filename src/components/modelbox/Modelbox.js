@@ -103,7 +103,8 @@ const ModelBox = props => {
             <h2>Model</h2>
           </div>
           <div className="description-text">
-                Intervention Parameters: Define how often and which type of an intervention should be carried out.
+                Intervention Parameters: Define how often and which type of an intervention should be carried out.<br></br>
+                Treatments and Trainings of Trainers (ToT) both start on day 0. If the frequency is set to 0 there will be no interventions of this kind.
                 </div>
 
           <div className="flexContainerModelbox">
@@ -126,7 +127,7 @@ const ModelBox = props => {
                     <ReactTooltip id="directAdType" place="top" effect="solid"/>
                 </div>  
                 <div className="flexContainerTooltipParameter">
-                <TextInput label="Treatment Arm Coverage (%): " value={TreatmentCoverage} setValue={setTreatmentCoverage} />
+                <TextInput label="Treatment Coverage (%): " value={TreatmentCoverage} setValue={setTreatmentCoverage} />
                 <span className="tooltip-trigger" data-tooltip-id="TreatmentCoverageTip" data-tooltip-content={TOOLTIP_CONTENT.TreatmentCoverage}>?</span>
                 <ReactTooltip id="TreatmentCoverageTip" place="top" effect="solid"/>
               </div>
@@ -144,7 +145,7 @@ const ModelBox = props => {
                 </div>  
             </div>
             <div className="flexContainer">
-                <Button label="Start Model without NetLogo GUI" onClick={() => runModel(false)} variant="solid-orange"/>
+                <Button label="Start Model" onClick={() => runModel(false)} variant="solid-orange"/>
                 {/* <Button label="Start Model with NetLogo GUI" onClick={() => runModel(true)} variant="solid-orange"/> */}
             </div>
 
