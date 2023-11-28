@@ -249,10 +249,6 @@ const App = () => {
                         < GlobalParameterbox> </GlobalParameterbox>
                 
                     </div>
-                    <p className="description-text"> 
-                            Please note: The Model can be run without the Optimizer. <br></br>
-                            When you run the Optimizer, it will take into account the settings within the Model selection below. 
-                            </p>
 
                  {/* we need that here bc this is teh parent container of model and result. The info comes from model but needs to be known in result */}
                 </div>

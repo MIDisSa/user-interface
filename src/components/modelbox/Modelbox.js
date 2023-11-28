@@ -145,7 +145,7 @@ const ModelBox = props => {
                 </div>  
             </div>
             <div className="flexContainer">
-                <Button label="Start Model without NetLogo GUI" onClick={() => runModel(false)} variant="solid-orange"/>
+                <Button label="Start Model" onClick={() => runModel(false)} variant="solid-orange"/>
                 {/* <Button label="Start Model with NetLogo GUI" onClick={() => runModel(true)} variant="solid-orange"/> */}
             </div>
 
