@@ -33,6 +33,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
           const defaultUserInput = await response.json();
     
           // Update state with default parameters
+          setNumberOfTicks(defaultUserInput.numberOfTicks);
           setBudget(defaultUserInput.budget);
           setFixedCostsDirectAd(defaultUserInput.fixedCostsDirectAd);
           setFixedCostsTrainChiefs(defaultUserInput.fixedCostsTrainChiefs);
