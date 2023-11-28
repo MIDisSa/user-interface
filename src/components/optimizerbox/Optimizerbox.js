@@ -52,7 +52,6 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
       if (response.ok) {
         const data = await response.json();
 
-
         // Add new result
         addOptimizationResult(data);
 
@@ -65,6 +64,7 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
           directAdNrOfVillages: data.directAdNrOfVillages,
           trainChiefsNumber: data.trainChiefsNumber,
           avgAdopters: data.avgAdopters,
+          bestFitness: data.bestFitness,
           nrOfDirectAds: data.nrOfDirectAds,
           nrOfChiefTrainings: data.nrOfChiefTrainings,
           totalCost: data.totalCost,
@@ -104,7 +104,7 @@ Warning: Optimization process may take 15-30 minutes to finish, depending on the
             <option value="maxAdopters">Max Adopters</option>
             <option value="maxKnowledge">Max Knowledge</option>
             <option value="minCost">Min Costs</option>
-
+            <option value="test">Test</option>
             </Dropdown>
         </div>
         

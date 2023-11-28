@@ -8,7 +8,7 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
 
   const downloadModelResults = async () => {
     try {
-      const result = await fetch('http://localhost:8080/downloadResultsCSV')
+      const result = await fetch('http://localhost:8080/downloadModelResultsCSV')
 
       if (!result.ok) {
         const errorMessage = await result.json();
@@ -47,19 +47,20 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
         label: 'Aware Agents',
         data: awareFarmersPerTick,
         fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: '#00A0C1',
+        borderColor: '#00A0C1',
         tension: 0.1,
       },
       {
         label: 'Adopters',
         data: adoptersPerTick,
         fill: false,
-        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: '#FFA62B',
+        borderColor: '#FFA62B',
         tension: 0.1,
       },
     ],
   };
-
 
   return (
     <div className='button-box'>

@@ -6,7 +6,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
 
   const downloadOptimizerResults = async () => {
     try {
-      const result = await fetch('http://localhost:8080/downloadOptimizerResultsCSV')
+      const result = await fetch('http://localhost:8080/downloadOptimizationResultsCSV')
 
       if (!result.ok) {
         const errorMessage = await result.json();
@@ -44,7 +44,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
               <th>Best Fitness</th>
               <th>Number of Treatments</th>
               <th>Number of ToTs</th>
-              <th>Total Cost</th>
+              <th>Total Cost ($)</th>
             </tr>
             </thead>
             <tbody>
@@ -56,7 +56,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
                   <td>{result.trainChiefsFrequency}</td>
                   <td>{result.directAdNrOfVillages}</td>
                   <td>{result.trainChiefsNumber}</td>
-                  <td>{result.avgAdopters}</td>
+                  <td>{result.bestFitness}</td>
                   <td>{result.nrOfDirectAds}</td>
                   <td>{result.nrOfChiefTrainings}</td>
                   <td>{result.totalCost}</td>
