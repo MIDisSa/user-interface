@@ -1,6 +1,7 @@
 html, body {
   height: 100vh;
   margin: 0;
+font-family: "Montserrat", sans-serif;
 }
 
 .App {
@@ -16,18 +17,17 @@ html, body {
   background-image: url('./sunflower.png');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center top;
+  background-position: left bottom;
   max-width: 2500px; 
+  width: 100%;
+  height: 100%;
   margin: auto; /* This will center the element if it's smaller than the viewport */
-
- 
 }
 
 .App-content {
   display: flex;
   flex-direction: column; 
   align-items: center;
-
 }
 
 .number-circle-inline {
@@ -50,7 +50,6 @@ html, body {
   justify-content: space-between;
   width: 100%; 
   border-radius: 8px;
-  
   flex-direction: column;
   text-align: left;
 }
@@ -67,7 +66,6 @@ html, body {
   text-align: left;
   flex: 1; /* Each child will take equal amount of space */
   margin: 5px; 
-
 }
 
 .ModelAndOptimizerBox {
@@ -76,7 +74,6 @@ html, body {
   align-items: center;
   margin-bottom: 10px; 
   flex-wrap: nowrap; /* makes sure it stays in line */
-  
 }
 
 .ModelBox {
@@ -89,7 +86,9 @@ html, body {
 
 .result-container {
   display: flex; /* lay out children side by side */
-
+  width: 90vw;
+  max-width: 2500px; 
+  overflow-x: auto;
 }
 
 .majorResultContainer {
@@ -98,7 +97,6 @@ html, body {
   z-index: 1; /* Higher than the background */
   max-width: 2500px; /* Match this to the max-width of .sunflowerBackground  */
   margin: auto; /* Center the element */
-  border-radius: 10px;
   text-align: center; 
   justify-content: flex-start;
   padding: 20px; 
@@ -106,7 +104,9 @@ html, body {
   flex-direction: column;
   align-items: center;
   position: relative; /* Needed for absolutely positioned pseudo-elements */
+  overflow-x: hidden;
 }
+
 .majorResultContainer::after {
   content: '';
   position: absolute;
@@ -117,7 +117,6 @@ html, body {
   background-image: linear-gradient(to bottom, white 50%, rgb(40, 78, 78) 50%);
   z-index: -1; /* Places the pseudo-element behind the content */
 }
-
 
 .tooltip-trigger {
   display: inline-block; 
@@ -157,7 +156,6 @@ html, body {
 
 .description-text {
   color: var(--second-text-color, #737373);
-  font-family: Montserrat;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -181,17 +179,17 @@ html, body {
   justify-content: space-between; /* Aligns children to the edges */
   align-items: center; /* Vertically centers children */
   padding: 20px; 
-  width: 2500px; 
   background-color: #003366;
-  
+  overflow-x: hidden;
 }
 
 .turquoiseBackground {
   background-color: #00A0C1;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .footer-text {
-  font-family: Montserrat;
   font-size: 30px;
   font-style: normal;
   font-weight: 500;
@@ -200,7 +198,6 @@ html, body {
   padding-left: 30px;
   color: white;
 }
-
 
 .footer-logo img {
   max-width: 100%; /* Ensures the image is responsive and doesn't overflow its container */
@@ -212,7 +209,6 @@ html, body {
   width: 200px; 
   padding: 10px;
 }
-
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

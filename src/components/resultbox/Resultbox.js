@@ -63,7 +63,7 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
   };
 
   return (
-    <div className='button-box'>
+    <div className='results-container'>
       <h2>Model Results</h2>
       <p>Number of adopters: {adopters}</p>
       <p>Number of aware farmers: {awareFarmers}</p>
