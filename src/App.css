@@ -125,7 +125,7 @@ font-family: "Montserrat", sans-serif;
   font-size: 0.6em; 
   width: 15px; 
   height: 15px; 
-  line-height: 15px; /* center the '?' vertically */
+  line-height: 18px; /* center the '?' vertically */
   text-align: center; /* center the '?' horizontally */
   border-radius: 50%; /* round edges */
   background-color: #f0f0f0; 
