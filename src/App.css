@@ -74,6 +74,7 @@ font-family: "Montserrat", sans-serif;
   align-items: center;
   margin-bottom: 10px; 
   flex-wrap: nowrap; /* makes sure it stays in line */
+  justify-content: center; /* centers children horizontally */
 }
 
 .ModelBox {
