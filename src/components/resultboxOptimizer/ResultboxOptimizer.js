@@ -53,7 +53,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
               </th>
               <th>
                 Treatment Coverage (%)
-                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Percentage of villages that were part of the treatment."}>?</span>
+                <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Percentage of villages that were part of the Direct Ad treatment."}>?</span>
               </th>
               <th>
                 ToT Coverage (%)

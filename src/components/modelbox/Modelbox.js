@@ -90,9 +90,9 @@ const ModelBox = props => {
     const TOOLTIP_CONTENT = {
         "frequencyDirectAd": "Number of days between the Direct Ad interventions​.",
         "directAdType": "Type of the Direct Ad Intervention​.",
-        "frequencyChiefTraining": "Number of days between Chief Trainings​",
-        "ToTCoverage": "THIS NEEDS SOME NICE TEXT​",
-        "TreatmentCoverage": "HERE WE ALSO NEED SOME TEXT",
+        "frequencyChiefTraining": "Number of days between Chief Trainings.​",
+        "ToTCoverage": "Percentage of villages in which Training of Trainers (ToT) is carried out.​",
+        "TreatmentCoverage": "Percentage of villages that are part of the Direct Ad treatment.",
       };
 
 

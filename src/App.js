@@ -199,7 +199,7 @@ const App = () => {
         <div className="App">
             <div className="sunflowerBackground">
                 <div className="App-content">
-                    <h1>Agent-based Model Tanzania</h1>
+                    <h1>Agent-based Model for Innovation Diffusion</h1>
                     <div className="ConfigurationBox">
                         <p className="description-text">
                             Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File (in the same format as the LED-Project survey) to generate parameters automatically.​ Changes must be saved before running the model/optimizer.​<br></br>
