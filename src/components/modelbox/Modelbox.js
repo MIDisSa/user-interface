@@ -13,8 +13,8 @@ const ModelBox = props => {
     const [frequencyDirectAd, setFrequencyDirectAd] = useState(''); //TODO: update default values?
     const [directAdType, setDirectAdType] = useState('');
     const [frequencyChiefTraining, setFrequencyChiefTraining] = useState('');
-    const [ToTCoverage, setToTCoverage] = useState('');
-    const [TreatmentCoverage, setTreatmentCoverage] = useState('');
+    const [trainChiefsCoverage, setTrainChiefsCoverage] = useState('');
+    const [directAdCoverage, setDirectAdCoverage] = useState('');
     const [loading, setLoading] = useState(false);
 
     // state to keep track of combined parameters
@@ -22,8 +22,8 @@ const ModelBox = props => {
         frequencyDirectAd: '',
         directAdType: '',
         frequencyChiefTraining: '',
-        ToTCoverage: '',
-        TreatmentCoverage: '',
+        trainChiefsCoverage: '',
+        directAdCoverage: '',
     });
 
     // useEffect to update extraOptimizationParameters whenever individual parameter changes
@@ -32,10 +32,10 @@ const ModelBox = props => {
             frequencyDirectAd,
             directAdType,
             frequencyChiefTraining,
-            ToTCoverage,
-            TreatmentCoverage,
+            trainChiefsCoverage,
+            directAdCoverage,
         });
-    }, [frequencyDirectAd, directAdType, frequencyChiefTraining, ToTCoverage, TreatmentCoverage]);
+    }, [frequencyDirectAd, directAdType, frequencyChiefTraining, trainChiefsCoverage, directAdCoverage]);
 
 
 
@@ -47,8 +47,8 @@ const ModelBox = props => {
             frequencyDirectAd,
             directAdType,
             frequencyChiefTraining,
-            ToTCoverage,
-            TreatmentCoverage
+            trainChiefsCoverage,
+            directAdCoverage
         };
     
         console.log('Sending data to backend:', inputData);
@@ -127,9 +127,9 @@ const ModelBox = props => {
                     <ReactTooltip id="directAdType" place="top" effect="solid"/>
                 </div>  
                 <div className="flexContainerTooltipParameter">
-                <TextInput label="Treatment Coverage (%): " value={TreatmentCoverage} setValue={setTreatmentCoverage} />
-                <span className="tooltip-trigger" data-tooltip-id="TreatmentCoverageTip" data-tooltip-content={TOOLTIP_CONTENT.TreatmentCoverage}>?</span>
-                <ReactTooltip id="TreatmentCoverageTip" place="top" effect="solid"/>
+                <TextInput label="Treatment Coverage (%): " value={directAdCoverage} setValue={setDirectAdCoverage} />
+                <span className="tooltip-trigger" data-tooltip-id="directAdCoverageTip" data-tooltip-content={TOOLTIP_CONTENT.directAdCoverage}>?</span>
+                <ReactTooltip id="directAdCoverageTip" place="top" effect="solid"/>
               </div>
             </div>
             <div className="flexContainerModelbox">
@@ -139,9 +139,9 @@ const ModelBox = props => {
                     <ReactTooltip id="frequencyChiefTraining" place="top" effect="solid"/>
                 </div>  
                 <div className="flexContainerTooltipParameter">
-                <TextInput label="ToT Coverage (%): " value={ToTCoverage} setValue={setToTCoverage} />
-                <span className="tooltip-trigger" data-tooltip-id="ToTCoverage" data-tooltip-content={TOOLTIP_CONTENT.ToTCoverage}>?</span>
-                    <ReactTooltip id="ToTCoverage" place="top" effect="solid"/>
+                <TextInput label="ToT Coverage (%): " value={trainChiefsCoverage} setValue={setTrainChiefsCoverage} />
+                <span className="tooltip-trigger" data-tooltip-id="trainChiefsCoverage" data-tooltip-content={TOOLTIP_CONTENT.trainChiefsCoverage}>?</span>
+                    <ReactTooltip id="trainChiefsCoverage" place="top" effect="solid"/>
                 </div>  
             </div>
             <div className="flexContainer">
