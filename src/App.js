@@ -290,9 +290,8 @@ const App = () => {
                         <p>ABM Tanzania</p>
                     </div>
                     <div className="footer-logo">
-                        <img src={ZKSDLogo} alt="ZKSD Logo" />
-                        <p />
                         <img src={UZHLogo} alt="UZH Logo" />
+                        <img src={ZKSDLogo} alt="ZKSD Logo" />
                     </div>
                 </div>
                 <div class="turquoiseBackground">

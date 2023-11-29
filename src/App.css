@@ -198,19 +198,29 @@ font-family: "Montserrat", sans-serif;
   font-weight: 500;
   line-height: 32px; 
   letter-spacing: 0.1px; 
-  padding-left: 30px;
+  padding-left: 40px;
   color: white;
 }
 
 .footer-logo img {
   max-width: 100%; /* Ensures the image is responsive and doesn't overflow its container */
   height: auto; /* Maintains aspect ratio */
-  display: block;
+  display: inline-block; 
+
+}
+
+.footer-logo img:last-child {
+  margin-right: 240px; /* Adjust the value as needed */
 }
 
 .footer-logo {
   width: 200px; 
+  display: flex;
+  align-items: center; /* This will vertically align the images if they are of different heights */
+  justify-content: center;
+  gap: 10px;
   padding: 10px;
+ 
 }
 
 @media (prefers-reduced-motion: no-preference) {
