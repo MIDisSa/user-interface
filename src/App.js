@@ -296,7 +296,8 @@ const App = () => {
                     </div>
                 </div>
                 <div class="turquoiseBackground">
-                    <p>Here is some credits texts</p>
+                    <p>Developed by Joël Inglin, Ann-Kathrin Kübler and Hannah Rohe at University of Zurich, supervised by Prof. Lorenz Hilty and Dr. Matthias Huss. Based on concepts by Marc Zwimpfer. © 2023.
+                    </p>
                 </div>
             </div>
         </div>

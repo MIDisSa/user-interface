@@ -63,20 +63,20 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
   };
 
   return (
-    <div className='results-container'>
+    <div className='table-container'>
       <h2>Model Results</h2>
-      <p>Number of adopters: {adopters}</p>
-      <p>Number of aware farmers: {awareFarmers}</p>
-      <p>Total Costs: {totalCost}</p>
+        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <div><p>Number of adopters: {adopters}</p></div>
+        <div><p>Number of aware farmers: {awareFarmers}</p></div>
+        <div><p>Total Costs: {totalCost}</p></div>
+      </div>
 
       {/* Display Line Charts */}
       <div className="line-charts">
-        <div className="line-chart">
+        <div className="line-chart" >
           <BasicLineChart data={lineChartData} />
         </div>
       </div>
-      <p> Aware agents have heard at least once of the innovation.​ <br></br>
-    Adopters are aware agents that have chosen to adopt the innovation.​</p>
       <div className='left'>
         <Button 
             label="Export Results"
@@ -84,6 +84,14 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
             title={"Download a CSV file including the results of your optimization runs"}
           />
       </div>
+    <div className='explanation-section'>
+        <h3>How to interpret the Model Results:</h3>
+        <div className='explanation-content'>
+          <p> Aware agents have heard at least once of the innovation.​ <br></br>
+          Adopters are aware agents that have chosen to adopt the innovation.​</p>
+        </div>
+      </div>
+      
     </div>
     
   );

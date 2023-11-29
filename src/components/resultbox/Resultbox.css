@@ -13,3 +13,10 @@
     flex-direction: column;
     align-items: flex-start;
 }
+
+.results-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
