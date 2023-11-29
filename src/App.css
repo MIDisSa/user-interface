@@ -65,7 +65,7 @@ font-family: "Montserrat", sans-serif;
 .CSVBox {
   text-align: left;
   flex: 1; /* Each child will take equal amount of space */
-  margin: 5px; 
+  margin: 1px; 
 }
 
 .ModelAndOptimizerBox {
