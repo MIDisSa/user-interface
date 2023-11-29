@@ -203,7 +203,7 @@ const App = () => {
                     <div className="ConfigurationBox">
                         <p className="description-text" style={{ textAlign: 'left', paddingLeft: '10%' , paddingRight: '10%' }}> 
                             Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File (in the same format as the LED-Project survey) to generate parameters automatically.​ Changes must be saved before running the model/optimizer.​<br></br>
-                            The Optimizer works on a model that implements all the parameters entered below, as well as the number of ticks in <span className="number-circle-inline">1</span>. <br></br> Hovering over the "?" provides additional information about parameters or functionality.
+                            The Optimizer works on a model that implements all the parameters entered below, as well as the number of ticks in <span className="number-circle-inline">1</span>. <br></br> Hovering over the <span className="tooltip-trigger">?</span> provides additional information about parameters or functionality.
                         </p>
                         <div className="CSVandGlobalParameterBox" style={{ textAlign: 'left', paddingLeft: '10%' , paddingRight: '10%' }}>
                             <div className="CSVBox">

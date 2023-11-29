@@ -96,8 +96,8 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
 Warning: Optimization process may take 15-30 minutes to finish, <br></br> depending on the number of days defined in the settings above.
                 </div> 
       <div className="flexContainer">
-        <div className="inputGroup">
-          <Dropdown label= "Optimization Type " value={optimizationType} setValue={setOptimizationType}>
+        <div className="inputGroup" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Dropdown label= "Optimization Type " value={optimizationType} setValue={setOptimizationType}  >
             <option disabled value="">
                 Please choose a type
               </option>
