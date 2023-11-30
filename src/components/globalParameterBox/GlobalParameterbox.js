@@ -105,7 +105,8 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
   
   return (
     <div className="globalParameterBox">
-
+      <span className="tooltip-opt" data-tooltip-id="opt" data-tooltip-content="Fixed costs incur once per treatment. Variable costs incur once per village that is part of the intervention.​">?</span> 
+              <ReactTooltip id= "opt"  place="top" effect="solid" />
             <h2 className="h2-spacing">Additional Global Parameters</h2>
     
         <div className="inputGroup">

@@ -84,16 +84,16 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
   
   return (
     <div className="optimizerBox">
-       <span className="tooltip-opti" data-tooltip-id="opti" data-tooltip-content="This is the Optimizer. In general, fixed costs incur once per intervention.​
-            Variable costs incur once per village that is part of the intervention.​​">?</span> 
+       <span className="tooltip-opti" data-tooltip-id="opti" data-tooltip-content="The optimizer runs on a model that includes 100 villages, with 1 chief and on average 10 agents per village.
+            The optimization follows a Mutation Hill Climb algorithm and concludes after max. 400 runs.">?</span> 
               <ReactTooltip id= "opti"  place="top" effect="solid" />
        <div className="numbered-heading">
             <div className="number-circle">2</div>   
             <h2>Optimizer</h2>
         </div>
         <div className="description-text">
-        The optimizer looks for the values in <span className="number-circle-inline">2</span> which on average yield the best result for the here defined goal. <br></br>
-Warning: Optimization process may take 15-30 minutes to finish, depending on the number of days defined in the settings above.
+        The optimizer looks for the values in <span className="number-circle-inline">1</span> which on average yield the best result for the here defined goal. <br></br>
+Warning: Optimization process may take 15-30 minutes to complete, depending on the number of days defined in the settings above.
                 </div> 
       <div className="flexContainer">
         <div className="inputGroup" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

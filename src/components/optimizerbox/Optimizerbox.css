@@ -31,10 +31,10 @@
     display: inline-block; 
     margin-left: 0.3px; 
     cursor: pointer;
-    font-size: 1em; 
-    width: 3px; 
+    font-size: large; 
+    width: 8px; 
     height: 3px; 
-    line-height: 3px; /* center the '?' vertically */
+    line-height: 4px; /* center the '?' vertically */
     text-align: center; /* center the '?' horizontally */
     border-radius: 50%; /* round edges */
     background-color: #f0f0f0; 

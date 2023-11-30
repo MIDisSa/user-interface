@@ -44,7 +44,8 @@
     display: flex; /* Aligns the text input and tooltip in a row */
     align-items: center; /* Aligns items vertically in the center */
     gap: 5px; /* Space between the text input and tooltip within the pair */
-    margin-right: 20px; 
+    margin-right: 20px;
+    z-index: 1; /*moves tooltip text in front of optimizer box */
 }
 
 
