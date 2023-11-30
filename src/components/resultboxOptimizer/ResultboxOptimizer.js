@@ -103,7 +103,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
           title={"Download a CSV file including the results of your optimization runs"}
         />)}
       <div className='explanation-section'>
-        <h3>How to interpret the optimization results:</h3>
+        <h3>How to interpret the Optimization Results:</h3>
         <div className='explanation-content'>
           Column 1: Optimization Type selected in <span className="number-circle-inline">2</span>.<br></br>
           Columns 2-6: Optimal Intervention Parameters which on average yield the best results when put into <span className="number-circle-inline">1</span>.<br></br>

@@ -201,11 +201,11 @@ const App = () => {
                 <div className="App-content">
                     <h1>Agent-based Model for Innovation Diffusion</h1>
                     <div className="ConfigurationBox">
-                        <p className="description-text">
+                        <p className="description-text" style={{ textAlign: 'left', paddingLeft: '10%' , paddingRight: '10%' }}> 
                             Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File (in the same format as the LED-Project survey) to generate parameters automatically.​ Changes must be saved before running the model/optimizer.​<br></br>
-                            The Optimizer works on a model that implements all the parameters entered below, as well as the number of ticks in <span className="number-circle-inline">1</span>. <br></br> Hovering over the "?" provides additional information about parameters or functionality.
+                            The Optimizer works on a model that implements all the parameters entered below, as well as the number of ticks in <span className="number-circle-inline">1</span>. <br></br> Hovering over the <span className="tooltip-trigger">?</span> provides additional information about parameters or functionality.
                         </p>
-                        <div className="CSVandGlobalParameterBox">
+                        <div className="CSVandGlobalParameterBox" style={{ textAlign: 'left', paddingLeft: '10%' , paddingRight: '10%' }}>
                             <div className="CSVBox">
                                 <h2 className="h2-spacing">Empirically Defined Global Parameters</h2>
                                 <input type="file" ref={fileInputRef} />
@@ -251,7 +251,7 @@ const App = () => {
                             </div>
                             < GlobalParameterbox> </GlobalParameterbox>
                         </div>
-                        <p className="description-text">
+                        <p className="description-text" style={{ textAlign: 'left', paddingLeft: '10%' , paddingRight: '10%' }}>
                             Please note: The Model can be run without the Optimizer. <br></br>
                             When you run the Optimizer, it will take into account the settings within the Model selection below.
                         </p>
@@ -290,13 +290,13 @@ const App = () => {
                         <p>ABM Tanzania</p>
                     </div>
                     <div className="footer-logo">
-                        <img src={ZKSDLogo} alt="ZKSD Logo" />
-                        <p />
                         <img src={UZHLogo} alt="UZH Logo" />
+                        <img src={ZKSDLogo} alt="ZKSD Logo" />
                     </div>
                 </div>
                 <div class="turquoiseBackground">
-                    <p>Here is some credits texts</p>
+                    <p>Developed by Joël Inglin, Ann-Kathrin Kübler and Hannah Rohe at University of Zurich, supervised by Prof. Lorenz Hilty and Dr. Matthias Huss. Based on concepts by Marc Zwimpfer. © 2023.
+                    </p>
                 </div>
             </div>
         </div>

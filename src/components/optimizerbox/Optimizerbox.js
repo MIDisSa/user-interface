@@ -92,12 +92,12 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
             <h2>Optimizer</h2>
         </div>
         <div className="description-text">
-        The optimizer looks for the values in <span className="number-circle-inline">2</span> <br></br> which on average yield the best result for the here defined goal. <br></br>
-Warning: Optimization process may take 15-30 minutes to finish, <br></br> depending on the number of days defined in the settings above.
+        The optimizer looks for the values in <span className="number-circle-inline">2</span> which on average yield the best result for the here defined goal. <br></br>
+Warning: Optimization process may take 15-30 minutes to finish, depending on the number of days defined in the settings above.
                 </div> 
       <div className="flexContainer">
-        <div className="inputGroup">
-          <Dropdown label= "Optimization Type " value={optimizationType} setValue={setOptimizationType}>
+        <div className="inputGroup" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Dropdown label= "Optimization Type: " value={optimizationType} setValue={setOptimizationType}  >
             <option disabled value="">
                 Please choose a type
               </option>

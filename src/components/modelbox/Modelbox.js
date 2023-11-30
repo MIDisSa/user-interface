@@ -165,7 +165,7 @@ const TextInput = ({ label, value, setValue }) => {
     return (
         <div>
             <label>{label}</label>
-            <input type="text" value={value} onChange={e => setValue(e.target.value)} />
+            <input type="text" value={value} onChange={e => setValue(e.target.value)}  style={{ width: '70px' }} />
         </div>
     );
 };

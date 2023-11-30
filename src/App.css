@@ -65,7 +65,7 @@ font-family: "Montserrat", sans-serif;
 .CSVBox {
   text-align: left;
   flex: 1; /* Each child will take equal amount of space */
-  margin: 5px; 
+  margin: 1px; 
 }
 
 .ModelAndOptimizerBox {
@@ -74,6 +74,7 @@ font-family: "Montserrat", sans-serif;
   align-items: center;
   margin-bottom: 10px; 
   flex-wrap: nowrap; /* makes sure it stays in line */
+  justify-content: center; /* centers children horizontally */
 }
 
 .ModelBox {
@@ -105,6 +106,7 @@ font-family: "Montserrat", sans-serif;
   align-items: center;
   position: relative; /* Needed for absolutely positioned pseudo-elements */
   overflow-x: hidden;
+ 
 }
 
 .majorResultContainer::after {
@@ -125,7 +127,7 @@ font-family: "Montserrat", sans-serif;
   font-size: 0.6em; 
   width: 15px; 
   height: 15px; 
-  line-height: 15px; /* center the '?' vertically */
+  line-height: 18px; /* center the '?' vertically */
   text-align: center; /* center the '?' horizontally */
   border-radius: 50%; /* round edges */
   background-color: #f0f0f0; 
@@ -162,6 +164,7 @@ font-family: "Montserrat", sans-serif;
   line-height: 30px;
   letter-spacing: 0.2px;
   padding: 20px;
+  
 }
 
 .App-logo {
@@ -184,7 +187,7 @@ font-family: "Montserrat", sans-serif;
 }
 
 .turquoiseBackground {
-  background-color: #00A0C1;
+  background-color: #007589;
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -195,19 +198,29 @@ font-family: "Montserrat", sans-serif;
   font-weight: 500;
   line-height: 32px; 
   letter-spacing: 0.1px; 
-  padding-left: 30px;
+  padding-left: 40px;
   color: white;
 }
 
 .footer-logo img {
   max-width: 100%; /* Ensures the image is responsive and doesn't overflow its container */
   height: auto; /* Maintains aspect ratio */
-  display: block;
+  display: inline-block; 
+
+}
+
+.footer-logo img:last-child {
+  margin-right: 240px; /* Adjust the value as needed */
 }
 
 .footer-logo {
   width: 200px; 
+  display: flex;
+  align-items: center; /* This will vertically align the images if they are of different heights */
+  justify-content: center;
+  gap: 10px;
   padding: 10px;
+ 
 }
 
 @media (prefers-reduced-motion: no-preference) {
