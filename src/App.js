@@ -203,7 +203,7 @@ const App = () => {
                     <div className="ConfigurationBox">
                         <p className="description-text" style={{ textAlign: 'left', paddingLeft: '10%' , paddingRight: '10%' }}> 
                             Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File (in the same format as the LED-Project survey) to generate parameters automatically.​ Changes must be saved before running the model/optimizer.​<br></br>
-                            The Optimizer works on a model that implements all the parameters entered below, as well as the number of ticks in <span className="number-circle-inline">1</span>. <br></br> Hovering over the <span className="tooltip-trigger">?</span> provides additional information about parameters or functionality.
+                            The Optimizer works on a model that implements all the parameters entered below. <br></br> Hovering over the <span className="tooltip-trigger">?</span> provides additional information about parameters or functionality.
                         </p>
                         <div className="CSVandGlobalParameterBox" style={{ textAlign: 'left', paddingLeft: '10%' , paddingRight: '10%' }}>
                             <div className="CSVBox">
@@ -251,10 +251,6 @@ const App = () => {
                             </div>
                             < GlobalParameterbox> </GlobalParameterbox>
                         </div>
-                        <p className="description-text" style={{ textAlign: 'left', paddingLeft: '10%' , paddingRight: '10%' }}>
-                            Please note: The Model can be run without the Optimizer. <br></br>
-                            When you run the Optimizer, it will take into account the settings within the Model selection below.
-                        </p>
 
                         {/* we need that here bc this is teh parent container of model and result. The info comes from model but needs to be known in result */}
                     </div>
