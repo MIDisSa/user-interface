@@ -141,7 +141,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
               <div className="label">Variable Costs for Direct Ad + Deferred Payment + Discount</div>
               <TextInput value={variableCostsDelayedDiscount} setValue={setVariableCostsDelayedDiscount} />
           </div>
-          <div className="inputGroup">
+          <div className="inputGroup" style={{paddingBottom: '25px'}}>
               <div className="label">Variable Costs for Training of Chiefs</div>
               <TextInput value={variableCostsTrainChiefs} setValue={setVariableCostsTrainChiefs} />
           </div>

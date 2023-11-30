@@ -215,7 +215,7 @@ const App = () => {
                                     style={{ marginLeft: '100px' }} />
 
                                 {/* Form for Parameters in table  */}
-                                <form onSubmit={handleSubmit} >
+                                <form onSubmit={handleSubmit} style={{paddingBottom: '20px'}}>
                                     <table>
                                         <thead>
                                             <tr>
@@ -245,9 +245,9 @@ const App = () => {
                                                 ))}
                                         </tbody>
                                     </table>
-                                    <Button label="Save Empirical Parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
-                                    <Button label="Set to Default" variant="outlined-blue" onClick={resetForm} title={"Resets values to a reasonable default that yields a stable result."} />
                                 </form>
+                                <Button label="Save Empirical Parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
+                                <Button label="Set to Default" variant="outlined-blue" onClick={resetForm} title={"Resets values to a reasonable default that yields a stable result."} style={{padding: '20px'}}/>
                             </div>
                             < GlobalParameterbox> </GlobalParameterbox>
                         </div>

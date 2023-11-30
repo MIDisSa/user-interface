@@ -59,7 +59,7 @@ font-family: "Montserrat", sans-serif;
   justify-content: space-between; /* Distributes space between the child elements */
   align-items: stretch; /* Makes sure both children stretch to fill the container vertically */
   flex-direction: row;
-  padding: 20px;
+  padding: 40px;
 }
 
 .CSVBox {
