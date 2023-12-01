@@ -179,6 +179,37 @@ const App = () => {
     }
     };
 
+    const handleDeleteHistory = async (e) => {
+
+        try { // call endpoint to delete result history in export CSVs
+            const response = await fetch('http://localhost:8080//clearResultCSVs', {
+                method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:3000', 
+            },
+        });
+
+        if (response.status === 200) {
+            setSuccessMessage("Result CSV successfully cleared!"); // Display message
+        } else {
+            const errorMessage = await response.json();
+            window.alert(errorMessage.message)
+            throw new Error('Failed to clear result CSV.');
+        }
+
+        // clear localstorage
+        localStorage.removeItem('optimizationResults');
+
+    } catch (error) {
+        console.error('Error sending data:', error);
+    }
+        // clear localstorage
+        localStorage.removeItem('optimizationResults');
+
+        // reload to clear results table
+
+    };
     
     // function to round to a certain number of digits
     function roundTo(n, digits) {
@@ -271,8 +302,9 @@ const App = () => {
                     <div className="numbered-heading">
                         <div className="number-circle">3</div>
                         <h2>Results</h2>
+                        <Button label="Delete Result History" type="submit" onClick={handleDeleteHistory} title={"Deletes all results of previous model and optimizer runs.​"} />
                     </div>
-                    <div className="result-container">
+                    <div className="result-container" id="results">
                         <div className="result-box">
                             <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick} />
                         </div>
