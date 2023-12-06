@@ -126,7 +126,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
         <div className='column'>
           <div className="inputGroup">
             <div className="label">Days</div>
-            <TextInput value={numberOfTicks} setValue={setNumberOfTicks} placeholder="Use a dot for decimal values." />
+            <TextInput value={numberOfTicks} setValue={setNumberOfTicks} />
           </div>
           <div className="inputGroup">
             <div className="label">Number of Villages</div>
@@ -145,7 +145,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
             <TextInput value={farmersPerVillage} setValue={setFarmersPerVillage} />
           </div>
           <div className="inputGroup" style={{ paddingBottom: '25px' }}>
-            <div className="label">Percentage of Farmers in Farmgroup</div>
+            <div className="label">Percentage of Farmers in Farmgroup (%) </div>
             <TextInput value={percentageOfFarmersInFarmgroup} setValue={setPercentageOfFarmersInFarmgroup} />
           </div>
         </div>
