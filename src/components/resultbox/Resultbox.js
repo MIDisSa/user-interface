@@ -6,6 +6,15 @@ import Button from '../button/Button';
 
 const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, adoptersPerTick }) => {
 
+  // function to change format of values
+  const formatNumber = (number) => {
+    if (number !== null) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    } else {
+      return null;
+    }
+  };
+
   const downloadModelResults = async () => {
     try {
       const result = await fetch('http://localhost:8080/downloadModelResultsCSV')
@@ -66,9 +75,9 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
     <div className='table-container'  >
       <h2>Model Results</h2>
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-        <div><p>Number of adopters: {adopters}</p></div>
-        <div><p>Number of aware farmers: {awareFarmers}</p></div>
-        <div><p>Total Costs: {totalCost}</p></div>
+        <div><p>Number of adopters: {formatNumber(adopters)}</p></div>
+        <div><p>Number of aware farmers: {formatNumber(awareFarmers)}</p></div>
+        <div><p>Total Costs ($): {formatNumber(totalCost)}</p></div>
       </div>
 
       {/* Display Line Charts */}

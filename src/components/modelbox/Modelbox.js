@@ -37,7 +37,20 @@ const ModelBox = props => {
         });
     }, [frequencyDirectAd, directAdType, frequencyChiefTraining, trainChiefsCoverage, directAdCoverage]);
 
-
+    const formatNumber = (number) => {
+        // Remove existing commas
+        let cleanedNumber = number.toString().replace(/,/g, '');
+    
+        // Split number into whole and decimal parts if it's a float
+        let parts = cleanedNumber.split(".");
+    
+        // Apply regex to the whole part
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+        // Reassemble it
+        return parts.join(".");
+    };
+    
 
     const runModel = async (gui) => {
 
@@ -109,7 +122,7 @@ const ModelBox = props => {
 
           <div className="flexContainerModelbox">
               <div className="flexContainerTooltipParameter">
-                <TextInput label="Treatment Frequency (days): " value={frequencyDirectAd} setValue={setFrequencyDirectAd} />
+                <TextInput label="Treatment Frequency (days): " value={formatNumber(frequencyDirectAd)} setValue={setFrequencyDirectAd} />
                 <span className="tooltip-trigger" data-tooltip-id="frequencyDirectAdTip" data-tooltip-content={TOOLTIP_CONTENT.frequencyDirectAd}>?</span>
                 <ReactTooltip id="frequencyDirectAdTip" place="top" effect="solid"/>
               </div>
@@ -127,26 +140,25 @@ const ModelBox = props => {
                     <ReactTooltip id="directAdType" place="top" effect="solid"/>
                 </div>  
                 <div className="flexContainerTooltipParameter">
-                <TextInput label="Treatment Coverage (%): " value={directAdCoverage} setValue={setDirectAdCoverage} />
+                <TextInput label="Treatment Coverage (%): " value={formatNumber(directAdCoverage)} setValue={setDirectAdCoverage} />
                 <span className="tooltip-trigger" data-tooltip-id="directAdCoverageTip" data-tooltip-content={TOOLTIP_CONTENT.directAdCoverage}>?</span>
                 <ReactTooltip id="directAdCoverageTip" place="top" effect="solid"/>
               </div>
             </div>
             <div className="flexContainerModelbox">
                 <div className="flexContainerTooltipParameter">
-                <TextInput label="ToT Frequency (days): " value={frequencyChiefTraining} setValue={setFrequencyChiefTraining} />
+                <TextInput label="ToT Frequency (days): " value={formatNumber(frequencyChiefTraining)} setValue={setFrequencyChiefTraining} />
                 <span className="tooltip-trigger" data-tooltip-id="frequencyChiefTraining" data-tooltip-content={TOOLTIP_CONTENT.frequencyChiefTraining}>?</span>
                     <ReactTooltip id="frequencyChiefTraining" place="top" effect="solid"/>
                 </div>  
                 <div className="flexContainerTooltipParameter">
-                <TextInput label="ToT Coverage (%): " value={trainChiefsCoverage} setValue={setTrainChiefsCoverage} />
+                <TextInput label="ToT Coverage (%): " value={formatNumber(trainChiefsCoverage)} setValue={setTrainChiefsCoverage} />
                 <span className="tooltip-trigger" data-tooltip-id="trainChiefsCoverage" data-tooltip-content={TOOLTIP_CONTENT.trainChiefsCoverage}>?</span>
                     <ReactTooltip id="trainChiefsCoverage" place="top" effect="solid"/>
                 </div>  
             </div>
             <div className="flexContainer">
                 <Button label="Start Model" onClick={() => runModel(false)} variant="solid-orange"/>
-                {/* <Button label="Start Model with NetLogo GUI" onClick={() => runModel(true)} variant="solid-orange"/> */}
             </div>
 
           {loading && (
