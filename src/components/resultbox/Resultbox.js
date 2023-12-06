@@ -1,14 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Resultbox.css';
 import BasicLineChart from '../linechart/Linechart';
 import Button from '../button/Button';
 
 
-const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, adoptersPerTick, reload }) => {
-
-  useEffect(() => {
-    console.log("reload")
-  }, [reload])
+const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, adoptersPerTick }) => {
 
   const downloadModelResults = async () => {
     try {

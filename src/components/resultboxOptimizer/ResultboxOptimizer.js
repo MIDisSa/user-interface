@@ -4,11 +4,7 @@ import Button from '../button/Button';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { useEffect } from 'react';
 
-const ResultboxOptimizer = ({ optimizationResults, reload }) => {
-
-  useEffect(() => {
-    console.log("reload")
-  }, [reload])
+const ResultboxOptimizer = ({ optimizationResults }) => {
 
   const downloadOptimizerResults = async () => {
     try {

@@ -312,10 +312,10 @@ const App = () => {
                     </div>
                     <div className="result-container" id="results">
                         <div className="result-box">
-                            <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick} reload={reload}/>
+                            <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick} />
                         </div>
                         <div className="result-box">
-                            <ResultboxOptimizer optimizationResults={optimizationResults}  reload={reload}/>
+                            <ResultboxOptimizer optimizationResults={optimizationResults} />
                         </div>
                     </div>
                 </div>
