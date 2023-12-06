@@ -14,12 +14,10 @@
     margin-bottom: 20px;
   }
   
-  .line-charts {
-    margin-top: 30px;
-  }
-  
   .line-chart {
+    margin-top: 30px;
     margin-bottom: 20px;
+
   }
   
   .line-chart h3 {
@@ -75,8 +73,12 @@
 
   /* size of chart container */
 .chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
+    height: 800px; /* You can adjust the height as needed */
     margin: auto;
   }
   

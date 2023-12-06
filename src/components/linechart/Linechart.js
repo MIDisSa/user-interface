@@ -50,9 +50,9 @@ const BasicLineChart = ({ data }) => {
   };
 
   return (
-    <div>
+    <div >
       <h2>Development of Considerers and Adopters over time</h2>
-      <Line data={data} options={options} />
+      <Line className="chart-container" data={data} options={options} />
     </div>
   );
 };
