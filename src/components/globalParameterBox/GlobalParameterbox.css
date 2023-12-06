@@ -1,6 +1,5 @@
 .globalParameterBox {
     position: relative;
-    top: -30px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
