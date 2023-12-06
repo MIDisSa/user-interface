@@ -217,9 +217,6 @@ const App = () => {
         }
     };
     
-  
-    
-
     console.log({ awareFarmersPerTick, adoptersPerTick });
 
     return (
@@ -266,6 +263,7 @@ const App = () => {
                                                                 name={key}
                                                                 value={value}
                                                                 onChange={handleInputChange}
+                                                                placeholder="Use a dot for decimal values."
                                                             />
                                                         </td>
                                                     </tr>

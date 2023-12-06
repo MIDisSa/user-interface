@@ -111,39 +111,39 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
     
         <div className="inputGroup">
           <div className="label">Days</div>
-            <TextInput value={numberOfTicks} setValue={setNumberOfTicks} />
+            <TextInput value={numberOfTicks} setValue={setNumberOfTicks} placeholder="Use a dot for decimal values." />
         </div>
         <div className="inputGroup">
           <div className="label">Budget ($)</div>
-              <TextInput value={budget} setValue={setBudget} />
+              <TextInput value={budget} setValue={setBudget} placeholder="Use a dot for decimal values."/>
           </div>
           <div className="inputGroup">
-            <div className="label">Fixed Costs for Direct Ad</div>
-            <TextInput value={fixedCostsDirectAd} setValue={setFixedCostsDirectAd} />
+            <div className="label">Fixed Costs for Direct Ad ($)</div>
+            <TextInput value={fixedCostsDirectAd} setValue={setFixedCostsDirectAd} placeholder="Use a dot for decimal values."/>
           </div>
           <div className="inputGroup">
-              <div className="label">Fixed Costs for Training of Chiefs</div>
-              <TextInput value={fixedCostsTrainChiefs} setValue={setFixedCostsTrainChiefs} />
+              <div className="label">Fixed Costs for Training of Chiefs ($)</div>
+              <TextInput value={fixedCostsTrainChiefs} setValue={setFixedCostsTrainChiefs} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
-              <div className="label">Variable Costs for Direct Ad</div>
-              <TextInput value={variableCostsDirectAd} setValue={setVariableCostsDirectAd} />
+              <div className="label">Variable Costs for Direct Ad ($)</div>
+              <TextInput value={variableCostsDirectAd} setValue={setVariableCostsDirectAd} placeholder="Use a dot for decimal values."/> 
           </div>
           <div className="inputGroup">
-              <div className="label">Variable Costs for Direct Ad + Discount</div>
-              <TextInput value={variableCostsDiscount} setValue={setVariableCostsDiscount} />
+              <div className="label">Variable Costs for Direct Ad + Discount ($)</div>
+              <TextInput value={variableCostsDiscount} setValue={setVariableCostsDiscount} placeholder="Use a dot for decimal values."/>
           </div>
           <div className="inputGroup">
-              <div className="label">Variable Costs for Direct Ad + Deferred Payment</div>
-              <TextInput value={variableCostsDelayed} setValue={setVariableCostsDelayed} />
+              <div className="label">Variable Costs for Direct Ad + Deferred Payment ($)</div>
+              <TextInput value={variableCostsDelayed} setValue={setVariableCostsDelayed} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
-              <div className="label">Variable Costs for Direct Ad + Deferred Payment + Discount</div>
-              <TextInput value={variableCostsDelayedDiscount} setValue={setVariableCostsDelayedDiscount} />
+              <div className="label">Variable Costs for Direct Ad + Deferred Payment + Discount ($)</div>
+              <TextInput value={variableCostsDelayedDiscount} setValue={setVariableCostsDelayedDiscount} placeholder="Use a dot for decimal values."/>
           </div>
           <div className="inputGroup" style={{paddingBottom: '25px'}}>
-              <div className="label">Variable Costs for Training of Chiefs</div>
-              <TextInput value={variableCostsTrainChiefs} setValue={setVariableCostsTrainChiefs} />
+              <div className="label">Variable Costs for Training of Chiefs ($)</div>
+              <TextInput value={variableCostsTrainChiefs} setValue={setVariableCostsTrainChiefs} placeholder="Use a dot for decimal values."/>
           </div>
      
           <div className="flexContainerGlobalParameterbox">
@@ -167,11 +167,11 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
   );
 };
 
-const TextInput = ({ label, value, setValue }) => {
+const TextInput = ({ label, value, setValue, placeholder }) => {
   return (
       <div>
           <label>{label}</label>
-          <input type="text" value={value} onChange={e => setValue(e.target.value)} />
+          <input type="text" value={value} onChange={e => setValue(e.target.value)}  placeholder={placeholder} />
       </div>
   );
 };
