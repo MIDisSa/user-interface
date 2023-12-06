@@ -2,6 +2,7 @@ import React from 'react';
 import './ResultboxOptimizer.css'; 
 import Button from '../button/Button';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
+import { useEffect } from 'react';
 
 const ResultboxOptimizer = ({ optimizationResults }) => {
 

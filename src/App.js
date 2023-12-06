@@ -23,6 +23,7 @@ const App = () => {
     const [csvData, setCsvData] = useState([]);
     const [formData, setFormData] = useState({}); // thats for the form like data representation
     const [successMessage, setSuccessMessage] = useState(null); // state for displaying success message
+    const [reload, setReload] = useState(false); // state for reloading the page after deleting result history
     const [optimizationResults, setOptimizationResults] = useState(() => {
         // initial value from local storage or default to an empty array
         const savedResults = localStorage.getItem('optimizationResults');
@@ -179,6 +180,42 @@ const App = () => {
     }
     };
 
+    const handleDeleteHistory = async (e) => {
+
+        try { // call endpoint to delete result history in export CSVs
+            const response = await fetch('http://localhost:8080/clearResultCSVs', {
+                method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:3000', 
+            },
+        });
+
+        if (response.status === 200) {
+            setSuccessMessage("Result CSV successfully cleared!"); // Display message
+        } else {
+            const errorMessage = await response.json();
+            window.alert(errorMessage.message)
+            throw new Error('Failed to clear result CSV.');
+        }
+
+        // reset model results
+        setAdopters(null);
+        setAwareFarmers(null);
+        setTotalCost(null);
+        setAwareFarmersPerTick(null);
+        setAdoptersPerTick(null);
+
+        // reset optimization results
+        setOptimizationResults([]);
+
+        // reload to clear results table
+        setReload(!reload);
+
+        } catch (error) {
+            console.error('Error sending data:', error);
+        }
+    };
     
     // function to round to a certain number of digits
     function roundTo(n, digits) {
@@ -271,8 +308,9 @@ const App = () => {
                     <div className="numbered-heading">
                         <div className="number-circle">3</div>
                         <h2>Results</h2>
+                        <Button label="Delete Result History" type="submit" onClick={handleDeleteHistory} title={"Deletes all results of previous model and optimizer runs.​"} />
                     </div>
-                    <div className="result-container">
+                    <div className="result-container" id="results">
                         <div className="result-box">
                             <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick} />
                         </div>
