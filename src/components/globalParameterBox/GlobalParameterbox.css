@@ -14,6 +14,8 @@
 }
 
 .column {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     text-align: center;
 }
@@ -50,14 +52,12 @@
 
   .inputGroup {
     display: grid;
-    grid-template-columns: 1.5fr 2fr; /* Adjust the ratio between label and input field */
+    grid-template-columns: 1.5fr 1fr; /* Adjust the ratio between label and input field */
     margin-bottom: 5px; /* Space between each input group */
 }
 
 .label {
     text-align: left; 
-    padding-right: 10px; /* Space between label and its right border */
-    align-self: center; /* Vertically center the label */
 }
 
 .textInput {
@@ -71,7 +71,7 @@
 }
 
 .textInput input {
-    border-radius: 5px;
+    border-radius: px;
     border: 1px solid #bdbdbd;
     background: #f9f9f9;
     padding: 5px;
