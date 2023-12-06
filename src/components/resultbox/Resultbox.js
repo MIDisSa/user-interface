@@ -6,6 +6,15 @@ import Button from '../button/Button';
 
 const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, adoptersPerTick }) => {
 
+  // function to change format of values
+  const formatNumber = (number) => {
+    if (number !== null) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    } else {
+      return null;
+    }
+  };
+
   const downloadModelResults = async () => {
     try {
       const result = await fetch('http://localhost:8080/downloadModelResultsCSV')
@@ -44,7 +53,7 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
     labels: chartLabels,
     datasets: [
       {
-        label: 'Aware Agents',
+        label: 'Aware Farmers',
         data: awareFarmersPerTick,
         fill: false,
         backgroundColor: '#00A0C1',
@@ -66,9 +75,9 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
     <div className='table-container'  >
       <h2>Model Results</h2>
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-        <div><p>Number of adopters: {adopters}</p></div>
-        <div><p>Number of aware farmers: {awareFarmers}</p></div>
-        <div><p>Total Costs: {totalCost}</p></div>
+        <div><p>Number of Adopters: {formatNumber(adopters)}</p></div>
+        <div><p>Number of Aware Farmers: {formatNumber(awareFarmers)}</p></div>
+        <div><p>Total Costs ($): {formatNumber(totalCost)}</p></div>
       </div>
 
       {/* Display Line Charts */}
@@ -85,8 +94,8 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
     <div className='explanation-section'>
         <h3>How to interpret the Model Results:</h3>
         <div className='explanation-content'>
-          <p> Aware agents have heard at least once of the innovation.​ <br></br>
-          Adopters are aware agents that have chosen to adopt the innovation.​</p>
+          <p> Aware Farmers have heard at least once of the innovation.​ <br></br>
+          Adopters are Aware Farmers that have chosen to adopt the innovation.​</p>
         </div>
       </div>
       

@@ -51,7 +51,7 @@ const BasicLineChart = ({ data }) => {
 
   return (
     <div >
-      <h2>Development of Considerers and Adopters over time</h2>
+      <h2>Development of Aware Farmers and Adopters over time</h2>
       <Line className="chart-container" data={data} options={options} />
     </div>
   );

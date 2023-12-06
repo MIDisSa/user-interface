@@ -5,7 +5,12 @@ import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { useEffect } from 'react';
 
 const ResultboxOptimizer = ({ optimizationResults }) => {
-
+  
+  // function to change format of values
+  const formatNumber = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+  
   const downloadOptimizerResults = async () => {
     try {
       const result = await fetch('http://localhost:8080/downloadOptimizationResultsCSV')
@@ -84,15 +89,15 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
                   <tr key={index} className={index === 0 ? "highlighted-row" : ""}>
                     <td>{result.optimizationType}</td>
                     <td>{result.directAdType}</td>
-                    <td>{result.directAdFrequency}</td>
-                    <td>{result.trainChiefsFrequency}</td>
-                    <td>{result.directAdNrOfVillages}</td>
-                    <td>{result.trainChiefsNumber}</td>
-                    <td>{result.bestFitness}</td>
-                    <td>{result.nrOfDirectAds}</td>
-                    <td>{result.nrOfChiefTrainings}</td>
-                    <td>{result.totalCost}</td>
-                  </tr>
+                    <td>{formatNumber(result.directAdFrequency)}</td>
+                    <td>{formatNumber(result.trainChiefsFrequency)}</td>
+                    <td>{formatNumber(result.directAdNrOfVillages)}</td>
+                    <td>{formatNumber(result.trainChiefsNumber)}</td>
+                    <td>{formatNumber(result.bestFitness)}</td>
+                    <td>{formatNumber(result.nrOfDirectAds)}</td>
+                    <td>{formatNumber(result.nrOfChiefTrainings)}</td>
+                    <td>{formatNumber(result.totalCost)}</td>
+                      </tr>
                 ))}
               </tbody>
             </table>
@@ -111,9 +116,9 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
             Column 1: Optimization Type selected in <span className="number-circle-inline">2</span>.<br></br>
             Columns 2-6: Optimal Intervention Parameters which on average yield the best results when put into <span className="number-circle-inline">1</span>.<br></br>
             Column 7: Best average result achieved with optimal Intervention Parameters stated in columns 2-6.<br></br>
-            If Optimization Type is Max Adopters then Best Fitness denotes the number of Adopters out of 1000 agents.<br></br>
-            If Optimization Type is Max Knowledge then Best Fitness denotes the number of Aware Agents + Adopters out of 1000 agents.<br></br>
-            If Optimization Type is Min Costs then Best Fitness denotes the average Cost per Adopter.<br></br>
+            If Optimization Type is Max Adopters, then Best Fitness denotes the number of Adopters out of 1000 farmers.<br></br>
+            If Optimization Type is Max Knowledge, then Best Fitness denotes the number of Aware Farmers + Adopters out of 1000 farmers.<br></br>
+            If Optimization Type is Min Costs, then Best Fitness denotes the average Cost per Adopter.<br></br>
             Column 8-10: Number of Treatments and Trainings actually carried out, taking into account the specified budget.
           </div>
         </div>
