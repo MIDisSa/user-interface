@@ -116,9 +116,9 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
             Column 1: Optimization Type selected in <span className="number-circle-inline">2</span>.<br></br>
             Columns 2-6: Optimal Intervention Parameters which on average yield the best results when put into <span className="number-circle-inline">1</span>.<br></br>
             Column 7: Best average result achieved with optimal Intervention Parameters stated in columns 2-6.<br></br>
-            If Optimization Type is Max Adopters then Best Fitness denotes the number of Adopters out of 1000 agents.<br></br>
-            If Optimization Type is Max Knowledge then Best Fitness denotes the number of Aware Agents + Adopters out of 1000 agents.<br></br>
-            If Optimization Type is Min Costs then Best Fitness denotes the average Cost per Adopter.<br></br>
+            If Optimization Type is Max Adopters, then Best Fitness denotes the number of Adopters out of 1000 farmers.<br></br>
+            If Optimization Type is Max Knowledge, then Best Fitness denotes the number of Aware Farmers + Adopters out of 1000 farmers.<br></br>
+            If Optimization Type is Min Costs, then Best Fitness denotes the average Cost per Adopter.<br></br>
             Column 8-10: Number of Treatments and Trainings actually carried out, taking into account the specified budget.
           </div>
         </div>

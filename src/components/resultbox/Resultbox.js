@@ -53,7 +53,7 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
     labels: chartLabels,
     datasets: [
       {
-        label: 'Aware Agents',
+        label: 'Aware Farmers',
         data: awareFarmersPerTick,
         fill: false,
         backgroundColor: '#00A0C1',
@@ -75,8 +75,8 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
     <div className='table-container'  >
       <h2>Model Results</h2>
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-        <div><p>Number of adopters: {formatNumber(adopters)}</p></div>
-        <div><p>Number of aware farmers: {formatNumber(awareFarmers)}</p></div>
+        <div><p>Number of Adopters: {formatNumber(adopters)}</p></div>
+        <div><p>Number of Aware Farmers: {formatNumber(awareFarmers)}</p></div>
         <div><p>Total Costs ($): {formatNumber(totalCost)}</p></div>
       </div>
 
@@ -94,8 +94,8 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
     <div className='explanation-section'>
         <h3>How to interpret the Model Results:</h3>
         <div className='explanation-content'>
-          <p> Aware agents have heard at least once of the innovation.​ <br></br>
-          Adopters are aware agents that have chosen to adopt the innovation.​</p>
+          <p> Aware Farmers have heard at least once of the innovation.​ <br></br>
+          Adopters are Aware Farmers that have chosen to adopt the innovation.​</p>
         </div>
       </div>
       
