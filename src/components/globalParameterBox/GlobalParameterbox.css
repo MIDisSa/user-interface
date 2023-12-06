@@ -3,10 +3,19 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    flex: 1; /* Each child will take equal amount of space */
+    flex: 2; /* Each child will take equal amount of space */
     margin: 5px; /* Optional: Adds some margin around each box */
 }
 
+.columns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.column {
+    flex: 1;
+    padding: 0 10px;
+}
 
 .flexContainerGlobalParameterbox {
     flex-direction: column;
