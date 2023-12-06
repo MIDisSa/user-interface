@@ -308,7 +308,6 @@ const App = () => {
                     <div className="numbered-heading">
                         <div className="number-circle">3</div>
                         <h2>Results</h2>
-                        <Button label="Clear Result History" type="submit" onClick={handleDeleteHistory} title={"Clears all results of previous model and optimizer runs.​"} />
                     </div>
                     <div className="result-container" id="results">
                         <div className="result-box">
@@ -318,6 +317,7 @@ const App = () => {
                             <ResultboxOptimizer optimizationResults={optimizationResults} />
                         </div>
                     </div>
+                    <Button variant="large" label="Clear Result History" type="submit" onClick={handleDeleteHistory} title={"Clears all results of previous model and optimizer runs.​"} />
                 </div>
                 <div class="darkBlueBackground">
                     <div className="footer-text">

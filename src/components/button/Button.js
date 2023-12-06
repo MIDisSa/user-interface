@@ -14,6 +14,9 @@ const Button = ({ label, onClick, variant, title}) => {
         case 'outlined-blue':
             buttonClass = 'button-outlined-blue';
             break;
+        case 'large':
+            buttonClass = 'button-large';
+            break;
         default:
             buttonClass = 'button-solid-blue';  // Default style
             break;
