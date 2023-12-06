@@ -199,8 +199,14 @@ const App = () => {
             throw new Error('Failed to clear result CSV.');
         }
 
-        // clear localstorage
-        localStorage.removeItem('optimizationResults');
+        // reset model results
+        setAdopters(null);
+        setAwareFarmers(null);
+        setTotalCost(null);
+        setAwareFarmersPerTick(null);
+        setAdoptersPerTick(null);
+
+        // reset optimization results
         setOptimizationResults([]);
 
         // reload to clear results table
