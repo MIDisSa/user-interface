@@ -308,7 +308,7 @@ const App = () => {
                     <div className="numbered-heading">
                         <div className="number-circle">3</div>
                         <h2>Results</h2>
-                        <Button label="Delete Result History" type="submit" onClick={handleDeleteHistory} title={"Deletes all results of previous model and optimizer runs.​"} />
+                        <Button label="Clear Result History" type="submit" onClick={handleDeleteHistory} title={"Clears all results of previous model and optimizer runs.​"} />
                     </div>
                     <div className="result-container" id="results">
                         <div className="result-box">
