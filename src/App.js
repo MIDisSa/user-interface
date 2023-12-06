@@ -271,8 +271,10 @@ const App = () => {
                                         </tbody>
                                     </table>
                                 </form>
+                                <div className="flexContainerGlobalParameterbox">
                                 <Button label="Save Empirical Parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
                                 <Button label="Set to Default" variant="outlined-blue" onClick={resetForm} title={"Resets values to a reasonable default that yields a stable result."} style={{padding: '20px'}}/>
+                                </div>
                             </div>
                             < GlobalParameterbox> </GlobalParameterbox>
                         </div>
