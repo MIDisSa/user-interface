@@ -135,7 +135,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
           <div className="inputGroup">
             <div className="label">
               Number of Neighborhoods
-              <span className="tooltip-trigger" data-tooltip-id={"nghbrhd"} data-tooltip-content={"test"}>?</span>
+              <span className="tooltip-trigger" data-tooltip-id={"nghbrhd"} data-tooltip-content={"Farmers are more likely to communicate with "}>?</span>
             </div>
             <TextInput value={nrOfNeighborhoods} setValue={setNrOfNeighborhoods} />
             <ReactTooltip id={"nghbrhd"} place="top" effect="solid" />
