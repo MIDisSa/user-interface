@@ -17,10 +17,9 @@
 }
 
 .tooltip-opt {
-    position: relative; 
-    top: 25px;           
-    right: 0px;
-    left: 345px;         
+    position: absolute; 
+    top: 0px;           
+    left: 410px;         
     padding: 10px;      
     cursor: pointer; /* Change cursor to indicate it's clickable */
     display: inline-block; 
