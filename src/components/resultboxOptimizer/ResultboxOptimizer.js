@@ -96,8 +96,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
             </tbody>
           </table>
       </div>
-      {optimizationResults.length > 0 && (
-        /*<div className='left'>*/
+      {(
         <Button 
           label="Export Results"
           onClick={downloadOptimizerResults}
