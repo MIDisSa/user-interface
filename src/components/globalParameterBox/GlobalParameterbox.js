@@ -14,7 +14,11 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
     const [variableCostsDiscount, setVariableCostsDiscount] = useState(''); 
     const [variableCostsDelayed, setVariableCostsDelayed] = useState(''); 
     const [variableCostsDelayedDiscount, setVariableCostsDelayedDiscount] = useState(''); 
-    const [variableCostsTrainChiefs, setVariableCostsTrainChiefs] = useState(''); 
+    const [variableCostsTrainChiefs, setVariableCostsTrainChiefs] = useState('');
+    const [nrOfVillages, setNrOfVillages] = useState('');
+    const [nrOfNeighborhoods, setNrOfNeighborhoods] = useState('');
+    const [farmersPerVillage, setFarmersPerVillage] = useState('');
+    const [percentageOfFarmersInFarmgroup, setPercentageOfFarmersInFarmgroup] = useState('');
     const [loading, setLoading] = useState(false);
 
 
@@ -42,11 +46,15 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
           setVariableCostsDelayed(defaultUserInput.variableCostsDelayed);
           setVariableCostsDelayedDiscount(defaultUserInput.variableCostsDelayedDiscount);
           setVariableCostsTrainChiefs(defaultUserInput.variableCostsTrainChiefs);
-        
+          setNrOfVillages(defaultUserInput.nrOfVillages);
+          setNrOfNeighborhoods(defaultUserInput.nrOfNeighborhoods);
+          setFarmersPerVillage(defaultUserInput.farmersPerVillage);
+          setPercentageOfFarmersInFarmgroup(defaultUserInput.percentageOfFarmersInFarmgroup);
+
           console.log('Global parameters successfully reset to default:', defaultUserInput);
         } else {
-          const errorMessage = await response.text(); 
-          window.alert(errorMessage);
+          const errorMessage = await response.json(); 
+          window.alert(errorMessage.message);
           console.error('Error:', response.status, response.statusText);
         }
       } catch (error) {
@@ -71,7 +79,11 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
         variableCostsDelayed,
         variableCostsDelayedDiscount,
         variableCostsTrainChiefs,
-        extraOptimizationParameters, 
+        extraOptimizationParameters,
+        nrOfVillages,
+        nrOfNeighborhoods,
+        farmersPerVillage,
+        percentageOfFarmersInFarmgroup,
       };
 
     // Log
@@ -91,8 +103,8 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
     if (response.status === 200) {
       console.log('Parameters successfully sent and processed by backend.');
     } else {
-      const errorMessage = await response.text(); // Assuming error message in plain text
-      window.alert(errorMessage);
+      const errorMessage = await response.json(); // Assuming error message in plain text
+      window.alert(errorMessage.message);
       console.error('Error:', response.status, response.statusText);
     }
   } catch (error) {
@@ -145,6 +157,31 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
               <div className="label">Variable Costs for Training of Chiefs ($)</div>
               <TextInput value={variableCostsTrainChiefs} setValue={setVariableCostsTrainChiefs} placeholder="Use a dot for decimal values."/>
           </div>
+     
+          <div className="inputGroup">
+              <div className="label">Number of Villages</div>
+              <TextInput value={nrOfVillages} setValue={setNrOfVillages} />
+          </div>
+     
+          <div className="inputGroup">
+              <div className="label">
+                Number of Neighborhoods
+                <span className="tooltip-trigger" data-tooltip-id={"nghbrhd"} data-tooltip-content={"test"}>?</span>
+              </div>
+              <TextInput value={nrOfNeighborhoods} setValue={setNrOfNeighborhoods} />
+              <ReactTooltip id={"nghbrhd"} place="top" effect="solid" />
+          </div>
+
+          <div className="inputGroup">
+              <div className="label">Average Number of Farmers per Village</div>
+              <TextInput value={farmersPerVillage} setValue={setFarmersPerVillage} />
+          </div>
+     
+          <div className="inputGroup" style={{paddingBottom: '25px'}}>
+              <div className="label">Percentage of Farmers in Farmgroup</div>
+              <TextInput value={percentageOfFarmersInFarmgroup} setValue={setPercentageOfFarmersInFarmgroup} />
+          </div>
+     
      
           <div className="flexContainerGlobalParameterbox">
               <Button
