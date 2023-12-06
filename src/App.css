@@ -64,8 +64,9 @@ font-family: "Montserrat", sans-serif;
 
 .CSVBox {
   text-align: left;
-  flex: 1; /* Each child will take equal amount of space */
-  margin: 1px; 
+  flex: 1.25;
+  margin: 1px;
+  margin-right: 15px;
 }
 
 .ModelAndOptimizerBox {
@@ -140,6 +141,7 @@ font-family: "Montserrat", sans-serif;
 
 .h2-spacing {
   padding-bottom: 10px;
+  text-align: center;
 }
 
 .result-box {
@@ -240,4 +242,47 @@ font-family: "Montserrat", sans-serif;
   to {
     transform: rotate(360deg);
   }
+}
+
+.centeredDataInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* Optional: Center text within inputs */
+}
+
+/* Apply centering to the file input */
+.centeredDataInput input[type="file"] {
+  margin-bottom: 10px;
+}
+
+/* Apply centering to the form inputs */
+.centeredDataInput form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; 
+}
+
+/* Apply centering to the table inputs */
+.centeredDataInput table {
+  width: 100%; 
+  text-align: left;
+}
+
+/* Apply centering to the buttons within the container */
+.centeredDataInput .flexContainerGlobalParameterbox {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.uploadContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.uploadContainer input[type="file"] {
+  margin-right: 10px; /* spacing between input and button */
 }
