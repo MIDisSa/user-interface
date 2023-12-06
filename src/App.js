@@ -23,6 +23,7 @@ const App = () => {
     const [csvData, setCsvData] = useState([]);
     const [formData, setFormData] = useState({}); // thats for the form like data representation
     const [successMessage, setSuccessMessage] = useState(null); // state for displaying success message
+    const [reload, setReload] = useState(false); // state for reloading the page after deleting result history
     const [optimizationResults, setOptimizationResults] = useState(() => {
         // initial value from local storage or default to an empty array
         const savedResults = localStorage.getItem('optimizationResults');
@@ -182,7 +183,7 @@ const App = () => {
     const handleDeleteHistory = async (e) => {
 
         try { // call endpoint to delete result history in export CSVs
-            const response = await fetch('http://localhost:8080//clearResultCSVs', {
+            const response = await fetch('http://localhost:8080/clearResultCSVs', {
                 method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -200,15 +201,14 @@ const App = () => {
 
         // clear localstorage
         localStorage.removeItem('optimizationResults');
-
-    } catch (error) {
-        console.error('Error sending data:', error);
-    }
-        // clear localstorage
-        localStorage.removeItem('optimizationResults');
+        setOptimizationResults([]);
 
         // reload to clear results table
+        setReload(!reload);
 
+        } catch (error) {
+            console.error('Error sending data:', error);
+        }
     };
     
     // function to round to a certain number of digits
@@ -306,10 +306,10 @@ const App = () => {
                     </div>
                     <div className="result-container" id="results">
                         <div className="result-box">
-                            <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick} />
+                            <ResultBox adopters={adopters} awareFarmers={awareFarmers} totalCost={totalCost} awareFarmersPerTick={awareFarmersPerTick} adoptersPerTick={adoptersPerTick} reload={reload}/>
                         </div>
                         <div className="result-box">
-                            <ResultboxOptimizer optimizationResults={optimizationResults} />
+                            <ResultboxOptimizer optimizationResults={optimizationResults}  reload={reload}/>
                         </div>
                     </div>
                 </div>
