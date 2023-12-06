@@ -63,7 +63,7 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
   };
 
   return (
-    <div className='table-container'>
+    <div className='table-container' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }} >
       <h2>Model Results</h2>
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <div><p>Number of adopters: {adopters}</p></div>
