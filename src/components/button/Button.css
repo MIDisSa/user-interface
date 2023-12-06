@@ -49,3 +49,10 @@
   background-color: #00A0C1;
   color: #ffffff;
 }
+
+.button-large {
+  font-size: 17px;
+  background-color: #00A0C1;
+  color: #ffffff;
+  border: none;
+}
