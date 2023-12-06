@@ -5,7 +5,12 @@ import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { useEffect } from 'react';
 
 const ResultboxOptimizer = ({ optimizationResults }) => {
-
+  
+  // function to change format of values
+  const formatNumber = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+  
   const downloadOptimizerResults = async () => {
     try {
       const result = await fetch('http://localhost:8080/downloadOptimizationResultsCSV')
@@ -84,15 +89,15 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
                   <tr key={index} className={index === 0 ? "highlighted-row" : ""}>
                     <td>{result.optimizationType}</td>
                     <td>{result.directAdType}</td>
-                    <td>{result.directAdFrequency}</td>
-                    <td>{result.trainChiefsFrequency}</td>
-                    <td>{result.directAdNrOfVillages}</td>
-                    <td>{result.trainChiefsNumber}</td>
-                    <td>{result.bestFitness}</td>
-                    <td>{result.nrOfDirectAds}</td>
-                    <td>{result.nrOfChiefTrainings}</td>
-                    <td>{result.totalCost}</td>
-                  </tr>
+                    <td>{formatNumber(result.directAdFrequency)}</td>
+                    <td>{formatNumber(result.trainChiefsFrequency)}</td>
+                    <td>{formatNumber(result.directAdNrOfVillages)}</td>
+                    <td>{formatNumber(result.trainChiefsNumber)}</td>
+                    <td>{formatNumber(result.bestFitness)}</td>
+                    <td>{formatNumber(result.nrOfDirectAds)}</td>
+                    <td>{formatNumber(result.nrOfChiefTrainings)}</td>
+                    <td>{formatNumber(result.totalCost)}</td>
+                      </tr>
                 ))}
               </tbody>
             </table>

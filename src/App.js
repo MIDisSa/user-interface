@@ -143,15 +143,29 @@ const App = () => {
         setOptimizationResults(prevResults => [...prevResults, newResult]);
     };
     
+    const formatNumber = (number) => {
+        // Remove existing commas
+        let cleanedNumber = number.toString().replace(/,/g, '');
+    
+        // Split number into whole and decimal parts if it's a float
+        let parts = cleanedNumber.split(".");
+    
+        // Apply regex to the whole part
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+        // Reassemble it
+        return parts.join(".");
+    };
     
 
     // Handle form field change
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        const formattedValue = formatNumber(value);
         setFormData(prevData => ({
             ...prevData,
-            [name]: value
-        }));
+            [name]: formattedValue
+          }));
     };
     
     const handleSubmit = async (e) => {
