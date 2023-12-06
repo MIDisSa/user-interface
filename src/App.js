@@ -232,12 +232,14 @@ const App = () => {
                         <div className="CSVandGlobalParameterBox" style={{ textAlign: 'left', paddingLeft: '10%' , paddingRight: '10%' }}>
                             <div className="CSVBox">
                                 <h2 className="h2-spacing">Empirically Defined Global Parameters</h2>
+                                <div className="centeredDataInput"> 
+                                <div className="uploadContainer">
                                 <input type="file" ref={fileInputRef} />
                                 <Button label="Upload CSV"
                                     onClick={handleUploadRawCSV}
                                     title="Upload the CSV file and extract parameters."
                                     style={{ marginLeft: '100px' }} />
-
+                                </div>
                                 {/* Form for Parameters in table  */}
                                 <form onSubmit={handleSubmit} style={{paddingBottom: '20px'}}>
                                     <table>
@@ -271,6 +273,7 @@ const App = () => {
                                         </tbody>
                                     </table>
                                 </form>
+                                </div>
                                 <div className="flexContainerGlobalParameterbox">
                                 <Button label="Save Empirical Parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
                                 <Button label="Set to Default" variant="outlined-blue" onClick={resetForm} title={"Resets values to a reasonable default that yields a stable result."} style={{padding: '20px'}}/>

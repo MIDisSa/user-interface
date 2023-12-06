@@ -243,3 +243,46 @@ font-family: "Montserrat", sans-serif;
     transform: rotate(360deg);
   }
 }
+
+.centeredDataInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* Optional: Center text within inputs */
+}
+
+/* Apply centering to the file input */
+.centeredDataInput input[type="file"] {
+  margin-bottom: 10px;
+}
+
+/* Apply centering to the form inputs */
+.centeredDataInput form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; 
+}
+
+/* Apply centering to the table inputs */
+.centeredDataInput table {
+  width: 100%; 
+  text-align: left;
+}
+
+/* Apply centering to the buttons within the container */
+.centeredDataInput .flexContainerGlobalParameterbox {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.uploadContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.uploadContainer input[type="file"] {
+  margin-right: 10px; /* spacing between input and button */
+}
