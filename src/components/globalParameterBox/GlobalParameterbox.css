@@ -5,7 +5,7 @@
     justify-content: flex-start;
     flex: 2;
     margin: 5px; /* Optional: Adds some margin around each box */
-    margin-left: 25px;
+    margin-left: 100px;
 }
 
 .columns {
