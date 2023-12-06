@@ -45,8 +45,8 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
         
           console.log('Global parameters successfully reset to default:', defaultUserInput);
         } else {
-          const errorMessage = await response.text(); 
-          window.alert(errorMessage);
+          const errorMessage = await response.json(); 
+          window.alert(errorMessage.message);
           console.error('Error:', response.status, response.statusText);
         }
       } catch (error) {
@@ -91,8 +91,8 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
     if (response.status === 200) {
       console.log('Parameters successfully sent and processed by backend.');
     } else {
-      const errorMessage = await response.text(); // Assuming error message in plain text
-      window.alert(errorMessage);
+      const errorMessage = await response.json(); // Assuming error message in plain text
+      window.alert(errorMessage.message);
       console.error('Error:', response.status, response.statusText);
     }
   } catch (error) {
