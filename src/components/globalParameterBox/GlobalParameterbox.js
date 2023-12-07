@@ -22,6 +22,17 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
   const [loading, setLoading] = useState(false);
 
 
+  const formatNumber = (number) => {
+
+    if (number === undefined || number === '') {
+      return '';
+    }
+    let cleanedNumber = number.toString().replace(/,/g, '');
+    let parts = cleanedNumber.split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  };
+
   const resetGlobalParameters = async () => {
     setLoading(true);
 
@@ -126,62 +137,62 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
         <div className='column'>
           <div className="inputGroup">
             <div className="label">Days</div>
-            <TextInput value={numberOfTicks} setValue={setNumberOfTicks} />
+            <TextInput value={formatNumber(numberOfTicks)} setValue={setNumberOfTicks} />
           </div>
           <div className="inputGroup">
             <div className="label">Number of Villages</div>
-            <TextInput value={nrOfVillages} setValue={setNrOfVillages} />
+            <TextInput value={formatNumber(nrOfVillages)} setValue={setNrOfVillages} />
           </div>
           <div className="inputGroup">
             <div className="label">
               Number of Neighborhoods
               <span className="tooltip-trigger" data-tooltip-id={"nghbrhd"} data-tooltip-content={"Farmers are more likely to communicate with "}>?</span>
             </div>
-            <TextInput value={nrOfNeighborhoods} setValue={setNrOfNeighborhoods} />
+            <TextInput value={formatNumber(nrOfNeighborhoods)} setValue={setNrOfNeighborhoods} />
             <ReactTooltip id={"nghbrhd"} place="top" effect="solid" />
           </div>
           <div className="inputGroup">
             <div className="label">Average Number of Farmers per Village</div>
-            <TextInput value={farmersPerVillage} setValue={setFarmersPerVillage} />
+            <TextInput value={formatNumber(farmersPerVillage)} setValue={setFarmersPerVillage} />
           </div>
           <div className="inputGroup" style={{ paddingBottom: '25px' }}>
             <div className="label">Percentage of Farmers in Farmgroup (%) </div>
-            <TextInput value={percentageOfFarmersInFarmgroup} setValue={setPercentageOfFarmersInFarmgroup} />
+            <TextInput value={formatNumber(percentageOfFarmersInFarmgroup)} setValue={setPercentageOfFarmersInFarmgroup} />
           </div>
         </div>
 
         <div className='column'>
           <div className="inputGroup">
             <div className="label">Budget ($)</div>
-            <TextInput value={budget} setValue={setBudget} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(budget)} setValue={setBudget} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
             <div className="label">Fixed Costs for Direct Ad ($)</div>
-            <TextInput value={fixedCostsDirectAd} setValue={setFixedCostsDirectAd} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(fixedCostsDirectAd)} setValue={setFixedCostsDirectAd} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
             <div className="label">Fixed Costs for Training of Chiefs ($)</div>
-            <TextInput value={fixedCostsTrainChiefs} setValue={setFixedCostsTrainChiefs} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(fixedCostsTrainChiefs)} setValue={setFixedCostsTrainChiefs} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
             <div className="label">Variable Costs for Direct Ad ($)</div>
-            <TextInput value={variableCostsDirectAd} setValue={setVariableCostsDirectAd} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(variableCostsDirectAd)} setValue={setVariableCostsDirectAd} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
             <div className="label">Variable Costs for Direct Ad + Discount ($)</div>
-            <TextInput value={variableCostsDiscount} setValue={setVariableCostsDiscount} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(variableCostsDiscount)} setValue={setVariableCostsDiscount} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
             <div className="label">Variable Costs for Direct Ad + Deferred Payment ($)</div>
-            <TextInput value={variableCostsDelayed} setValue={setVariableCostsDelayed} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(variableCostsDelayed)} setValue={setVariableCostsDelayed} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
             <div className="label">Variable Costs for Direct Ad + Deferred Payment + Discount ($)</div>
-            <TextInput value={variableCostsDelayedDiscount} setValue={setVariableCostsDelayedDiscount} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(variableCostsDelayedDiscount)} setValue={setVariableCostsDelayedDiscount} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup" style={{ paddingBottom: '25px' }}>
             <div className="label">Variable Costs for Training of Chiefs ($)</div>
-            <TextInput value={variableCostsTrainChiefs} setValue={setVariableCostsTrainChiefs} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(variableCostsTrainChiefs)} setValue={setVariableCostsTrainChiefs} placeholder="Use a dot for decimal values." />
           </div>
         </div>
 
