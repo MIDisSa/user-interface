@@ -157,7 +157,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
           </div>
           <div className="inputGroup" style={{ paddingBottom: '25px' }}>
             <div className="label">Percentage of Farmers in Farmgroup (%) </div>
-            <TextInput value={formatNumber(percentageOfFarmersInFarmgroup)} setValue={setPercentageOfFarmersInFarmgroup} />
+            <TextInput value={formatNumber(percentageOfFarmersInFarmgroup)} setValue={setPercentageOfFarmersInFarmgroup} placeholder="Use a dot for decimal values."/>
           </div>
         </div>
 
