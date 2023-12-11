@@ -76,7 +76,7 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
       <h2>Model Results</h2>
         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <div><p>Number of Adopters: {formatNumber(adopters)}</p></div>
-        <div><p>Number of Aware Farmers: {formatNumber(awareFarmers)}</p></div>
+        <div><p>Number of Aware Farmers: {formatNumber(awareFarmers + adopters)}</p></div>
         <div><p>Total Costs ($): {formatNumber(totalCost)}</p></div>
       </div>
 
