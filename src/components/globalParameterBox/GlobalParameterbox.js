@@ -33,6 +33,45 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
     return parts.join(".");
   };
 
+  useEffect(() => {
+    let newBudget = budget.replaceAll(",", "");
+    setBudget(newBudget);
+
+    let newFixedCostsDirectAd = fixedCostsDirectAd.replaceAll(",", "");
+    setFixedCostsDirectAd(newFixedCostsDirectAd);
+
+    let newFixedCostsTrainChiefs = fixedCostsTrainChiefs.replaceAll(",", "");
+    setFixedCostsTrainChiefs(newFixedCostsTrainChiefs);
+
+    let newVariableCostsDirectAd = variableCostsDirectAd.replaceAll(",", "");
+    setVariableCostsDirectAd(newVariableCostsDirectAd);
+
+    let newVariableCostsDiscount = variableCostsDiscount.replaceAll(",", "");
+    setVariableCostsDiscount(newVariableCostsDiscount);
+
+    let newVariableCostsDelayed = variableCostsDelayed.replaceAll(",", "");
+    setVariableCostsDelayed(newVariableCostsDelayed);
+
+    let newVariableCostsDelayedDiscount = variableCostsDelayedDiscount.replaceAll(",", "");
+    setVariableCostsDelayedDiscount(newVariableCostsDelayedDiscount);
+
+    let newVariableCostsTrainChiefs = variableCostsTrainChiefs.replaceAll(",", "");
+    setVariableCostsTrainChiefs(newVariableCostsTrainChiefs);
+
+    let newNrOfVillages = nrOfVillages.replaceAll(",", "");
+    setNrOfVillages(newNrOfVillages);
+
+    let newNrOfNeighborhoods = nrOfNeighborhoods.replaceAll(",", "");
+    setNrOfNeighborhoods(newNrOfNeighborhoods);
+
+    let newFarmersPerVillage = farmersPerVillage.replaceAll(",", "");
+    setFarmersPerVillage(newFarmersPerVillage);
+
+    let newPercentageOfFarmersInFarmgroup = percentageOfFarmersInFarmgroup.replaceAll(",", "");
+    setPercentageOfFarmersInFarmgroup(newPercentageOfFarmersInFarmgroup);
+
+}, [budget, fixedCostsDirectAd, fixedCostsTrainChiefs, variableCostsDirectAd, variableCostsDiscount, variableCostsDelayed, variableCostsDelayedDiscount, variableCostsTrainChiefs, nrOfVillages, nrOfNeighborhoods, farmersPerVillage, percentageOfFarmersInFarmgroup]);
+
   const resetGlobalParameters = async () => {
     setLoading(true);
 
