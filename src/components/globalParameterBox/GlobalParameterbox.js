@@ -22,6 +22,60 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
   const [loading, setLoading] = useState(false);
 
 
+  const formatNumber = (number) => {
+
+    if (number === undefined || number === '') {
+      return '';
+    }
+    let cleanedNumber = number.toString().replace(/,/g, '');
+    let parts = cleanedNumber.split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  };
+
+  // remove comma before sending to backend, so it doesnt mess up the netlogo model
+  useEffect(() => {
+    let newNumberOfTicks = numberOfTicks.replaceAll(",","");
+    setNumberOfTicks(newNumberOfTicks);
+
+    let newBudget = budget.replaceAll(",", "");
+    setBudget(newBudget);
+
+    let newFixedCostsDirectAd = fixedCostsDirectAd.replaceAll(",", "");
+    setFixedCostsDirectAd(newFixedCostsDirectAd);
+
+    let newFixedCostsTrainChiefs = fixedCostsTrainChiefs.replaceAll(",", "");
+    setFixedCostsTrainChiefs(newFixedCostsTrainChiefs);
+
+    let newVariableCostsDirectAd = variableCostsDirectAd.replaceAll(",", "");
+    setVariableCostsDirectAd(newVariableCostsDirectAd);
+
+    let newVariableCostsDiscount = variableCostsDiscount.replaceAll(",", "");
+    setVariableCostsDiscount(newVariableCostsDiscount);
+
+    let newVariableCostsDelayed = variableCostsDelayed.replaceAll(",", "");
+    setVariableCostsDelayed(newVariableCostsDelayed);
+
+    let newVariableCostsDelayedDiscount = variableCostsDelayedDiscount.replaceAll(",", "");
+    setVariableCostsDelayedDiscount(newVariableCostsDelayedDiscount);
+
+    let newVariableCostsTrainChiefs = variableCostsTrainChiefs.replaceAll(",", "");
+    setVariableCostsTrainChiefs(newVariableCostsTrainChiefs);
+
+    let newNrOfVillages = nrOfVillages.replaceAll(",", "");
+    setNrOfVillages(newNrOfVillages);
+
+    let newNrOfNeighborhoods = nrOfNeighborhoods.replaceAll(",", "");
+    setNrOfNeighborhoods(newNrOfNeighborhoods);
+
+    let newFarmersPerVillage = farmersPerVillage.replaceAll(",", "");
+    setFarmersPerVillage(newFarmersPerVillage);
+
+    let newPercentageOfFarmersInFarmgroup = percentageOfFarmersInFarmgroup.replaceAll(",", "");
+    setPercentageOfFarmersInFarmgroup(newPercentageOfFarmersInFarmgroup);
+
+}, [numberOfTicks, budget, fixedCostsDirectAd, fixedCostsTrainChiefs, variableCostsDirectAd, variableCostsDiscount, variableCostsDelayed, variableCostsDelayedDiscount, variableCostsTrainChiefs, nrOfVillages, nrOfNeighborhoods, farmersPerVillage, percentageOfFarmersInFarmgroup]);
+
   const resetGlobalParameters = async () => {
     setLoading(true);
 
@@ -126,62 +180,62 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
         <div className='column'>
           <div className="inputGroup">
             <div className="label">Days</div>
-            <TextInput value={numberOfTicks} setValue={setNumberOfTicks} />
+            <TextInput value={formatNumber(numberOfTicks)} setValue={setNumberOfTicks} />
           </div>
           <div className="inputGroup">
             <div className="label">Number of Villages</div>
-            <TextInput value={nrOfVillages} setValue={setNrOfVillages} />
+            <TextInput value={formatNumber(nrOfVillages)} setValue={setNrOfVillages} />
           </div>
           <div className="inputGroup">
             <div className="label">
               Number of Neighborhoods
               <span className="tooltip-trigger" data-tooltip-id={"nghbrhd"} data-tooltip-content={"Villages that lie close to each other form a neighborhood. Agents within the same neighborhood are more likely to interact with each other. If set equal to \"Number of Villages\" the influence of neighborhoods is ignored."}>?</span>
             </div>
-            <TextInput value={nrOfNeighborhoods} setValue={setNrOfNeighborhoods} />
+            <TextInput value={formatNumber(nrOfNeighborhoods)} setValue={setNrOfNeighborhoods} />
             <ReactTooltip id={"nghbrhd"} place="top" effect="solid" />
           </div>
           <div className="inputGroup">
             <div className="label">Average Number of Farmers per Village</div>
-            <TextInput value={farmersPerVillage} setValue={setFarmersPerVillage} />
+            <TextInput value={formatNumber(farmersPerVillage)} setValue={setFarmersPerVillage} />
           </div>
           <div className="inputGroup" style={{ paddingBottom: '25px' }}>
             <div className="label">Percentage of Farmers in Farmgroup (%) </div>
-            <TextInput value={percentageOfFarmersInFarmgroup} setValue={setPercentageOfFarmersInFarmgroup} />
+            <TextInput value={formatNumber(percentageOfFarmersInFarmgroup)} setValue={setPercentageOfFarmersInFarmgroup} placeholder="Use a dot for decimal values."/>
           </div>
         </div>
 
         <div className='column'>
           <div className="inputGroup">
             <div className="label">Budget ($)</div>
-            <TextInput value={budget} setValue={setBudget} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(budget)} setValue={setBudget} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
             <div className="label">Fixed Costs for Direct Ad ($)</div>
-            <TextInput value={fixedCostsDirectAd} setValue={setFixedCostsDirectAd} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(fixedCostsDirectAd)} setValue={setFixedCostsDirectAd} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
             <div className="label">Fixed Costs for Training of Chiefs ($)</div>
-            <TextInput value={fixedCostsTrainChiefs} setValue={setFixedCostsTrainChiefs} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(fixedCostsTrainChiefs)} setValue={setFixedCostsTrainChiefs} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
             <div className="label">Variable Costs for Direct Ad ($)</div>
-            <TextInput value={variableCostsDirectAd} setValue={setVariableCostsDirectAd} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(variableCostsDirectAd)} setValue={setVariableCostsDirectAd} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
             <div className="label">Variable Costs for Direct Ad + Discount ($)</div>
-            <TextInput value={variableCostsDiscount} setValue={setVariableCostsDiscount} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(variableCostsDiscount)} setValue={setVariableCostsDiscount} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
             <div className="label">Variable Costs for Direct Ad + Deferred Payment ($)</div>
-            <TextInput value={variableCostsDelayed} setValue={setVariableCostsDelayed} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(variableCostsDelayed)} setValue={setVariableCostsDelayed} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup">
             <div className="label">Variable Costs for Direct Ad + Deferred Payment + Discount ($)</div>
-            <TextInput value={variableCostsDelayedDiscount} setValue={setVariableCostsDelayedDiscount} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(variableCostsDelayedDiscount)} setValue={setVariableCostsDelayedDiscount} placeholder="Use a dot for decimal values." />
           </div>
           <div className="inputGroup" style={{ paddingBottom: '25px' }}>
             <div className="label">Variable Costs for Training of Chiefs ($)</div>
-            <TextInput value={variableCostsTrainChiefs} setValue={setVariableCostsTrainChiefs} placeholder="Use a dot for decimal values." />
+            <TextInput value={formatNumber(variableCostsTrainChiefs)} setValue={setVariableCostsTrainChiefs} placeholder="Use a dot for decimal values." />
           </div>
         </div>
 

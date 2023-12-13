@@ -22,6 +22,7 @@ const App = () => {
     const [adoptersPerTick, setAdoptersPerTick] = useState(null);
     const [csvData, setCsvData] = useState([]);
     const [formData, setFormData] = useState({}); // thats for the form like data representation
+    const [formDataNoComma, setFormDataNoComma] = useState({}); // form data with commas removed
     const [successMessage, setSuccessMessage] = useState(null); // state for displaying success message
     const [reload, setReload] = useState(false); // state for reloading the page after deleting result history
     const [optimizationResults, setOptimizationResults] = useState(() => {
@@ -111,7 +112,6 @@ const App = () => {
         }
     };
 
-    
     // Use stored parameters when initializing state
     useEffect(() => {
         const storedParameters = localStorage.getItem('parameters');
@@ -136,6 +136,7 @@ const App = () => {
      // Update formData when parameters change
      useEffect(() => {
         setFormData(parameters);
+        setFormDataNoComma(parameters);
     }, [parameters]);
 
     // to get data from Optimizerbox to Optimizer Resultbox
@@ -166,6 +167,10 @@ const App = () => {
             ...prevData,
             [name]: formattedValue
           }));
+        setFormDataNoComma(prevData => ({
+            ...prevData,
+            [name]: value.replaceAll(",", "")
+            }));
     };
     
     const handleSubmit = async (e) => {
@@ -178,7 +183,7 @@ const App = () => {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000', 
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(formDataNoComma)
         });
 
         if (response.status === 200) {
