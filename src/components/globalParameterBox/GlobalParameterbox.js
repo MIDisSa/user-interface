@@ -33,6 +33,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
     return parts.join(".");
   };
 
+  // remove comma before sending to backend, so it doesnt mess up the netlogo model
   useEffect(() => {
     let newBudget = budget.replaceAll(",", "");
     setBudget(newBudget);
