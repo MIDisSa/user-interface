@@ -169,7 +169,7 @@ const App = () => {
           }));
         setFormDataNoComma(prevData => ({
             ...prevData,
-            [name]: value
+            [name]: value.replaceAll(",", "")
             }));
     };
     
