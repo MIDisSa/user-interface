@@ -35,6 +35,9 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
 
   // remove comma before sending to backend, so it doesnt mess up the netlogo model
   useEffect(() => {
+    let newNumberOfTicks = numberOfTicks.replaceAll(",","");
+    setNumberOfTicks(newNumberOfTicks);
+
     let newBudget = budget.replaceAll(",", "");
     setBudget(newBudget);
 
@@ -71,7 +74,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
     let newPercentageOfFarmersInFarmgroup = percentageOfFarmersInFarmgroup.replaceAll(",", "");
     setPercentageOfFarmersInFarmgroup(newPercentageOfFarmersInFarmgroup);
 
-}, [budget, fixedCostsDirectAd, fixedCostsTrainChiefs, variableCostsDirectAd, variableCostsDiscount, variableCostsDelayed, variableCostsDelayedDiscount, variableCostsTrainChiefs, nrOfVillages, nrOfNeighborhoods, farmersPerVillage, percentageOfFarmersInFarmgroup]);
+}, [numberOfTicks, budget, fixedCostsDirectAd, fixedCostsTrainChiefs, variableCostsDirectAd, variableCostsDiscount, variableCostsDelayed, variableCostsDelayedDiscount, variableCostsTrainChiefs, nrOfVillages, nrOfNeighborhoods, farmersPerVillage, percentageOfFarmersInFarmgroup]);
 
   const resetGlobalParameters = async () => {
     setLoading(true);
