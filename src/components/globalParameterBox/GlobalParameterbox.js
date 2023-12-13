@@ -6,7 +6,7 @@ import { FadeLoader } from 'react-spinners';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }) => {
-  const [numberOfTicks, setNumberOfTicks] = useState();
+  const [numberOfTicks, setNumberOfTicks] = useState('');
   const [budget, setBudget] = useState('');
   const [fixedCostsDirectAd, setFixedCostsDirectAd] = useState('');
   const [fixedCostsTrainChiefs, setFixedCostsTrainChiefs] = useState('');
