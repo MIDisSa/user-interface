@@ -176,9 +176,6 @@ const App = () => {
     const handleSubmit = async (e) => {
         e.preventDefault(); //prevents the form from refreshing
 
-        console.log("no comma: ", formDataNoComma)
-        console.log("comma: ", formData)
-
         try {
             const response = await fetch('http://localhost:8080/updateInput', {
                 method: 'POST',
