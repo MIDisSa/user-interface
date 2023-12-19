@@ -89,3 +89,10 @@ TextInput {
     z-index: 1;
     border-radius: 10px;
 }
+
+.overlayText {
+    color: #d78c22;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}

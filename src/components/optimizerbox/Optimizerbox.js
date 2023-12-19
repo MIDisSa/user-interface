@@ -5,36 +5,57 @@ import React, { useState, useEffect } from 'react';
 import { FadeLoader } from 'react-spinners';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
-const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => { 
-    const [optimizationType, setOptimizationType] = useState(''); 
-    const [loading, setLoading] = useState(false);
-  
-    // new state to store all optimization results in an array
-    const [optimizationResults, setOptimizationResults] = useState(() => {
-        // initial value we get from local storage or default to empty array
-        const savedResults = localStorage.getItem('optimizationResults');
-        return savedResults ? JSON.parse(savedResults) : [];
-    });
-  
+const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
+  const [optimizationType, setOptimizationType] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [update, setUpdate] = useState("");
 
-    useEffect(() => {
-        // when optimizationResults change, we update local storage
-        localStorage.setItem('optimizationResults', JSON.stringify(optimizationResults));
-    }, [optimizationResults]);
+  // new state to store all optimization results in an array
+  const [optimizationResults, setOptimizationResults] = useState(() => {
+    // initial value we get from local storage or default to empty array
+    const savedResults = localStorage.getItem('optimizationResults');
+    return savedResults ? JSON.parse(savedResults) : [];
+  });
 
-    // add new results to state and local storage
-    const addOptimizationResult = (newResult) => {
-        setOptimizationResults(prevResults => [...prevResults, newResult]);
+
+  useEffect(() => {
+    // when optimizationResults change, we update local storage
+    localStorage.setItem('optimizationResults', JSON.stringify(optimizationResults));
+  }, [optimizationResults]);
+
+  // add new results to state and local storage
+  const addOptimizationResult = (newResult) => {
+    setOptimizationResults(prevResults => [...prevResults, newResult]);
+  };
+
+  // poll for update every 3 seconds
+  useEffect(() => {
+    let interval;
+    if (loading) {
+      interval = setInterval(() => {
+        fetchUpdate();
+      }, 3000);
+    }
+    return () => clearInterval(interval);
+  }, [loading])
+
+  // fetch optimizer update
+  const fetchUpdate = async () => {
+    const response = await fetch('http://localhost:8080/optimizerBuffer');
+    const data = await response.text();
+    setUpdate(data);
+  };
+
+  const runOptimizer = async () => {
+
+    // empty update, so that update from previous run is not shown
+    setUpdate("");
+
+    setLoading(true);
+
+    const optimizerData = {
+      optimizationType,
     };
-
-
-    const runOptimizer = async () => {
-
-      setLoading(true);
-
-      const optimizerData = {
-        optimizationType,
-      };
 
     // Log
     console.log('Sending data to optimizer:', optimizerData);
@@ -81,33 +102,33 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
     }
   };
 
-  
+
   return (
     <div className="optimizerBox">
-       <span className="tooltip-opti" data-tooltip-id="opti" data-tooltip-content="The optimizer runs on a model that includes 100 villages, with 1 chief and on average 10 agents per village.
-            The optimization follows a Mutation Hill Climb algorithm and concludes after max. 400 runs.">?</span> 
-              <ReactTooltip id= "opti"  place="top" effect="solid" />
-       <div className="numbered-heading">
-            <div className="number-circle">2</div>   
-            <h2>Optimizer</h2>
-        </div>
-        <div className="description-text">
+      <span className="tooltip-opti" data-tooltip-id="opti" data-tooltip-content="The optimizer runs on a model that includes 100 villages, with 1 chief and on average 10 agents per village.
+            The optimization follows a Mutation Hill Climb algorithm and concludes after max. 400 runs.">?</span>
+      <ReactTooltip id="opti" place="top" effect="solid" />
+      <div className="numbered-heading">
+        <div className="number-circle">2</div>
+        <h2>Optimizer</h2>
+      </div>
+      <div className="description-text">
         The optimizer looks for the values in <span className="number-circle-inline">1</span> which on average yield the best result for the here defined goal. <br></br>
-Warning: Optimization process may take 15-30 minutes to complete, depending on the number of days defined in the settings above.
-                </div> 
+        Warning: Optimization process may take 15-30 minutes to complete, depending on the number of days defined in the settings above.
+      </div>
       <div className="flexContainer">
         <div className="inputGroup" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Dropdown label= "Optimization Type: " value={optimizationType} setValue={setOptimizationType}  >
+          <Dropdown label="Optimization Type: " value={optimizationType} setValue={setOptimizationType}  >
             <option disabled value="">
-                Please choose a type
-              </option>
+              Please choose a type
+            </option>
             <option value="maxAdopters">Max Adopters</option>
             <option value="maxKnowledge">Max Knowledge</option>
             <option value="minCost">Min Costs</option>
             <option value="test">Test</option>
-            </Dropdown>
+          </Dropdown>
         </div>
-        
+
       </div>
       <div className="flexContainer">
         <Button
@@ -117,21 +138,26 @@ Warning: Optimization process may take 15-30 minutes to complete, depending on t
         />
 
       </div>
-      {loading && (
-            <div className="overlay">
-                <FadeLoader color={'#FFA62B'} loading={loading}/>
-            </div>
-            )}
+      {loading && update === "" && (
+        <div className="overlay">
+          <FadeLoader color="#FFB100" />
+        </div>
+      )}
+      {loading && update !== "" && (
+        <div className="overlay">
+          <p className='overlayText'>{update}</p>
+        </div>
+      )}
     </div>
   );
 };
 
 const TextInput = ({ label, value, setValue }) => {
   return (
-      <div>
-          <label>{label}</label>
-          <input type="text" value={value} onChange={e => setValue(e.target.value)} />
-      </div>
+    <div>
+      <label>{label}</label>
+      <input type="text" value={value} onChange={e => setValue(e.target.value)} />
+    </div>
   );
 };
 
