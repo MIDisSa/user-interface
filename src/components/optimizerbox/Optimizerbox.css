@@ -96,3 +96,7 @@ TextInput {
     font-weight: bold;
     text-align: center;
 }
+
+.overlayButton {
+    z-index:2;
+}

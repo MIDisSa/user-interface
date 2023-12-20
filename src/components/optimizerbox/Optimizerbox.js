@@ -128,26 +128,45 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
             <option value="test">Test</option>
           </Dropdown>
         </div>
-
       </div>
-      <div className="flexContainer">
-        <Button
-          label="Start Optimizer"
-          onClick={runOptimizer}
-          variant="solid-orange"
-        />
 
-      </div>
+      {!loading && ( // when optimizer is not running: show "run optimizer button"
+        <div className="flexContainer">
+          <Button
+            label="Start Optimizer"
+            onClick={runOptimizer}
+            variant="solid-orange"
+          />
+        </div>
+      )}
+
       {loading && update === "" && (
+        <div className='flexContainer'>
         <div className="overlay">
           <FadeLoader color="#FFB100" />
         </div>
+        <div className='overlayButton'>
+        <Button
+            label="Cancel Optimizer"
+            onClick={runOptimizer}
+          />
+          </div>
+        </div>
       )}
       {loading && update !== "" && (
+        <div className='flexContainer'>
         <div className="overlay">
           <p className='overlayText'>{update}</p>
         </div>
+        <div className='overlayButton'>
+        <Button
+            label="Cancel Optimizer"
+            onClick={runOptimizer}
+          />
+          </div>
+        </div>
       )}
+      
     </div>
   );
 };
