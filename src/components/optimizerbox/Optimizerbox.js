@@ -92,8 +92,14 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
         });
       } else {
         const errorMessage = await response.json();
-        window.alert(errorMessage.message)
-        console.error('Error:', response.status, response.statusText);
+        
+        // if error message is b/c optimization was cancelled, do not show alert
+        if (loading === false && errorMessage.message.includes("java.lang.NullPointerException")) {
+          return;
+        } else {
+          window.alert(errorMessage.message)
+          console.error('Error:', response.status, response.statusText);
+        }
       }
     } catch (error) {
       console.error('Fetch Error:', error.message, error.stack);
