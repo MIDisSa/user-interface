@@ -92,13 +92,42 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
         });
       } else {
         const errorMessage = await response.json();
-        window.alert(errorMessage.message)
-        console.error('Error:', response.status, response.statusText);
+        
+        // if error message is b/c optimization was cancelled, do not show alert
+        if (loading === false && errorMessage.message.includes("java.lang.NullPointerException")) {
+          return;
+        } else {
+          window.alert(errorMessage.message)
+          console.error('Error:', response.status, response.statusText);
+        }
       }
     } catch (error) {
       console.error('Fetch Error:', error.message, error.stack);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const cancelOptimizer = async () => {
+
+    setLoading(false);
+    setUpdate("");
+
+    try {
+      const result = await fetch('http://localhost:8080/abortOptimization', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!result.ok) {
+        const errorMessage = await result.json();
+        window.alert(errorMessage.message)
+        throw new Error('Something went wrong: ' + result.statusText);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -128,26 +157,45 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
             <option value="test">Test</option>
           </Dropdown>
         </div>
-
       </div>
-      <div className="flexContainer">
-        <Button
-          label="Start Optimizer"
-          onClick={runOptimizer}
-          variant="solid-orange"
-        />
 
-      </div>
+      {!loading && ( // when optimizer is not running: show "run optimizer button"
+        <div className="flexContainer">
+          <Button
+            label="Start Optimizer"
+            onClick={runOptimizer}
+            variant="solid-orange"
+          />
+        </div>
+      )}
+
       {loading && update === "" && (
+        <div className='flexContainer'>
         <div className="overlay">
           <FadeLoader color="#FFB100" />
         </div>
+        <div className='overlayButton'>
+        <Button
+            label="Cancel Optimizer"
+            onClick={cancelOptimizer}
+          />
+          </div>
+        </div>
       )}
       {loading && update !== "" && (
+        <div className='flexContainer'>
         <div className="overlay">
           <p className='overlayText'>{update}</p>
         </div>
+        <div className='overlayButton'>
+        <Button
+            label="Cancel Optimizer"
+            onClick={cancelOptimizer}
+          />
+          </div>
+        </div>
       )}
+
     </div>
   );
 };
