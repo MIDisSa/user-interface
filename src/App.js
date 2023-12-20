@@ -7,7 +7,7 @@ import Button from "./components/button/Button";
 import GlobalParameterbox from "./components/globalParameterBox/GlobalParameterbox";
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import ZKSDLogo from './netzwerk-zksd-1.png';
-import UZHLogo from './uzh_logo_e_pos_web_main.jpg';
+import UZHLogo from './UniLogoNoBorder.png';
 
 
 import './App.css'; 
@@ -366,7 +366,7 @@ const App = () => {
                 </div>
                 <div class="darkBlueBackground">
                     <div className="footer-text">
-                        <p>ABM Tanzania</p>
+                        <p>Agent-based Model for Innovation Diffusion</p>
                     </div>
                     <div className="footer-logo">
                         <img src={UZHLogo} alt="UZH Logo" />

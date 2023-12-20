@@ -170,7 +170,7 @@ font-family: "Montserrat", sans-serif;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 35vmin;
   pointer-events: none;
 }
 
@@ -205,10 +205,10 @@ font-family: "Montserrat", sans-serif;
 }
 
 .footer-logo img {
-  max-width: 100%; /* Ensures the image is responsive and doesn't overflow its container */
-  height: auto; /* Maintains aspect ratio */
-  display: inline-block; 
-
+  width: auto;
+  height: 100px; 
+  display: block; 
+  margin: 0 auto;
 }
 
 .footer-logo img:last-child {
