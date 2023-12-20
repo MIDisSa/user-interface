@@ -170,7 +170,7 @@ font-family: "Montserrat", sans-serif;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 35vmin;
   pointer-events: none;
 }
 
@@ -205,10 +205,10 @@ font-family: "Montserrat", sans-serif;
 }
 
 .footer-logo img {
-  max-width: 100%; /* Ensures the image is responsive and doesn't overflow its container */
-  height: auto; /* Maintains aspect ratio */
-  display: inline-block; 
-
+  width: auto;
+  height: 100px; 
+  display: block; 
+  margin: 0 auto;
 }
 
 .footer-logo img:last-child {
@@ -285,4 +285,20 @@ font-family: "Montserrat", sans-serif;
 
 .uploadContainer input[type="file"] {
   margin-right: 10px; /* spacing between input and button */
+}
+
+.confirmation-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fbe5b8; 
+  color: #333;
+  text-align: center;
+  padding: 40px;
+  border-radius: 15px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  z-index: 1000;
+  width: 600px; 
+  box-sizing: border-box;
 }

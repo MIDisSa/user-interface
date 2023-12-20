@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { FadeLoader } from 'react-spinners';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
-const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }) => {
+const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters, onConfirmation }) => {
   const [numberOfTicks, setNumberOfTicks] = useState('');
   const [budget, setBudget] = useState('');
   const [fixedCostsDirectAd, setFixedCostsDirectAd] = useState('');
@@ -21,6 +21,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
   const [percentageOfFarmersInFarmgroup, setPercentageOfFarmersInFarmgroup] = useState('');
   const [loading, setLoading] = useState(false);
 
+  
 
   const formatNumber = (number) => {
 
@@ -117,7 +118,11 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
       setLoading(false);
     }
   };
-
+  
+  const [confirmation, setConfirmation] = useState({
+    show: false,
+    message: ''
+  });
 
   const runGlobalParameter = async () => {
 
@@ -155,6 +160,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters }
 
       // Check for a 200 status code
       if (response.status === 200) {
+        onConfirmation("Global Parameters were successfully set in the model!");
         console.log('Parameters successfully sent and processed by backend.');
       } else {
         const errorMessage = await response.json(); // Assuming error message in plain text

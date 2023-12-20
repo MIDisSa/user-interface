@@ -6,6 +6,7 @@
     flex: 2;
     margin: 5px; /* Optional: Adds some margin around each box */
     margin-left: 100px;
+   
 }
 
 .columns {
@@ -16,6 +17,7 @@
 .column {
     display: flex;
     flex-direction: column;
+    padding-right: 10px;
     flex: 1;
     text-align: center;
 }
