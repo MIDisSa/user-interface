@@ -43,14 +43,14 @@ const App = () => {
         };
 
     const PARAM_MAPPING = {
-        "avgIntraMentionPercentage" : "Mention Probability (%)",
-        "percentageNegativeWoM" : "Negative Word-of-Mouth Probability (%)",    
-        "baseAdoptionProbability" : "Adoption Probability (%)",
+        "trainChiefInfluence": "Relative Chief Influence Factor",
         "nrDefaultFriendsInterVillage": "Number of Friends Inter Village",
         "avgIntraVillageInteractionFrequency" : "Intra Village Interaction Frequency (days)",
         "avgInterVillageInteractionFrequency" : "Inter Village Interaction Frequency (days)",
         "avgChiefFarmerMeetingFrequency": "Farmgroup Meeting Frequency (days)",
-        "trainChiefInfluence": "Relative Chief Influence Factor",
+        "avgIntraMentionPercentage" : "Mention Probability (%)",
+        "percentageNegativeWoM" : "Negative Word-of-Mouth Probability (%)",    
+        "baseAdoptionProbability" : "Adoption Probability (%)",
     };
 
     const TOOLTIP_CONTENT = {
