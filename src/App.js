@@ -20,16 +20,20 @@ const App = () => {
     const [totalCost, setTotalCost] = useState(null);
     const [awareFarmersPerTick, setAwareFarmersPerTick] = useState(null);
     const [adoptersPerTick, setAdoptersPerTick] = useState(null);
-    const [csvData, setCsvData] = useState([]);
     const [formData, setFormData] = useState({}); // thats for the form like data representation
     const [formDataNoComma, setFormDataNoComma] = useState({}); // form data with commas removed
-    const [successMessage, setSuccessMessage] = useState(null); // state for displaying success message
     const [reload, setReload] = useState(false); // state for reloading the page after deleting result history
     const [optimizationResults, setOptimizationResults] = useState(() => {
         // initial value from local storage or default to an empty array
         const savedResults = localStorage.getItem('optimizationResults');
         return savedResults ? JSON.parse(savedResults) : [];
     });
+
+    const [confirmation, setConfirmation] = useState({
+        show: false,
+        message: ''
+    });
+    
 
     const [extraOptimizationParameters, setExtraOptimizationParameters] = useState({
         frequencyDirectAd: '',
@@ -111,6 +115,17 @@ const App = () => {
             console.error('File Upload Error:', error);
         }
     };
+    
+    // auto-hiding the pop up
+    useEffect(() => {
+        if (confirmation.show) {
+            const timer = setTimeout(() => {
+                setConfirmation(prev => ({ ...prev, show: false }));
+            }, 3000); // Adjust time as needed
+    
+            return () => clearTimeout(timer);
+        }
+    }, [confirmation.show]);
 
     // Use stored parameters when initializing state
     useEffect(() => {
@@ -187,7 +202,10 @@ const App = () => {
         });
 
         if (response.status === 200) {
-            setSuccessMessage("Parameters were successfully set in the model!"); // Display message
+            setConfirmation({
+                show: true,
+                message: "Parameters were successfully set in the model!"
+            });
         } else {
             const errorMessage = await response.json();
             window.alert(errorMessage.message)
@@ -211,7 +229,6 @@ const App = () => {
         });
 
         if (response.status === 200) {
-            setSuccessMessage("Result CSV successfully cleared!"); // Display message
         } else {
             const errorMessage = await response.json();
             window.alert(errorMessage.message)
@@ -244,6 +261,11 @@ const App = () => {
                 <div className="App-content">
                     <h1>Agent-based Model for Innovation Diffusion</h1>
                     <div className="ConfigurationBox">
+                        {confirmation.show && (
+                            <div className="confirmation-popup">
+                                {confirmation.message}
+                            </div>
+                        )}
                         <p className="description-text" style={{ textAlign: 'left', paddingLeft: '10%' , paddingRight: '10%' }}> 
                             Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File (in the same format as the LED-Project survey) to generate parameters automatically.​ Changes must be saved before running the model/optimizer.​<br></br>
                             The Optimizer works on a model that implements all the parameters entered below. <br></br> Hovering over the <span className="tooltip-trigger">?</span> provides additional information about parameters or functionality.
