@@ -268,8 +268,11 @@ const App = () => {
                     <div className="ConfigurationBox">
                         {confirmation.show && (
                             <div className="confirmation-popup">
-                                {confirmation.message}
-                            </div>
+                                <p style={{ color: 'green', fontWeight:'bold', fontSize: '40px' }}>
+                                    &#10003;
+                                </p>
+                            {confirmation.message}
+                          </div>
                         )}
                         <p className="description-text" style={{ textAlign: 'left', paddingLeft: '10%', paddingRight: '10%' }}>
                             Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File in the same format as stated XX here XX to generate parameters automatically.​ <br></br>
