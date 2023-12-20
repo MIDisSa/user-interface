@@ -48,23 +48,23 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
                 </th>
                 <th>
                   Treatment Arm
-                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Treatment arm that yielded the best result, employing direct advertisement."}>?</span>
+                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Treatment arm that yielded the best result."}>?</span>
                 </th>
                 <th>
                   Treatment Frequency (days)
-                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Interval between treatments employing direct advertisement. If frequency is 0, there is no direct advertisement."}>?</span>
+                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Interval between treatments. If frequency is 0, there are no treatments."}>?</span>
                 </th>
                 <th>
                   ToT Frequency (days)
-                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Interval between treatments employing training of trainers (ToT). If frequency is 0, there are no trainings."}>?</span>
+                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Interval between ToTs. If frequency is 0, there are no ToTs."}>?</span>
                 </th>
                 <th>
                   Treatment Coverage (%)
-                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Percentage of villages that were part of the Direct Ad treatment."}>?</span>
+                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Percentage of villages that were part of the treatment."}>?</span>
                 </th>
                 <th>
                   ToT Coverage (%)
-                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Percentage of villages in which training of trainers (ToT) was carried out."}>?</span>
+                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Percentage of villages that were part of the ToT."}>?</span>
                 </th>
                 <th>
                   Best Fitness
@@ -72,11 +72,11 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
                 </th>
                 <th>
                   Number of Treatments
-                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Number of treatments carried out, employing direct advertisement."}>?</span>
+                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Number of treatments carried out."}>?</span>
                   </th>
                 <th>
                   Number of ToTs
-                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Number of treatments carried out, employing training of trainers (ToT)."}>?</span>
+                  <span className="tooltip-trigger" data-tooltip-id="optimizerResult" style={{ marginLeft: '5px' }} data-tooltip-content={"Number of ToTs carried out."}>?</span>
                 </th>
                 <th>
                   Total Cost ($)
@@ -119,7 +119,9 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
             If Optimization Type is Max Adopters, then Best Fitness denotes the number of Adopters out of 1000 farmers.<br></br>
             If Optimization Type is Max Knowledge, then Best Fitness denotes the number of Aware Farmers + Adopters out of 1000 farmers.<br></br>
             If Optimization Type is Min Costs, then Best Fitness denotes the average Cost per Adopter.<br></br>
-            Column 8-10: Number of Treatments and Trainings actually carried out, taking into account the specified budget.
+            Column 8-10: Number of Treatments and Trainings actually carried out, taking into account the specified budget.<br></br>
+            <br></br>
+            For a more concrete example consult the accompanying report.
           </div>
         </div>
     </div>

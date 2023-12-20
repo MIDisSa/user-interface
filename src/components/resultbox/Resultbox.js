@@ -8,7 +8,7 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
 
   // function to change format of values
   const formatNumber = (number) => {
-    if (number !== null) {
+    if (number !== null && number !== 0) {
       return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     } else {
       return null;
@@ -56,8 +56,8 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
         label: 'Aware Farmers',
         data: awareFarmersPerTick,
         fill: false,
-        backgroundColor: '#e07b39',
-        borderColor: '#e07b39',
+        backgroundColor: '#e06b39',
+        borderColor: '#e06b39',
         tension: 0.1,
       },
       {

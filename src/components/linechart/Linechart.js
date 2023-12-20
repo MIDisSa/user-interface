@@ -28,7 +28,7 @@ const BasicLineChart = ({ data }) => {
       y: {
         title: {
           display: true,
-          text: 'Absolute Number of People', 
+          text: 'Absolute Number of Agents', 
           font: {
             size: 16, 
           },

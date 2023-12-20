@@ -10,7 +10,7 @@ import ZKSDLogo from './netzwerk-zksd-1.png';
 import UZHLogo from './UniLogoNoBorder.png';
 
 
-import './App.css'; 
+import './App.css';
 
 const App = () => {
     const fileInputRef = useRef();
@@ -33,43 +33,42 @@ const App = () => {
         show: false,
         message: ''
     });
-    
+
     const handleConfirmation = (message) => {
         setConfirmation({ show: true, message: message });
         setTimeout(() => setConfirmation({ show: false, message: '' }), 3000);
     };
-    
 
     const [extraOptimizationParameters, setExtraOptimizationParameters] = useState({
         frequencyDirectAd: '',
         directAdType: '',
         frequencyChiefTraining: '',
         numberOfTicks: '',
-      });
-    
-      const updateOptimizationParameters = (newParameters) => {
+    });
+
+    const updateOptimizationParameters = (newParameters) => {
         setExtraOptimizationParameters(newParameters);
-        };
+    };
 
     const PARAM_MAPPING = {
         "trainChiefInfluence": "Relative Chief Influence Factor",
-        "nrDefaultFriendsInterVillage": "Number of Friends Inter Village",
-        "avgIntraVillageInteractionFrequency" : "Intra Village Interaction Frequency (days)",
-        "avgInterVillageInteractionFrequency" : "Inter Village Interaction Frequency (days)",
+        "nrDefaultFriendsInterVillage": "Number of Friends Inter-Village",
+        "avgIntraVillageInteractionFrequency": "Intra-Village Interaction Frequency (days)",
+        "avgInterVillageInteractionFrequency": "Inter-Village Interaction Frequency (days)",
         "avgChiefFarmerMeetingFrequency": "Farmgroup Meeting Frequency (days)",
-        "avgIntraMentionPercentage" : "Mention Probability (%)",
-        "percentageNegativeWoM" : "Negative Word-of-Mouth Probability (%)",    
-        "baseAdoptionProbability" : "Adoption Probability (%)",
+        "avgIntraMentionPercentage": "Mention Probability (%)",
+        "percentageNegativeWoM": "Negative Word-of-Mouth Probability (%)",
+        "baseAdoptionProbability": "Adoption Probability (%)",
     };
 
     const TOOLTIP_CONTENT = {
-        "avgIntraMentionPercentage": "Average probability that the innovation comes up as a topic during an interaction.​",
-        "percentageNegativeWoM": "Probability of an interaction being unfavorable in regard to the innovation.​",
+        "avgIntraMentionPercentage": "Average probability for the innovation to come up as a topic during an interaction.​",
+        "percentageNegativeWoM": "Probability of an interaction being unfavorable regarding the innovation.​",
         "baseAdoptionProbability": "Base probability of an agent adopting the innovation.",
-        "nrDefaultFriendsInterVillage": "Average number of friends an agent has outside the village he lives in.",
-        "avgIntraVillageInteractionFrequency": "Average number of days elapsed between intra-village interactions started by an agent.",
-        "avgInterVillageInteractionFrequency": "Average number of days elapsed between inter-village interactions started by an agent​.",
-        "avgChiefFarmerMeetingFrequency": "Average number of days elapsed between farmgroup meetings.",
+        "nrDefaultFriendsInterVillage": "Average number of friends an agent has outside the village they live in.",
+        "avgIntraVillageInteractionFrequency": "Average number of days between intra-village interactions initiated by an agent.",
+        "avgInterVillageInteractionFrequency": "Average number of days between inter-village interactions initiated by an agent​.",
+        "avgChiefFarmerMeetingFrequency": "Average number of days between farmgroup meetings.",
         "trainChiefInfluence": "Relative influence of a chief on a regular agent during an interaction. E.g. factor of 2 means a chief has twice the influence of a regular agent. ",
     };
 
@@ -80,21 +79,22 @@ const App = () => {
     const [parameters, setParameters] = useState(initialParameters);
 
     const resetForm = (e) => {
-        
+
         e.preventDefault();
 
         fetch('http://localhost:8080/resetInput', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',},
+                'Content-Type': 'application/json',
+            },
         })
-        .then(response => response.json()) // Transform the response to JSON
-        .then(workingDataInput => {
-            setParameters(workingDataInput);
-        })
-        .catch(error => {
-            console.error('Network error when trying to reset:', error);
-        });
+            .then(response => response.json()) // Transform the response to JSON
+            .then(workingDataInput => {
+                setParameters(workingDataInput);
+            })
+            .catch(error => {
+                console.error('Network error when trying to reset:', error);
+            });
     };
 
     const handleUploadRawCSV = async () => {
@@ -102,32 +102,32 @@ const App = () => {
             const file = fileInputRef.current.files[0];
             const formData = new FormData();
             formData.append("file", file);
-    
+
             const response = await fetch('http://localhost:8080/uploadRawCSV', {
                 method: 'POST',
                 body: formData,
             });
-    
+
             if (!response.ok) {
                 const errorMessage = await response.json();
                 window.alert(errorMessage.message)
                 throw new Error('Network response was not ok' + response.statusText);
             }
-    
+
             const parameters = await response.json(); //
             setParameters(parameters);
         } catch (error) {
             console.error('File Upload Error:', error);
         }
     };
-    
+
     // auto-hiding the pop up
     useEffect(() => {
         if (confirmation.show) {
             const timer = setTimeout(() => {
                 setConfirmation(prev => ({ ...prev, show: false }));
             }, 3000); // Adjust time as needed
-    
+
             return () => clearTimeout(timer);
         }
     }, [confirmation.show]);
@@ -135,15 +135,15 @@ const App = () => {
     // Use stored parameters when initializing state
     useEffect(() => {
         const storedParameters = localStorage.getItem('parameters');
-        
+
         try {
-        if (storedParameters) {
-            const parsedParameters = JSON.parse(storedParameters);
-            setParameters(parsedParameters);
-        } 
-        } catch (error) {
-                console.error('Error parsing parameters from local storage:', error);
+            if (storedParameters) {
+                const parsedParameters = JSON.parse(storedParameters);
+                setParameters(parsedParameters);
             }
+        } catch (error) {
+            console.error('Error parsing parameters from local storage:', error);
+        }
     }, []);
 
     useEffect(() => {
@@ -151,10 +151,10 @@ const App = () => {
         localStorage.setItem('optimizationResults', JSON.stringify(optimizationResults));
     }, [optimizationResults]);
 
-   
 
-     // Update formData when parameters change
-     useEffect(() => {
+
+    // Update formData when parameters change
+    useEffect(() => {
         setFormData(parameters);
         setFormDataNoComma(parameters);
     }, [parameters]);
@@ -163,21 +163,21 @@ const App = () => {
     const handleNewOptimizationResult = (newResult) => {
         setOptimizationResults(prevResults => [...prevResults, newResult]);
     };
-    
+
     const formatNumber = (number) => {
         // Remove existing commas
         let cleanedNumber = number.toString().replace(/,/g, '');
-    
+
         // Split number into whole and decimal parts if it's a float
         let parts = cleanedNumber.split(".");
-    
+
         // Apply regex to the whole part
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    
+
         // Reassemble it
         return parts.join(".");
     };
-    
+
 
     // Handle form field change
     const handleInputChange = (e) => {
@@ -186,40 +186,40 @@ const App = () => {
         setFormData(prevData => ({
             ...prevData,
             [name]: formattedValue
-          }));
+        }));
         setFormDataNoComma(prevData => ({
             ...prevData,
             [name]: value.replaceAll(",", "")
-            }));
+        }));
     };
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault(); //prevents the form from refreshing
 
         try {
             const response = await fetch('http://localhost:8080/updateInput', {
                 method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000', 
-            },
-            body: JSON.stringify(formDataNoComma)
-        });
-
-        if (response.status === 200) {
-            setConfirmation({
-                show: true,
-                message: "Empirical Parameters were successfully set in the model!"
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'http://localhost:3000',
+                },
+                body: JSON.stringify(formDataNoComma)
             });
-        } else {
-            const errorMessage = await response.json();
-            window.alert(errorMessage.message)
-            throw new Error('Failed to update parameters.');
-        }
 
-    } catch (error) {
-        console.error('Error sending data:', error);
-    }
+            if (response.status === 200) {
+                setConfirmation({
+                    show: true,
+                    message: "Empirical Parameters were successfully set in the model!"
+                });
+            } else {
+                const errorMessage = await response.json();
+                window.alert(errorMessage.message)
+                throw new Error('Failed to update parameters.');
+            }
+
+        } catch (error) {
+            console.error('Error sending data:', error);
+        }
     };
 
     const handleDeleteHistory = async (e) => {
@@ -227,37 +227,37 @@ const App = () => {
         try { // call endpoint to delete result history in export CSVs
             const response = await fetch('http://localhost:8080/clearResultCSVs', {
                 method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000', 
-            },
-        });
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': 'http://localhost:3000',
+                },
+            });
 
-        if (response.status === 200) {
-        } else {
-            const errorMessage = await response.json();
-            window.alert(errorMessage.message)
-            throw new Error('Failed to clear result CSV.');
-        }
+            if (response.status === 200) {
+            } else {
+                const errorMessage = await response.json();
+                window.alert(errorMessage.message)
+                throw new Error('Failed to clear result CSV.');
+            }
 
-        // reset model results
-        setAdopters(null);
-        setAwareFarmers(null);
-        setTotalCost(null);
-        setAwareFarmersPerTick(null);
-        setAdoptersPerTick(null);
+            // reset model results
+            setAdopters(null);
+            setAwareFarmers(null);
+            setTotalCost(null);
+            setAwareFarmersPerTick(null);
+            setAdoptersPerTick(null);
 
-        // reset optimization results
-        setOptimizationResults([]);
+            // reset optimization results
+            setOptimizationResults([]);
 
-        // reload to clear results table
-        setReload(!reload);
+            // reload to clear results table
+            setReload(!reload);
 
         } catch (error) {
             console.error('Error sending data:', error);
         }
     };
-    
+
     console.log({ awareFarmersPerTick, adoptersPerTick });
 
     return (
@@ -271,66 +271,67 @@ const App = () => {
                                 {confirmation.message}
                             </div>
                         )}
-                        <p className="description-text" style={{ textAlign: 'left', paddingLeft: '10%' , paddingRight: '10%' }}> 
-                            Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File (in the same format as the LED-Project survey) to generate parameters automatically.​ Changes must be saved before running the model/optimizer.​<br></br>
-                            The Optimizer works on a model that implements all the parameters entered below. <br></br> Hovering over the <span className="tooltip-trigger">?</span> provides additional information about parameters or functionality.
+                        <p className="description-text" style={{ textAlign: 'left', paddingLeft: '10%', paddingRight: '10%' }}>
+                            Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File in the same format as stated XX here XX to generate parameters automatically.​ <br></br>
+                            Make sure to save your changes before running the model/optimizer. Otherwise default values will be used.​<br></br>
+                            <br></br> Hovering over the <span className="tooltip-trigger">?</span> provides short additional information about parameters or functionality. For an extensive description of each parameter consult the accompanying report.
                         </p>
-                        <div className="CSVandGlobalParameterBox" style={{ textAlign: 'left', paddingLeft: '10%' , paddingRight: '10%' }}>
+                        <div className="CSVandGlobalParameterBox" style={{ textAlign: 'left', paddingLeft: '10%', paddingRight: '10%' }}>
                             <div className="CSVBox">
                                 <h2 className="h2-spacing">Empirically Defined Global Parameters</h2>
-                                <div className="centeredDataInput"> 
-                                <div className="uploadContainer">
-                                <input type="file" ref={fileInputRef} />
-                                <Button label="Upload CSV"
-                                    onClick={handleUploadRawCSV}
-                                    title="Upload the CSV file and extract parameters."
-                                    style={{ marginLeft: '100px' }} />
-                                </div>
-                                {/* Form for Parameters in table  */}
-                                <form onSubmit={handleSubmit} style={{paddingBottom: '20px'}}>
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Parameter  </th>
-                                                <th>Value</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {Object.entries(formData)
-                                                .filter(([key]) => PARAM_MAPPING[key])
-                                                .map(([key, value]) => (
-                                                    <tr key={key}>
-                                                        <td>
-                                                            {PARAM_MAPPING[key]}
-                                                            <span className="tooltip-trigger" data-tooltip-id={key} data-tooltip-content={TOOLTIP_CONTENT[key]}>?</span>
-                                                            <ReactTooltip id={key} place="top" effect="solid" />
-                                                        </td>
-                                                        <td>
-                                                            <input
-                                                                type="text"
-                                                                name={key}
-                                                                value={value}
-                                                                onChange={handleInputChange}
-                                                                placeholder="Use a dot for decimal values."
-                                                            />
-                                                        </td>
-                                                    </tr>
-                                                ))}
-                                        </tbody>
-                                    </table>
-                                </form>
+                                <div className="centeredDataInput">
+                                    <div className="uploadContainer">
+                                        <input type="file" ref={fileInputRef} />
+                                        <Button label="Upload CSV"
+                                            onClick={handleUploadRawCSV}
+                                            title="Upload the CSV file to extract parameters."
+                                            style={{ marginLeft: '100px' }} />
+                                    </div>
+                                    {/* Form for Parameters in table  */}
+                                    <form onSubmit={handleSubmit} style={{ paddingBottom: '20px' }}>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter  </th>
+                                                    <th>Value</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {Object.entries(formData)
+                                                    .filter(([key]) => PARAM_MAPPING[key])
+                                                    .map(([key, value]) => (
+                                                        <tr key={key}>
+                                                            <td>
+                                                                {PARAM_MAPPING[key]}
+                                                                <span className="tooltip-trigger" data-tooltip-id={key} data-tooltip-content={TOOLTIP_CONTENT[key]}>?</span>
+                                                                <ReactTooltip id={key} place="top" effect="solid" />
+                                                            </td>
+                                                            <td>
+                                                                <input
+                                                                    type="text"
+                                                                    name={key}
+                                                                    value={value}
+                                                                    onChange={handleInputChange}
+                                                                    placeholder="Use a dot for decimal values."
+                                                                />
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                            </tbody>
+                                        </table>
+                                    </form>
                                 </div>
                                 <div className="flexContainerGlobalParameterbox">
-                                <Button label="Save Empirical Parameters" type="submit" onClick={handleSubmit} title={"Changes must be saved before running the model/optimizer.​"} />
-                                <Button label="Set to Default" variant="outlined-blue" onClick={resetForm} title={"Resets values to a reasonable default that yields a stable result."} style={{padding: '20px'}}/>
+                                    <Button label="Save Empirical Parameters" type="submit" onClick={handleSubmit} />
+                                    <Button label="Set to Default" variant="outlined-blue" onClick={resetForm} title={"Resets values to a reasonable default that yields a stable result."} style={{ padding: '20px' }} />
                                 </div>
                             </div>
-                            < GlobalParameterbox onConfirmation={handleConfirmation} > 
+                            < GlobalParameterbox onConfirmation={handleConfirmation} >
                                 {confirmation.show && (
-                                     <div className="confirmation-popup">
+                                    <div className="confirmation-popup">
                                         {confirmation.message}
-                                        </div>
-                                    )}
+                                    </div>
+                                )}
                             </GlobalParameterbox>
                         </div>
 
@@ -366,7 +367,7 @@ const App = () => {
                 </div>
                 <div class="darkBlueBackground">
                     <div className="footer-text">
-                        <p>Agent-based Model for Innovation Diffusion</p>
+                        <p>ABM for Innovation Diffusion</p>
                     </div>
                     <div className="footer-logo">
                         <img src={UZHLogo} alt="UZH Logo" />
@@ -374,6 +375,23 @@ const App = () => {
                     </div>
                 </div>
                 <div class="turquoiseBackground">
+                    <p>
+                        This work is licensed under&nbsp;
+                        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1"
+                            target="_blank"
+                            rel="license noopener noreferrer"
+                            style={{ display: 'inline-block' }}>
+                            CC BY-NC-SA 4.0
+                            <img style={{ height: '22px', marginLeft: '3px', verticalAlign: 'text-bottom' }}
+                                src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt="Creative Commons" />
+                            <img style={{ height: '22px', marginLeft: '3px', verticalAlign: 'text-bottom' }}
+                                src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="Attribution" />
+                            <img style={{ height: '22px', marginLeft: '3px', verticalAlign: 'text-bottom' }}
+                                src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt="Non-Commercial" />
+                            <img style={{ height: '22px', marginLeft: '3px', verticalAlign: 'text-bottom' }}
+                                src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="Share Alike" />
+                        </a>
+                    </p>
                     <p>Developed by Joël Inglin, Ann-Kathrin Kübler and Hannah Rohe at University of Zurich, supervised by Prof. Lorenz Hilty and Dr. Matthias Huss. Based on concepts by Marc Zwimpfer. © 2023.
                     </p>
                 </div>

@@ -50,6 +50,10 @@
     vertical-align: middle; 
     border: 1px solid #dcdcdc;
   }
+
+  .tooltip-content {
+    z-index: 100;
+  }
   
 
   .inputGroup {

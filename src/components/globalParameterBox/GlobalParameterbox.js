@@ -177,8 +177,6 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters, 
 
   return (
     <div className="globalParameterBox">
-      <span className="tooltip-opt" data-tooltip-id="opt" data-tooltip-content="Fixed costs incur once per treatment. Variable costs incur once per village that is part of the intervention.​">?</span>
-      <ReactTooltip id="opt" place="top" effect="solid" />
       <h2 className="h2-spacing">Additional Global Parameters</h2>
     <p/>
       <div className='columns'>
@@ -195,10 +193,10 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters, 
           <div className="inputGroup">
             <div className="label">
               Number of Neighborhoods
-              <span className="tooltip-trigger" data-tooltip-id={"nghbrhd"} data-tooltip-content={"Villages that lie close to each other form a neighborhood. Agents within the same neighborhood are more likely to interact with each other. If set equal to \"Number of Villages\" the influence of neighborhoods is ignored."}>?</span>
+              <span className="tooltip-trigger" data-tooltip-id={"nghbrhd"} data-tooltip-content={"Villages that are close to each other form a neighborhood. Agents within the same neighborhood are more likely to interact with each other. If set to 0 the influence of neighborhoods is ignored."}>?</span>
             </div>
             <TextInput value={formatNumber(nrOfNeighborhoods)} setValue={setNrOfNeighborhoods} />
-            <ReactTooltip id={"nghbrhd"} place="top" effect="solid" />
+            <ReactTooltip className="tooltip-content" id={"nghbrhd"} place="top" effect="solid"/>
           </div>
           <div className="inputGroup">
             <div className="label">Average Number of Farmers per Village</div>
@@ -212,8 +210,12 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters, 
 
         <div className='column'>
           <div className="inputGroup">
-            <div className="label">Budget ($)</div>
+            <div className="label">
+              Budget ($)
+              <span className="tooltip-trigger" data-tooltip-id={"budget"} data-tooltip-content={"Fixed costs incur once per treatment. Variable costs incur once per village that is part of the intervention."}>?</span>
+              </div>
             <TextInput value={formatNumber(budget)} setValue={setBudget} placeholder="Use a dot for decimal values." />
+            <ReactTooltip className="tooltip-content" id={"budget"} place="top" effect="solid"/>
           </div>
           <div className="inputGroup">
             <div className="label">Fixed Costs for Direct Ad ($)</div>
@@ -257,6 +259,7 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters, 
           label="Set to Default"
           onClick={resetGlobalParameters}
           variant="outlined-blue"
+          title={"Resets values to a reasonable default that yields a stable result."}
         />
       </div>
       {loading && (

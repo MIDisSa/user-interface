@@ -101,11 +101,10 @@ const ModelBox = props => {
     };
     
     const TOOLTIP_CONTENT = {
-        "frequencyDirectAd": "Number of days between the Direct Ad interventions​.",
-        "directAdType": "Type of the Direct Ad Intervention​.",
-        "frequencyChiefTraining": "Number of days between Chief Trainings.​",
-        "trainChiefsCoverage": "Percentage of villages in which Training of Trainers (ToT) is carried out. Affects how often the variable costs incur.​",
-        "directAdCoverage": "Percentage of villages that are part of the Direct Ad treatment. Affects how often the variable costs incur.",
+        "frequencyDirectAd": "Number of days between treatments​.",
+        "frequencyChiefTraining": "Number of days between ToTs.​",
+        "trainChiefsCoverage": "Percentage of villages in which ToTs are carried out. Affects how often the variable costs incur.​",
+        "directAdCoverage": "Percentage of villages that are part of the treatment. Affects how often the variable costs incur.",
       };
 
 
@@ -116,8 +115,9 @@ const ModelBox = props => {
             <h2>Model</h2>
           </div>
           <div className="description-text">
-                Intervention Parameters: Define how often and which type of an intervention should be carried out.<br></br>
-                Treatments and Trainings of Trainers (ToT) both start on day 0. If the frequency is set to 0 there will be no interventions of this kind.
+                Intervention parameters define how often and which type of an intervention (Treatment Arms and Training of Trainers (ToT)) should be carried out.
+                All treatments and ToT start on day 0. If the frequency is set to 0 there will be no intervention of this kind.<br></br>
+                In general it is recommended to familiarize yourself with this XX section XX first.
                 </div>
 
           <div className="flexContainerModelbox">
@@ -136,8 +136,6 @@ const ModelBox = props => {
                     <option value="Direct Ad + Deferred Payment">Direct Ad + Deferred Payment</option>
                     <option value="Direct Ad + Deferred P. + Discount">Direct Ad + Deferred P. + Discount</option>
                     </Dropdown>
-                    <span className="tooltip-trigger" data-tooltip-id="directAdType" data-tooltip-content={TOOLTIP_CONTENT.directAdType}>?</span>
-                    <ReactTooltip id="directAdType" place="top" effect="solid"/>
                 </div>  
                 <div className="flexContainerTooltipParameter">
                 <TextInput label="Treatment Coverage (%): " value={formatNumber(directAdCoverage)} setValue={setDirectAdCoverage} />
