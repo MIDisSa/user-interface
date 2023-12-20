@@ -34,6 +34,11 @@ const App = () => {
         message: ''
     });
     
+    const handleConfirmation = (message) => {
+        setConfirmation({ show: true, message: message });
+        setTimeout(() => setConfirmation({ show: false, message: '' }), 3000);
+    };
+    
 
     const [extraOptimizationParameters, setExtraOptimizationParameters] = useState({
         frequencyDirectAd: '',
@@ -204,7 +209,7 @@ const App = () => {
         if (response.status === 200) {
             setConfirmation({
                 show: true,
-                message: "Parameters were successfully set in the model!"
+                message: "Empirical Parameters were successfully set in the model!"
             });
         } else {
             const errorMessage = await response.json();
@@ -320,7 +325,13 @@ const App = () => {
                                 <Button label="Set to Default" variant="outlined-blue" onClick={resetForm} title={"Resets values to a reasonable default that yields a stable result."} style={{padding: '20px'}}/>
                                 </div>
                             </div>
-                            < GlobalParameterbox> </GlobalParameterbox>
+                            < GlobalParameterbox onConfirmation={handleConfirmation} > 
+                                {confirmation.show && (
+                                     <div className="confirmation-popup">
+                                        {confirmation.message}
+                                        </div>
+                                    )}
+                            </GlobalParameterbox>
                         </div>
 
                         {/* we need that here bc this is teh parent container of model and result. The info comes from model but needs to be known in result */}
