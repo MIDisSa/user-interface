@@ -102,6 +102,24 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
     }
   };
 
+  const cancelOptimizer = async () => {
+
+    setLoading(false);
+    setUpdate("");
+
+    try {
+      const result = await fetch('http://localhost:8080/cancelOptimizer');
+
+      if (!result.ok) {
+        const errorMessage = await result.json();
+        window.alert(errorMessage.message)
+        throw new Error('Something went wrong: ' + result.statusText);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   return (
     <div className="optimizerBox">
@@ -148,7 +166,7 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
         <div className='overlayButton'>
         <Button
             label="Cancel Optimizer"
-            onClick={runOptimizer}
+            onClick={cancelOptimizer}
           />
           </div>
         </div>
@@ -161,12 +179,12 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
         <div className='overlayButton'>
         <Button
             label="Cancel Optimizer"
-            onClick={runOptimizer}
+            onClick={cancelOptimizer}
           />
           </div>
         </div>
       )}
-      
+
     </div>
   );
 };
