@@ -108,7 +108,12 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
     setUpdate("");
 
     try {
-      const result = await fetch('http://localhost:8080/cancelOptimizer');
+      const result = await fetch('http://localhost:8080/abortOptimization', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
       if (!result.ok) {
         const errorMessage = await result.json();
