@@ -337,7 +337,7 @@ const App = () => {
                             </GlobalParameterbox>
                         </div>
 
-                        {/* we need that here bc this is teh parent container of model and result. The info comes from model but needs to be known in result */}
+                        {/* we need that here bc this is the parent container of model and result. The info comes from model but needs to be known in result */}
                     </div>
                     <div className="ModelAndOptimizerBox">
                         <ModelBox
