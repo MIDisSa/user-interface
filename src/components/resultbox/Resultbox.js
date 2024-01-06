@@ -80,7 +80,7 @@ const ResultBox = ({ adopters, awareFarmers, totalCost, awareFarmersPerTick, ado
         <div><p>Total Costs ($): {formatNumber(totalCost)}</p></div>
       </div>
 
-      {/* Display Line Charts */}
+      {/* Display Line Chart */}
       <div className="line-chart">
           <BasicLineChart data={lineChartData} />
       </div>
