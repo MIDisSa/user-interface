@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { FadeLoader } from 'react-spinners';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
-const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
+const OptimizerBox = ({ setOutputParameters }) => {
   const [optimizationType, setOptimizationType] = useState('');
   const [loading, setLoading] = useState(false);
   const [update, setUpdate] = useState("");
@@ -200,13 +200,5 @@ const OptimizerBox = ({ setOutputParameters, extraOptimizationParameters }) => {
   );
 };
 
-const TextInput = ({ label, value, setValue }) => {
-  return (
-    <div>
-      <label>{label}</label>
-      <input type="text" value={value} onChange={e => setValue(e.target.value)} />
-    </div>
-  );
-};
 
 export default OptimizerBox;

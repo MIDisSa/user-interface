@@ -10,7 +10,7 @@ import './Modelbox.css';
 
 const ModelBox = props => {
 
-    const [frequencyDirectAd, setFrequencyDirectAd] = useState(''); //TODO: update default values?
+    const [frequencyDirectAd, setFrequencyDirectAd] = useState(''); 
     const [directAdType, setDirectAdType] = useState('');
     const [frequencyChiefTraining, setFrequencyChiefTraining] = useState('');
     const [trainChiefsCoverage, setTrainChiefsCoverage] = useState('');
@@ -81,7 +81,7 @@ const ModelBox = props => {
     
                 console.log('Data from backend:', jsonResponse);
     
-                // Update state in App - wie aktualisieren
+                // Update state in App
                 props.setAwareFarmers(parseFloat(jsonResponse.awareFarmers));
                 props.setAdopters(parseFloat(jsonResponse.adopters));
                 props.setTotalCost(parseFloat(jsonResponse.totalCost));
