@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: flex-start;
     flex: 2;
-    margin: 5px; /* Optional: Adds some margin around each box */
+    margin: 5px; 
     margin-left: 100px;
    
 }
@@ -69,7 +69,7 @@
 .textInput {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
 }
 
 .textInput label {

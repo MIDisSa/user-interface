@@ -16,7 +16,6 @@ const App = () => {
     const fileInputRef = useRef();
     const [adopters, setAdopters] = useState(null);
     const [awareFarmers, setAwareFarmers] = useState(null);
-    const [outputParameters, setOutputParameters] = useState({}); // different, bc its supposed to be an object
     const [totalCost, setTotalCost] = useState(null);
     const [awareFarmersPerTick, setAwareFarmersPerTick] = useState(null);
     const [adoptersPerTick, setAdoptersPerTick] = useState(null);
@@ -338,7 +337,7 @@ const App = () => {
                             </GlobalParameterbox>
                         </div>
 
-                        {/* we need that here bc this is teh parent container of model and result. The info comes from model but needs to be known in result */}
+                        {/* we need that here bc this is the parent container of model and result. The info comes from model but needs to be known in result */}
                     </div>
                     <div className="ModelAndOptimizerBox">
                         <ModelBox

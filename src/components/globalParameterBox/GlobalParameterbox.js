@@ -1,11 +1,10 @@
 import Button from '../button/Button';
-import Dropdown from '../dropdown/Dropdown';
 import './GlobalParameterbox.css';
 import React, { useState, useEffect } from 'react';
 import { FadeLoader } from 'react-spinners';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
-const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters, onConfirmation }) => {
+const GlobalParameterbox = ({ extraOptimizationParameters, onConfirmation }) => {
   const [numberOfTicks, setNumberOfTicks] = useState('');
   const [budget, setBudget] = useState('');
   const [fixedCostsDirectAd, setFixedCostsDirectAd] = useState('');
@@ -119,11 +118,6 @@ const GlobalParameterbox = ({ setOutputParameters, extraOptimizationParameters, 
     }
   };
   
-  const [confirmation, setConfirmation] = useState({
-    show: false,
-    message: ''
-  });
-
   const runGlobalParameter = async () => {
 
     setLoading(true);
