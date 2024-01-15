@@ -154,7 +154,6 @@ const OptimizerBox = ({ setOutputParameters }) => {
             <option value="maxAdopters">Max Adopters</option>
             <option value="maxKnowledge">Max Knowledge</option>
             <option value="minCost">Min Costs</option>
-            <option value="test">Test</option>
           </Dropdown>
         </div>
       </div>
