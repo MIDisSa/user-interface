@@ -7,7 +7,7 @@ import Button from "./components/button/Button";
 import GlobalParameterbox from "./components/globalParameterBox/GlobalParameterbox";
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import ZKSDLogo from './netzwerk-zksd-1.png';
-import UZHLogo from './UniLogoNoBorder.png';
+import UZHLogo from './uzh_logo_d_neg.png';
 
 
 import './App.css';
