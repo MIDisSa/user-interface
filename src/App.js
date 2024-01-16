@@ -55,13 +55,15 @@ const App = () => {
         "avgIntraVillageInteractionFrequency": "Intra-Village Interaction Frequency (days)",
         "avgInterVillageInteractionFrequency": "Inter-Village Interaction Frequency (days)",
         "avgChiefFarmerMeetingFrequency": "Farmgroup Meeting Frequency (days)",
-        "avgIntraMentionPercentage": "Mention Probability (%)",
+        "avgIntraMentionPercentage": "Intra-Village Mention Probability (%)",
+        "avgInterMentionPercentage": "Inter-Village Mention Probability (%)",
         "percentageNegativeWoM": "Negative Word-of-Mouth Probability (%)",
         "baseAdoptionProbability": "Adoption Probability (%)",
     };
 
     const TOOLTIP_CONTENT = {
-        "avgIntraMentionPercentage": "Average probability for the innovation to come up as a topic during an interaction.​",
+        "avgIntraMentionPercentage": "Average probability for the innovation to come up as a topic during an intra-village interaction.​",
+        "avgInterMentionPercentage": "Average probability for the innovation to come up as a topic during an inter-village interaction.​",
         "percentageNegativeWoM": "Probability of an interaction being unfavorable regarding the innovation.​",
         "baseAdoptionProbability": "Base probability of an agent adopting the innovation.",
         "nrDefaultFriendsInterVillage": "Average number of friends an agent has outside the village they live in.",
