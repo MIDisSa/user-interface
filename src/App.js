@@ -7,7 +7,9 @@ import Button from "./components/button/Button";
 import GlobalParameterbox from "./components/globalParameterBox/GlobalParameterbox";
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import ZKSDLogo from './netzwerk-zksd-1.png';
-import UZHLogo from './UniLogoNoBorder.png';
+import UZHLogo from './uzh_logo_d_neg.png';
+import MyPDF from './test.pdf';
+
 
 
 import './App.css';
@@ -55,13 +57,15 @@ const App = () => {
         "avgIntraVillageInteractionFrequency": "Intra-Village Interaction Frequency (days)",
         "avgInterVillageInteractionFrequency": "Inter-Village Interaction Frequency (days)",
         "avgChiefFarmerMeetingFrequency": "Farmgroup Meeting Frequency (days)",
-        "avgIntraMentionPercentage": "Mention Probability (%)",
+        "avgIntraMentionPercentage": "Intra-Village Mention Probability (%)",
+        "avgInterMentionPercentage": "Inter-Village Mention Probability (%)",
         "percentageNegativeWoM": "Negative Word-of-Mouth Probability (%)",
         "baseAdoptionProbability": "Adoption Probability (%)",
     };
 
     const TOOLTIP_CONTENT = {
-        "avgIntraMentionPercentage": "Average probability for the innovation to come up as a topic during an interaction.​",
+        "avgIntraMentionPercentage": "Average probability for the innovation to come up as a topic during an intra-village interaction.​",
+        "avgInterMentionPercentage": "Average probability for the innovation to come up as a topic during an inter-village interaction.​",
         "percentageNegativeWoM": "Probability of an interaction being unfavorable regarding the innovation.​",
         "baseAdoptionProbability": "Base probability of an agent adopting the innovation.",
         "nrDefaultFriendsInterVillage": "Average number of friends an agent has outside the village they live in.",
@@ -274,7 +278,9 @@ const App = () => {
                           </div>
                         )}
                         <p className="description-text" style={{ textAlign: 'left', paddingLeft: '10%', paddingRight: '10%' }}>
-                            Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File in the same format as stated XX here XX to generate parameters automatically.​ <br></br>
+                            Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File in the same format as stated in XX  
+                            <a href={MyPDF} target="_blank" rel="noopener noreferrer">here</a> to generate parameters automatically.​
+                            <br></br>
                             Make sure to save your changes before running the model/optimizer. Otherwise default values will be used.​<br></br>
                             <br></br> Hovering over the <span className="tooltip-trigger">?</span> provides short additional information about parameters or functionality. For an extensive description of each parameter consult the accompanying report.
                         </p>
