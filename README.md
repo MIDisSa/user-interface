@@ -1,3 +1,7 @@
+# Architecture
+![architecture-frontend](https://github.com/ABM-Tanzania/frontend/assets/34133192/a0553c59-bc5a-427f-95f6-6c1fce60b176)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
