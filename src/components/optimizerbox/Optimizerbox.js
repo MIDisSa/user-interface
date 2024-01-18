@@ -4,6 +4,7 @@ import './Optimizerbox.css';
 import React, { useState, useEffect } from 'react';
 import { FadeLoader } from 'react-spinners';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
+import MyPDF from '../ABM_Report-preliminary.pdf';
 
 const OptimizerBox = ({ setOutputParameters }) => {
   const [optimizationType, setOptimizationType] = useState('');
@@ -143,7 +144,7 @@ const OptimizerBox = ({ setOutputParameters }) => {
       <div className="description-text">
         The optimizer looks for the values in <span className="number-circle-inline">1</span> which on average yield the best result for the here defined goal. <br></br>
         Warning: Optimization process may take 15-30 minutes to complete, depending on the number of days defined in the settings above.<br></br>
-        In general it is recommended to familiarize yourself with this XX section XX first.
+        In general it is recommended to familiarize yourself with this section 4.2 in <a href={MyPDF} target="_blank" rel="noopener noreferrer"> here</a> first.
       </div>
       <div className="flexContainer">
         <div className="inputGroup" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
