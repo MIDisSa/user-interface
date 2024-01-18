@@ -72,7 +72,7 @@ const App = () => {
         "avgIntraVillageInteractionFrequency": "Average number of days between intra-village interactions initiated by an agent.",
         "avgInterVillageInteractionFrequency": "Average number of days between inter-village interactions initiated by an agent​.",
         "avgChiefFarmerMeetingFrequency": "Average number of days between farmgroup meetings.",
-        "trainChiefInfluence": "Measures the impact of ToTs (Training of Trainers) on the attitude of Chiefs regarding the innovation. E.g. 1.88 means a chief has a 88% chance to be an adopter after they recieved a training.",
+        "trainChiefInfluence": "Measures the impact of ToTs (Training of Trainers) on the attitude of Chiefs regarding the innovation. E.g. 1.88 means a chief has a 88% chance to be an adopter after they received a training.",
     };
 
     const initialParameters = Object.keys(PARAM_MAPPING).reduce((obj, key) => {
