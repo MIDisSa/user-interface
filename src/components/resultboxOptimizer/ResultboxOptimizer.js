@@ -2,6 +2,7 @@ import React from 'react';
 import './ResultboxOptimizer.css'; 
 import Button from '../button/Button';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
+import MyPDF from '../ABM_Report-preliminary.pdf';
 
 const ResultboxOptimizer = ({ optimizationResults }) => {
   
@@ -120,7 +121,7 @@ const ResultboxOptimizer = ({ optimizationResults }) => {
             If Optimization Type is Min Costs, then Best Fitness denotes the average Cost per Adopter.<br></br>
             Column 8-10: Number of Treatments and Trainings actually carried out, taking into account the specified budget.<br></br>
             <br></br>
-            For a more concrete example consult the accompanying report.
+            For a more concrete example consult section 4.2 in the accompanying <a href={MyPDF} target="_blank" rel="noopener noreferrer"> report</a>.
           </div>
         </div>
     </div>
