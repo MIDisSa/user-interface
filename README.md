@@ -1,6 +1,5 @@
 # Architecture
-![architecture-frontend](https://github.com/ABM-Tanzania/frontend/assets/34133192/a0553c59-bc5a-427f-95f6-6c1fce60b176)
-
+![architecture-frontend](https://github.com/ABM-Tanzania/frontend/assets/34133192/0abc3572-b8fd-4e8f-a937-a77949d9caee)
 
 # Getting Started with Create React App
 
