@@ -278,8 +278,7 @@ const App = () => {
                           </div>
                         )}
                         <p className="description-text" style={{ textAlign: 'left', paddingLeft: '10%', paddingRight: '10%' }}>
-                            Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File in the same format as stated in Table C.5 in   
-                             <a href={MyPDF} target="_blank" rel="noopener noreferrer"> here</a> to generate parameters automatically.​
+                            Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File in the same format as stated in Table C.5 in <a href={MyPDF} target="_blank" rel="noopener noreferrer">here</a> to generate parameters automatically.​
                             <br></br>
                             Make sure to save your changes before running the model/optimizer. Otherwise default values will be used.​<br></br>
                             <br></br> Hovering over the <span className="tooltip-trigger">?</span> provides short additional information about parameters or functionality. For an extensive description of each parameter consult the accompanying report.
