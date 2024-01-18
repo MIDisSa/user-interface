@@ -4,6 +4,7 @@ import Dropdown from '../dropdown/Dropdown';
 import React, { useState, useEffect } from 'react';
 import { FadeLoader } from 'react-spinners';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
+import MyPDF from '../ABM_Report-preliminary.pdf';
 
 import './Modelbox.css';
 
@@ -117,7 +118,7 @@ const ModelBox = props => {
           <div className="description-text">
                 Intervention parameters define how often and which type of an intervention (Treatment Arms and Training of Trainers (ToT)) should be carried out.
                 All treatments and ToT start on day 0. If the frequency is set to 0 there will be no intervention of this kind.<br></br>
-                In general it is recommended to familiarize yourself with this XX section XX first.
+                In general it is recommended to familiarize yourself with this section 4.1.2 in <a href={MyPDF} target="_blank" rel="noopener noreferrer"> here</a> first.
                 </div>
 
           <div className="flexContainerModelbox">

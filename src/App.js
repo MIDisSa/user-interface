@@ -8,7 +8,7 @@ import GlobalParameterbox from "./components/globalParameterBox/GlobalParameterb
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import ZKSDLogo from './netzwerk-zksd-1.png';
 import UZHLogo from './uzh_logo_d_neg.png';
-import MyPDF from './test.pdf';
+import MyPDF from './components/ABM_Report-preliminary.pdf';
 
 
 
@@ -52,7 +52,7 @@ const App = () => {
     };
 
     const PARAM_MAPPING = {
-        "trainChiefInfluence": "Relative Chief Influence Factor",
+        "trainChiefInfluence": "ToT Influence",
         "nrDefaultFriendsInterVillage": "Number of Friends Inter-Village",
         "avgIntraVillageInteractionFrequency": "Intra-Village Interaction Frequency (days)",
         "avgInterVillageInteractionFrequency": "Inter-Village Interaction Frequency (days)",
@@ -72,7 +72,7 @@ const App = () => {
         "avgIntraVillageInteractionFrequency": "Average number of days between intra-village interactions initiated by an agent.",
         "avgInterVillageInteractionFrequency": "Average number of days between inter-village interactions initiated by an agent​.",
         "avgChiefFarmerMeetingFrequency": "Average number of days between farmgroup meetings.",
-        "trainChiefInfluence": "Relative influence of a chief on a regular agent during an interaction. E.g. factor of 2 means a chief has twice the influence of a regular agent. ",
+        "trainChiefInfluence": "Measures the impact of ToTs (Training of Trainers) on the attitude of Chiefs regarding the innovation. E.g. 1.88 means a chief has a 88% chance to be an adopter after they received a training.",
     };
 
     const initialParameters = Object.keys(PARAM_MAPPING).reduce((obj, key) => {
@@ -278,8 +278,7 @@ const App = () => {
                           </div>
                         )}
                         <p className="description-text" style={{ textAlign: 'left', paddingLeft: '10%', paddingRight: '10%' }}>
-                            Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File in the same format as stated in XX  
-                            <a href={MyPDF} target="_blank" rel="noopener noreferrer">here</a> to generate parameters automatically.​
+                            Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File in the same format as stated in Table C.5 in <a href={MyPDF} target="_blank" rel="noopener noreferrer">here</a> to generate parameters automatically.​
                             <br></br>
                             Make sure to save your changes before running the model/optimizer. Otherwise default values will be used.​<br></br>
                             <br></br> Hovering over the <span className="tooltip-trigger">?</span> provides short additional information about parameters or functionality. For an extensive description of each parameter consult the accompanying report.
