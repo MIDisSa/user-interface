@@ -2,7 +2,7 @@ import React from 'react';
 import './ResultboxOptimizer.css'; 
 import Button from '../button/Button';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
-import MyPDF from '../ABM_Report-preliminary.pdf';
+import MyPDF from '../MIDisSa_masterproject.pdf';
 
 const ResultboxOptimizer = ({ optimizationResults }) => {
   

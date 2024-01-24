@@ -4,7 +4,7 @@ import './Optimizerbox.css';
 import React, { useState, useEffect } from 'react';
 import { FadeLoader } from 'react-spinners';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
-import MyPDF from '../ABM_Report-preliminary.pdf';
+import MyPDF from '../MIDisSa_masterproject.pdf';
 
 const OptimizerBox = ({ setOutputParameters }) => {
   const [optimizationType, setOptimizationType] = useState('');
