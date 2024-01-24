@@ -267,7 +267,7 @@ const App = () => {
         <div className="App">
             <div className="sunflowerBackground">
                 <div className="App-content">
-                    <h1>Agent-based Model for Innovation Diffusion</h1>
+                    <h1>Modeling Innovation Diffusion in sub-Saharan Africa – An Agent-Based Approach</h1>
                     <div className="ConfigurationBox">
                         {confirmation.show && (
                             <div className="confirmation-popup">
@@ -278,7 +278,8 @@ const App = () => {
                           </div>
                         )}
                         <p className="description-text" style={{ textAlign: 'left', paddingLeft: '10%', paddingRight: '10%' }}>
-                            Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File in the same format as stated in Table C.5 in <a href={MyPDF} target="_blank" rel="noopener noreferrer">here</a> to generate parameters automatically.​
+                        This application is part of the MIDisSa project, which presents an agent-based model designed to simulate the diffusion of agricultural innovations among sub-Saharan smallholder farmers through specific interventions. 
+                        Before running the model/optimizer, all parameters must be set.​ Either insert parameters manually, use default settings or upload a CSV-File in the same format as stated in Table C.5 in <a href={MyPDF} target="_blank" rel="noopener noreferrer">here</a> to generate parameters automatically.​
                             <br></br>
                             Make sure to save your changes before running the model/optimizer. Otherwise default values will be used.​<br></br>
                             <br></br> Hovering over the <span className="tooltip-trigger">?</span> provides short additional information about parameters or functionality. For an extensive description of each parameter consult the accompanying report.
@@ -374,7 +375,7 @@ const App = () => {
                 </div>
                 <div class="darkBlueBackground">
                     <div className="footer-text">
-                        <p>ABM for Innovation Diffusion</p>
+                        <p>MIDisSa</p>
                     </div>
                     <div className="footer-logo">
                         <img src={UZHLogo} alt="UZH Logo" />
