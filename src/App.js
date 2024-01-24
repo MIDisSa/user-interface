@@ -399,7 +399,7 @@ const App = () => {
                                 src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="Share Alike" />
                         </a>
                     </p>
-                    <p>Developed by Joël Inglin, Ann-Kathrin Kübler and Hannah Rohe at University of Zurich, supervised by Prof. Lorenz Hilty and Dr. Matthias Huss. Based on concepts by Marc Zwimpfer. © 2023.
+                    <p>Developed by Joël Inglin, Ann-Kathrin Kübler and Hannah Rohe at University of Zurich, supervised by Prof. Lorenz Hilty and Dr. Matthias Huss. Based on concepts by Marc Zwimpfer. © 2024.
                     </p>
                 </div>
             </div>
