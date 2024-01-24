@@ -8,7 +8,7 @@ import GlobalParameterbox from "./components/globalParameterBox/GlobalParameterb
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import ZKSDLogo from './netzwerk-zksd-1.png';
 import UZHLogo from './uzh_logo_d_neg.png';
-import MyPDF from './components/ABM_Report-preliminary.pdf';
+import MyPDF from './components/MIDisSa_masterproject.pdf';
 
 
 
