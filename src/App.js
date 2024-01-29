@@ -340,7 +340,7 @@ const App = () => {
                                                                 <input
                                                                     type="text"
                                                                     name={key}
-                                                                    value={value}
+                                                                    value={formData[key]}
                                                                     onChange={handleInputChange}
                                                                     placeholder="Use a dot for decimal values."
                                                                 />
