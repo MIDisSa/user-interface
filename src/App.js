@@ -63,6 +63,18 @@ const App = () => {
         "baseAdoptionProbability": "Adoption Probability (%)",
     };
 
+    const parameterOrder = [
+        "trainChiefInfluence",
+        "nrDefaultFriendsInterVillage",
+        "avgIntraVillageInteractionFrequency",
+        "avgInterVillageInteractionFrequency",
+        "avgChiefFarmerMeetingFrequency",
+        "avgIntraMentionPercentage",
+        "avgInterMentionPercentage",
+        "percentageNegativeWoM",
+        "baseAdoptionProbability",
+    ];
+
     const TOOLTIP_CONTENT = {
         "avgIntraMentionPercentage": "Average probability for the innovation to come up as a topic during an intra-village interaction.​",
         "avgInterMentionPercentage": "Average probability for the innovation to come up as a topic during an inter-village interaction.​",
@@ -73,6 +85,16 @@ const App = () => {
         "avgInterVillageInteractionFrequency": "Average number of days between inter-village interactions initiated by an agent​.",
         "avgChiefFarmerMeetingFrequency": "Average number of days between farmgroup meetings.",
         "trainChiefInfluence": "Average probability of a chief adopting the innovation after being part of a Training of Trainers intervention (ToT).",
+    };
+
+    const orderParameters = (parameters) => {
+        let orderedParams = {};
+        parameterOrder.forEach(key => {
+            if (parameters[key] !== undefined) {
+                orderedParams[key] = parameters[key];
+            }
+        });
+        return orderedParams;
     };
 
     const initialParameters = Object.keys(PARAM_MAPPING).reduce((obj, key) => {
@@ -117,8 +139,9 @@ const App = () => {
                 throw new Error('Network response was not ok' + response.statusText);
             }
 
-            const parameters = await response.json(); //
-            setParameters(parameters);
+            const parameters = await response.json(); 
+            const orderedParameters = orderParameters(parameters);
+            setParameters(orderedParameters);
         } catch (error) {
             console.error('File Upload Error:', error);
         }
@@ -305,9 +328,8 @@ const App = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {Object.entries(formData)
-                                                    .filter(([key]) => PARAM_MAPPING[key])
-                                                    .map(([key, value]) => (
+                                                {parameterOrder.map((key) => 
+                                                    formData[key] !== undefined && (
                                                         <tr key={key}>
                                                             <td>
                                                                 {PARAM_MAPPING[key]}
@@ -318,7 +340,7 @@ const App = () => {
                                                                 <input
                                                                     type="text"
                                                                     name={key}
-                                                                    value={value}
+                                                                    value={formData[key]}
                                                                     onChange={handleInputChange}
                                                                     placeholder="Use a dot for decimal values."
                                                                 />
